@@ -1,6 +1,7 @@
 header {
     position: relative;
     overflow: hidden;
+    margin-bottom: 75px;
 }
 
 .header-container {

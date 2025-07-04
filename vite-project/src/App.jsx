@@ -2,11 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Login_Header from './components/Login-components/Login_Header';
 import Register_Header from './components/Register-components/Register_Header';
+import About_Header from './components/About-components/About_Header';
 import Footer from './components/Footer';
 import Banner from './components/Banner';
 import Card from './components/Card';
 import Loginpage from './components/Loginpage';
 import Registerpage from './components/Registerpage';
+import Aboutpage from './components/Aboutpage';
 import './App.css';
 
 const HomePage = () => (
@@ -36,6 +38,14 @@ const RegisterPage = () => (
   </>
 );
 
+const AboutPage = () => (
+  <>
+    <About_Header />
+    <Aboutpage />
+    <Footer />
+  </>
+);
+
 function App() {
   return (
     <Router>
@@ -43,6 +53,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </Router>
   );

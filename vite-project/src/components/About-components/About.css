@@ -1,0 +1,44 @@
+.aboutcircle {
+    background-color: #377884;
+    border-radius: 50%;
+    width: 480px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutcircle h1 {
+    margin-top: 90px;
+    position: relative;
+    margin-bottom: 45px;
+}
+
+.aboutcircle h1::before {
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    border-radius: 25px;
+    height: 5px;
+    background-color: black;
+    content: '';
+    animation-name: underline;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.25s;
+}
+
+@keyframes underline {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.circletext {
+    font-size: 1.1rem;
+    margin-top: 20px;
+    padding-left: 15px;
+}

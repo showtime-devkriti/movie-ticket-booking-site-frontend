@@ -5,7 +5,6 @@ import './Loginpage.css'
 function Registerpage() {
     return (
         <>
-            <Register-Header />
             <Register />
         </>
     )

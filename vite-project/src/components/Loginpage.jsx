@@ -5,7 +5,6 @@ import './Loginpage.css'
 function Loginpage() {
     return (
         <>
-            <Login-Header />
             <Login />
         </>
     )
