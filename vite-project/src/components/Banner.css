@@ -1,0 +1,56 @@
+.banner-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; 
+}
+
+.banner-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    color: #377884;
+    position: relative;
+}
+
+.banner-icons svg {
+    cursor: pointer;
+}
+
+.banner-icons svg:hover {
+    color: #2f6a75;
+}
+
+.button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button > button {
+    font-size: 1.25rem;
+    background-color: #377884;
+    border-radius: 12px;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.button > button:hover {
+    background-color: #2f6a75;
+    transform: translateY(-10%);
+    box-shadow: 0px 0px 15px #377884;
+}

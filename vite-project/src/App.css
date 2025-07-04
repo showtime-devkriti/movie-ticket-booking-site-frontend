@@ -1,0 +1,10 @@
+.display-cards {
+    display: flex;
+    gap: 25px;
+    padding-left: 60px;
+    flex-wrap: wrap;
+}
+
+.showing {
+    padding-left: 25px;
+}
