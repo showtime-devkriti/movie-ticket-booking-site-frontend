@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Login_Header from './components/Login-components/Login_Header';
 import Register_Header from './components/Register-components/Register_Header';
@@ -41,14 +42,32 @@ const RegisterPage = () => (
 const AboutPage = () => (
   <>
     <About_Header />
+    <br></br>
     <Aboutpage />
     <Footer />
   </>
 );
 
+const ScrollToTop = () => {
+  const { pathname, key } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    }); // scroll to top-left corner
+  }, [key]);
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [pathname]);
+
+};
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

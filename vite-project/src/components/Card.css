@@ -1,4 +1,4 @@
-.card {
+.moviecard {
     position: relative;
     width: 18%;
     height: 375px;
@@ -9,18 +9,18 @@
     cursor: pointer;
 }
 
-.card:hover {
+.moviecard:hover {
     transform: translateY(-5%);
     box-shadow: 10px 15px 8px rgba(0,0,0,0.35);
 }
 
-.card img {
+.moviecard img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.card-info {
+.moviecard-info {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -34,13 +34,13 @@
     justify-content: center;
 }
 
-.card-title {
+.moviecard-title {
     font-size: 1rem;
     font-weight: bold;
     margin: 0;
 }
 
-.card-details {
+.moviecard-details {
     font-size: 0.85rem;
     color: #ccc;
     margin-top: 4px;

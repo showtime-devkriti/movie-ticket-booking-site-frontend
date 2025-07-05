@@ -1,11 +1,26 @@
 .aboutcircle {
     background-color: #377884;
     border-radius: 50%;
-    width: 480px;
-    height: 480px;
+    width: 500px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0px 0px 50px #377884;
+    animation-name: circleshadow;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes circleshadow {
+    from {
+        box-shadow: none;
+    }
+
+    to {
+        box-shadow: 0px 0px 50px #377884;
+    }
 }
 
 .aboutcircle h1 {
@@ -24,7 +39,8 @@
     content: '';
     animation-name: underline;
     animation-timing-function: ease-in-out;
-    animation-duration: 1.25s;
+    animation-iteration-count: 1;
+    animation-duration: 1.5s;
 }
 
 @keyframes underline {
@@ -38,7 +54,97 @@
 }
 
 .circletext {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-top: 20px;
     padding-left: 15px;
+}
+
+.aboutwrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 90px 0px 90px 0px;
+}
+
+.abouttext {
+    animation-name: about;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
+.abouttext li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 10px;
+}
+
+.abouttext li svg {
+    color: #377884;
+}
+
+.abouttext span {
+    font-size: 1.2rem;
+}
+
+@keyframes about {
+    from {
+        opacity: 0;
+        visibility: none;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.aboutcards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.aboutcard {
+    min-width: 30%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    background-color: rgb(250,250,250);
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+    padding: 25px;
+}
+
+.aboutcard img {
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+}
+
+.yashwanth img {
+    transform: rotateY(180deg);
+}
+
+.socialmedia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.socialmedia a {
+    color: black;
+}
+
+.socialmedia svg:hover {
+    transform: scale(1.15);
+    cursor: pointer;
 }
