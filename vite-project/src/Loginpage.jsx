@@ -4,9 +4,7 @@ import './Loginpage.css'
 
 function Loginpage() {
     return (
-        <>
-            <Login />
-        </>
+        <Login />
     )
 }
 

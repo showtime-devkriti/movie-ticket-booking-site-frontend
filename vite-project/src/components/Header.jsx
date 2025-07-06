@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <>
-      <header>
-        <div className="header-container">
+      <header className='url-header'>
+        <div className="container">
           <div className="logo-location">
             <Link to="/"><div className="logo">
               <svg width="300" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
@@ -55,6 +55,7 @@ const Header = () => {
               </div>
             </div>
           </div>
+          
           <div className="right">
             <div className="search-container">
               <span><IoIosSearch size={25} /></span>
