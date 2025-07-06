@@ -8,7 +8,7 @@ const Login_Header = () => {
     return (
         <>
             <header>
-                <Link to="/"><div className="header-container">
+                <Link to="/"><div className="login-header-container">
                     <div className="logo">
                         <svg width="300" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                             <g transform="translate(-65,80) rotate(-60 100 100) scale(1.4,1.4)" >

@@ -4,7 +4,7 @@ header {
     margin-bottom: 75px;
 }
 
-.header-container {
+.login-header-container {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -3,14 +3,16 @@ import './Details_Header.css';
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Details_Header = () => {
     return (
         <>
             <header>
-                <div className="header-container">
-                    <div className="logo-location">
-                        <Link to="/"><div className="logo">
+                <div className="details-header-container">
+                    <div className="details-logo-location">
+                        <Link to="/"><div className="details-logo">
                             <svg width="300" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                 <g transform="translate(-65,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                     <path d="M80,40 
@@ -47,24 +49,24 @@ const Details_Header = () => {
 
 
                         </div></Link>
-                        <div className="location">
+                        <div className="details-location">
                             <span><FaLocationDot size={40} /></span>
-                            <div className="location-text">
+                            <div className="details-location-text">
                                 <div className="city">Hyderabad</div>
                                 <div className="state"><h4>Telangana</h4></div>
                             </div>
                         </div>
                     </div>
-                    <div className="right">
-                        <div className="search-container">
+                    <div className="details-right">
+                        <div className="details-search-container">
                             <span><IoIosSearch size={25} /></span>
-                            <div className="search">
+                            <div className="details-search">
                                 <input type="text" placeholder="Search for movies and theaters"></input>
                             </div>
                         </div>
-                        <div className="sign">
-                            <Link to="/register"><button>Register</button></Link>
-                            <Link to="/login"><button>Login</button></Link>
+                        <div className="user-menu">
+                            <FaUser size={40} />
+                            <GiHamburgerMenu size={40}/>
                         </div>
                     </div>
                 </div>

@@ -14,63 +14,7 @@ header {
     z-index: 1;
     width: 100vw;
     position: fixed;
-    gap: 200px;
-}
-
-.sign {
-    display: flex;
-    gap: 10px;
-}
-
-.sign button {
-    background-color: #377884;
-    border-radius: 12px;
-    padding: 10px 15px;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-in-out;
-}
-
-.sign button:hover {
-    background-color: #377884;
-    transform: translateY(-5%);
-    box-shadow: 0px 0px 15px #377884;
-}
-
-.search input {
-    width: 300px;
-    color: white;
-    font-weight: bolder;
-    background-color: transparent;
-    border: none;
-}
-
-.search-container {
-    width: 50%;
-    background-color: black;
-    border-radius: 25px;
-    padding: 10px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    transition-duration: 0.7s;
-    transition-timing-function: ease-in-out;
-}
-.search-container span {
-    color: white;
-}
-
-.search-container:hover {
-    width: 70%;
-    padding-right: 200px    ;
-    box-shadow: 0px 0px 25px rgba(20,20,20,1);
-}
-
-.search>input:focus {
-    border: none;
-    outline: none;
+    gap: 330px;
 }
 
 .location {
@@ -103,7 +47,49 @@ header {
     gap: 50px;
 }
 
-.city {
-    font-size: 2rem;
-    font-weight: 700;
+.search input {
+    width: 300px;
+    color: white;
+    font-weight: bolder;
+    background-color: transparent;
+    border: none;
+}
+
+.search-container {
+    width: 50%;
+    background-color: black;
+    border-radius: 25px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+}
+.search-container span {
+    color: white;
+}
+
+.search-container:hover {
+    box-shadow: 0px 0px 25px rgba(20,20,20,1);
+}
+
+.search>input:focus {
+    border: none;
+    outline: none;
+}
+
+.sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.sign button {
+    background-color: #377884;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.2rem;
 }
