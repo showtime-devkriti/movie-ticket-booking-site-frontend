@@ -1,13 +1,11 @@
 import React from 'react';
 import './Register_Header.css';
-import { IoIosSearch } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
 const Register_Header = () => {
     return (
         <>
-            <header className='register-header'>
+            <header className='register-header'> 
                 <Link to="/"><div className="container">
                     <div className="logo">
                         <svg width="300" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +37,7 @@ const Register_Header = () => {
                                 </g>
                             </g>
 
-                            <text x="180" y="130" font-family="Sans" font-size="99" fill="111" font-weight="bold">
+                            <text className='title' x="180" y="130" font-family="Sans" font-size="99" fill="111" font-weight="bold">
                                 SHOWTIME
                             </text>
                         </svg>

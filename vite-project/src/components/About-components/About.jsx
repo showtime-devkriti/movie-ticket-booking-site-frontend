@@ -40,7 +40,7 @@ const About = () => {
                         in one convenient place.</span>
                     <br></br>
                     <br></br>
-                    <h2>Why Showtime?</h2>
+                    <h1>Why Showtime?</h1>
                     <br></br>
                     <ul>
                         <li><BiSolidMoviePlay size={30} />Wide range of movies</li>

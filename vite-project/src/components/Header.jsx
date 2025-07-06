@@ -47,22 +47,21 @@ const Header = () => {
 
 
             </div></Link>
-            <div className="location">
+            <div className="url-location">
               <span><FaLocationDot size={40} /></span>
-              <div className="location-text">
+              <div className="url-location-text">
                 <div className="city">Hyderabad</div>
-                <div className="state"><h4>Telangana</h4></div>
+                <div className="state">Telangana</div>
               </div>
             </div>
           </div>
-          
-          <div className="right">
-            <div className="search-container">
-              <span><IoIosSearch size={25} /></span>
-              <div className="search">
-                <input type="text" placeholder="Search for movies and theaters"></input>
-              </div>
+          <div className="search-container">
+            <span><IoIosSearch size={25} /></span>
+            <div className="search">
+              <input type="text" placeholder="Search for movies and theaters"></input>
             </div>
+          </div>
+          <div className="right">
             <div className="sign">
               <Link to="/register"><button>Register</button></Link>
               <Link to="/login"><button>Login</button></Link>

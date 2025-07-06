@@ -1,17 +1,126 @@
-header {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 75px;
+.about-header {
+    background-color: rgba(25, 25, 25, 0.384);
+    backdrop-filter: blur(8px);
+    height: 60px;
+    padding: 15px 0;
+    z-index: 10;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header-container {
+.about-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    padding-right: 100px;
+}
+
+.about-header .logo-location {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
+}
+
+.about-header .location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-header .location span {
+    color: #377884;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.about-header .location-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #444;
+    line-height: 1.1;
+}
+
+.about-header .city {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.about-header .search-container {
+    width: 20%;
+    background-color: #111;
+    border-radius: 25px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.about-header .search-container:hover {
+    width: 40%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
+}
+
+.about-header .search input {
+    width: 300px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.about-header .search-container span {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.about-header .user-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.about-header .user-menu svg {
+    color: #377884;
+    cursor: pointer;
+}
+
+.about-location {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(245, 245, 245, 0.9);
-    height: 75px;
-    z-index: 1;
-    width: 100vw;
-    position: fixed;
-    padding-right: 90px;
+    gap: 5px;
+}
+
+.about-location svg {
+    color: #377884;
+}
+
+.about-location-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: flex-start;
+    font-weight: 500;
+    gap: 5px;
+}
+
+.about-location .city {
+    font-size: 2rem;
+}
+
+.about-location .state {
+    font-size: 1.2rem;
 }

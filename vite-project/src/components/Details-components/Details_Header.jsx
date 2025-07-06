@@ -3,12 +3,14 @@ import './Details_Header.css';
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
 
 const Details_Header = () => {
     return (
         <>
-            <header>
-                <div className="header-container">
+            <header className='details-header'>
+                <div className="container">
                     <div className="logo-location">
                         <Link to="/"><div className="logo">
                             <svg width="300" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
@@ -47,25 +49,23 @@ const Details_Header = () => {
 
 
                         </div></Link>
-                        <div className="location">
+                        <div className="details-location">
                             <span><FaLocationDot size={40} /></span>
-                            <div className="location-text">
+                            <div className="details-location-text">
                                 <div className="city">Hyderabad</div>
-                                <div className="state"><h4>Telangana</h4></div>
+                                <div className="state">Telangana</div>
                             </div>
                         </div>
                     </div>
-                    <div className="right">
-                        <div className="search-container">
-                            <span><IoIosSearch size={25} /></span>
-                            <div className="search">
-                                <input type="text" placeholder="Search for movies and theaters"></input>
-                            </div>
+                    <div className="search-container">
+                        <span><IoIosSearch size={25} /></span>
+                        <div className="search">
+                            <input type="text" placeholder="Search for movies and theaters"></input>
                         </div>
-                        <div className="sign">
-                            <Link to="/register"><button>Register</button></Link>
-                            <Link to="/login"><button>Login</button></Link>
-                        </div>
+                    </div>
+                    <div className="user-menu">
+                        <Link to="/details"><FaUser size={40} /></Link>
+                        <Link to="/details"><IoMenu size={55} /></Link>
                     </div>
                 </div>
             </header>

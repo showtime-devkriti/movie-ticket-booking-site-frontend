@@ -1,7 +1,5 @@
 import React from 'react';
 import './Login_Header.css';
-import { IoIosSearch } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
 const Login_Header = () => {
