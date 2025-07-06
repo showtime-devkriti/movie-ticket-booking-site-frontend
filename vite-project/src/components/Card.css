@@ -9,6 +9,10 @@
     cursor: pointer;
 }
 
+.moviecard a {
+    width: 18%;
+}
+
 .moviecard:hover {
     transform: translateY(-5%);
     box-shadow: 10px 15px 8px rgba(0,0,0,0.35);

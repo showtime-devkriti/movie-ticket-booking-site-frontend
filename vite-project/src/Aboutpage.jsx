@@ -1,7 +1,6 @@
 import React from 'react';
 import './Aboutpage.css';
-import About_Header from './About-components/About_Header';
-import About from './About-components/About';
+import About from './components/About-components/About';
 
 const Aboutpage = () => {
     return (

@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
-        <div className="wrapper">
+        <div className="login-wrapper">
             <form action="#">
                 <h2>Login Form</h2>
                 <div className="input-field">
                     <input type="text" required />
-                    <label>Enter your email</label>
+                    <label>Enter your email / number / username</label>
                 </div>
                 <div className="input-field">
                     <input type="password" required />

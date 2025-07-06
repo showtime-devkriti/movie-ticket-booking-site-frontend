@@ -1,5 +1,5 @@
-import Login_Header from './Login-components/Login_Header'
-import Login from './Login-components/Login'
+import Login_Header from './components/Login-components/Login_Header'
+import Login from './components/Login-components/Login'
 import './Loginpage.css'
 
 function Loginpage() {
