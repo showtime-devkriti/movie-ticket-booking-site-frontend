@@ -1,0 +1,96 @@
+.details-banner-container {
+    position: relative;
+    height: 70vh;
+    padding: 20px 0px;
+}
+
+.details-banner-front img {
+    width: 50%;
+    height: 400px;
+    border-radius: 12px;
+}
+
+.details-banner-front {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 45px;
+    position: absolute;
+    top: 21%;
+    left: 5%;
+    z-index: 1;
+}
+
+.details-banner-front .front-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    width: 50%;
+}
+
+.details-banner-front .front-info button {
+    border: none;
+    background-color: #377884;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.details-banner-front .front-info button:hover {
+    background-color: #2f6a75;
+    transform: translateY(-10%);
+    box-shadow: 0px 0px 15px #377884;
+}
+
+.details-banner-front .front-info h1 {
+    font-size: 2.75rem;
+    color: white;
+}
+
+.details-banner-front .front-info .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 71vh;
+    padding: 10px 0px;
+    overflow: hidden;
+}
+
+.details-banner-back {
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    height: 85vh;
+    background-image: url('https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/kannappa-et00377025-1750744616.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.details-banner-back::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg,
+            rgb(26, 26, 26, 0.98) 20.95%,
+            rgb(26, 26, 26, 0.98) 25.3%,
+            rgba(26, 26, 26, 0.1) 95.45%,
+            rgb(26, 26, 26) 100%);
+    z-index: -1;
+}

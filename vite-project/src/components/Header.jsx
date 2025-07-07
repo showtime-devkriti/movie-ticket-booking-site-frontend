@@ -63,7 +63,7 @@ const Header = () => {
           </div>
           <div className="right">
             <div className="sign">
-              <Link to="/register"><button>Register</button></Link>
+              <Link to="/login"><button>Register</button></Link>
               <Link to="/login"><button>Login</button></Link>
             </div>
           </div>

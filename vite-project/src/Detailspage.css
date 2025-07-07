@@ -1,0 +1,11 @@
+.detailspage-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 25px;
+}
+
+.detailspage-details span {
+    font-size: 1.3rem;
+    width: 78vw;
+}
