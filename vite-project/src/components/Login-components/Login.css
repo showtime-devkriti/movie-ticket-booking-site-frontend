@@ -1,16 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
 
-/* .login-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #ff416c);
-    background-size: 400% 400%;
-    animation: gradientShift 12s ease infinite;
-} */
-
 .login-container {
     display: flex;
     justify-content: center;
@@ -21,30 +10,7 @@
     margin: 0;
 }
 
-
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    25% {
-        background-position: 50% 0%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    75% {
-        background-position: 50% 100%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.login-wrapper {
+.wrapper {
     margin-top: 200px;
     max-width: 400px;
     margin-left: auto;
@@ -56,8 +22,38 @@
     background: linear-gradient(135deg, #C4DBE8, #4598f7);
     backdrop-filter: blur(20px);
     box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
-    transition: all 0.3s ease;
+    translate: 0 -100px;
+    animation: fadeIn 0.5s ease-in-out forwards;
 }
+
+.wrapper.active {
+    translate: 0 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    translate: 0 -50px
+}
+
+.switch {
+    background: none;
+    border: none;
+    color: #377884;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .login-wrapper:hover {
     box-shadow: 0px 12px 48px rgba(0, 0, 0, 0.5);
@@ -166,6 +162,12 @@ button:hover {
 }
 
 .register {
+    text-align: center;
+    margin-top: 30px;
+    color: #fff;
+}
+
+.login{
     text-align: center;
     margin-top: 30px;
     color: #fff;

@@ -1,8 +1,8 @@
 .url-header {
     background-color: rgba(25, 25, 25, 0.384);
     backdrop-filter: blur(8px);
-    height: 60px;
-    padding: 15px 0;
+    height: 75px;
+    padding: 3px 0;
     z-index: 10;
     width: 100vw;
     position: fixed;
@@ -30,7 +30,7 @@
 .url-header .location {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .url-header .location span {
