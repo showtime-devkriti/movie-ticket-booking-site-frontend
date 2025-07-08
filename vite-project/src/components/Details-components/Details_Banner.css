@@ -27,7 +27,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 15px;
-    width: 50%;
+    width: 75%;
 }
 
 .details-banner-front .front-info button {
@@ -39,6 +39,9 @@
     cursor: pointer;
     transition-duration: 0.1s;
     transition-timing-function: ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .details-banner-front .front-info button:hover {

@@ -1,13 +1,13 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({image, role, name}) => {
+const Card = ({cast}) => {
     return (
         <>
             <div className="card-wrapper">
-                <img className="cast-img" src={image} alt={name}/>
-                <h4>{name}</h4>
-                <p>{role}</p>
+                <img className="cast-img" src={cast.image} alt={cast.name}/>
+                <h4>{cast.name}</h4>
+                <p>{cast.role}</p>
             </div>
         </>
     )

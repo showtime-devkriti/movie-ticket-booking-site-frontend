@@ -1,5 +1,6 @@
 import React from "react";
 import './Details_Banner.css';
+import { FaPlay } from "react-icons/fa";
 
 const Details_Banner = () => {
     return (
@@ -10,7 +11,7 @@ const Details_Banner = () => {
                     <div className="front-info">
                         <h1>Kannappa</h1>
                         <div className="btn">
-                            <button>Watch trailer</button>
+                            <button>Watch trailer <FaPlay size={20} /></button>
                             <button>Book tickets</button>
                         </div>
                     </div>

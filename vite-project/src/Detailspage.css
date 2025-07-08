@@ -9,3 +9,10 @@
     font-size: 1.3rem;
     width: 78vw;
 }
+
+.detailspage-details .cast {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
