@@ -1,6 +1,6 @@
 import React from "react"
-import { useState,useEffect } from "react";
-import { useSearchParams,Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import "./Login.css"
 
 const Login = () => {
@@ -9,8 +9,13 @@ const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
 
     useEffect(() => {
-        setIsLogin(mode === "login");
+        if (mode === "register") {
+            setIsLogin(false);
+        } else {
+            setIsLogin(true);
+        }
     }, [mode]);
+
 
     return (
         <div className="login-container">

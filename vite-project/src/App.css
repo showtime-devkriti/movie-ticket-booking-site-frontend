@@ -1,5 +1,6 @@
 .display-cards {
     display: flex;
+    justify-content: flex-start;
     gap: 25px;
     padding-left: 60px;
     flex-wrap: wrap;

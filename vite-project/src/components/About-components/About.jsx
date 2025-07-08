@@ -32,25 +32,23 @@ const About = () => {
                     </div>
                 </div >
                 <div className="abouttext">
-                    <h1>Welcome to Showtime<br></br>Your Movie Booking Made Easy</h1>
-                    <br></br>
-                    <span>Showtime is your go-to platform for quick, reliable, and easy movie ticket booking.<br></br>
+                    <h1>
+                        Welcome to Showtime<br />
+                        <span className="subtitle">Your Movie Booking Made Easy</span>
+                    </h1>
+                    <p>Showtime is your go-to platform for quick, reliable, and easy movie ticket booking.<br></br>
                         Discover a wide variety of movies, check real-time showtimes updated constantly,<br></br>
                         pick your preferred seats with ease, and pay securely — all seamlessly available<br></br>
-                        in one convenient place.</span>
-                    <br></br>
-                    <br></br>
+                        in one convenient place.</p>
                     <h1>Why Showtime?</h1>
-                    <br></br>
                     <ul>
                         <li><BiSolidMoviePlay size={30} />Wide range of movies</li>
                         <li><MdAccessTimeFilled size={30} />Live showtimes & seat availability</li>
                         <li><FaTicketAlt size={30} />Easy booking, secure payments</li>
                         <li><FaUser size={30} />Personalized recommendations</li>
                     </ul>
-                    <br></br>
-                    <span>Plan ahead or book last-minute — Showtime makes it simple.
-                        Experience the ease.<br></br>Enjoy the show.</span>
+                    <p>Plan ahead or book last-minute — Showtime makes it simple.
+                        Experience the ease.<br></br>Enjoy the show.</p>
                 </div>
             </div>
             <div className="aboutcards">
