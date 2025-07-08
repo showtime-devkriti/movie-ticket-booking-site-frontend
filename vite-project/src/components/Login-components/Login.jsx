@@ -1,8 +1,16 @@
 import React from "react"
+import { useState,useEffect } from "react";
+import { useSearchParams,Link } from "react-router-dom";
 import "./Login.css"
 
 const Login = () => {
-    const [isLogin, setIsLogin] = React.useState(true);
+    const [searchParams] = useSearchParams();
+    const mode = searchParams.get("mode");
+    const [isLogin, setIsLogin] = useState(true);
+
+    useEffect(() => {
+        setIsLogin(mode === "login");
+    }, [mode]);
 
     return (
         <div className="login-container">
@@ -28,7 +36,7 @@ const Login = () => {
                             </div>
                             <div className="submit"><button type="submit">Log In</button></div>
                             <div className="register">
-                                <p>Don't have an account? <a className="switch" href="#" onClick={() => setIsLogin(false)}>Register</a></p>
+                                <p>Don't have an account? <Link className="switch" to="/login?mode=register" onClick={() => setIsLogin(false)}>Register</Link></p>
                             </div>
                         </form>
                     </div>
@@ -70,7 +78,7 @@ const Login = () => {
                             </div>
                             <div className="submit"><button type="submit">Register</button></div>
                             <div className="login">
-                                <p>Already have an account?<a className="switch" href="#" onClick={() => setIsLogin(true)}> Login</a></p>
+                                <p>Already have an account?<Link className="switch" to="/login?mode=login" onClick={() => setIsLogin(true)}> Login</Link></p>
                             </div>
                         </form>
                     </div>
