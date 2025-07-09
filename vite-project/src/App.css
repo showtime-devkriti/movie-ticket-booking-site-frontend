@@ -1,11 +1,11 @@
 .display-cards {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 25px;
-    padding-left: 60px;
     flex-wrap: wrap;
 }
 
 .showing {
     padding-left: 25px;
+    margin-bottom: 25px;
 }
