@@ -166,6 +166,13 @@
     cursor: pointer;
 }
 
+@media (max-width: 1375px) {
+    .aboutwrapper {
+        margin: 175px 0px 50px 0px;
+        gap: 25px;
+    }
+}
+
 @media (max-width: 550px) {
     .aboutcard {
         min-width: 78vw;
@@ -178,8 +185,8 @@
     }
 
     .aboutcircle {
-        width: 300px;
-        height: 300px;
+        width: 320px;
+        height: 320px;
         padding: 20px;
         gap: 12px;
     }
@@ -209,7 +216,7 @@
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 400px) {
     .aboutcircle {
         width: 250px;
         height: 250px;
