@@ -3,7 +3,6 @@ import './About_Header.css';
 import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 
 const About_Header = () => {
@@ -13,8 +12,8 @@ const About_Header = () => {
                 <div className="container">
                     <div className="logo-location">
                         <Link to="/"><div className="logo">
-                            <svg width="300" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-                                <g transform="translate(-65,80) rotate(-60 100 100) scale(1.4,1.4)" >
+                            <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                     <path d="M80,40 
              a10,10 0 0,1 10,-10 
              h100 
@@ -31,7 +30,7 @@ const About_Header = () => {
                                         fill="#377884" />
                                 </g>
 
-                                <g transform="translate(43,65) scale(1.6,1.4)">
+                                <g transform="translate(-115,65) scale(1.6,1.4)">
                                     <rect x="0" y="0" width="50" height="50" rx="6" fill="#111" />
                                     <polygon points="18,12 35,25 18,38" fill="#fff" />
                                     <g transform="rotate(-15 25 0)">
@@ -42,7 +41,7 @@ const About_Header = () => {
                                     </g>
                                 </g>
 
-                                <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" font-weight="bold">
+                                <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" transform="translate(-150,0)" font-weight="bold">
                                     SHOWTIME
                                 </text>
                             </svg>
@@ -57,14 +56,15 @@ const About_Header = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="search-container">
-                        <span><IoIosSearch size={25} /></span>
-                        <div className="search">
-                            <input type="text" placeholder="Search for movies and theaters"></input>
+                    <div className="search-wrapper">
+                        <div className="search-container">
+                            <span><IoIosSearch size={25} /></span>
+                            <div className="search">
+                                <input type="text" placeholder="Search for movies and theaters"></input>
+                            </div>
                         </div>
                     </div>
-                    <div className="user-menu">
-                        <Link to="/about"><FaUser size={40} /></Link>
+                    <div className="menu">
                         <Link to="/about"><IoMenu size={55} /></Link>
                     </div>
                 </div>
