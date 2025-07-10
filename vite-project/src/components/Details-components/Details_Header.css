@@ -65,8 +65,12 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
 }
 
+.details-header .search {
+    width: 90%;
+}
+
 .details-header .search input {
-    width: 300px;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
@@ -88,7 +92,7 @@
     color: #377884;
 }
 
-.about-header .menu svg {
+.details-header .menu svg {
     color: #377884;
     cursor: pointer;
 }
