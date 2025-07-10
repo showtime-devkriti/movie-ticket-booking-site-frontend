@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
     const [searchParams] = useSearchParams();
     const mode = searchParams.get("mode");
     const [isLogin, setIsLogin] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLogin(mode !== "register");
@@ -35,7 +36,8 @@ const Login = () => {
 
             if (res.ok) {
                 alert("Login successful!");
-                
+                setLoginData({ check: "", password: "" });
+                navigate("/"); // Redirect to home or desired page
             } else {
                 alert(`Error: ${result.msg || "Login failed"}`);
             }
@@ -81,6 +83,15 @@ const Login = () => {
             if (res.ok) {
                 alert("Registration successful!");
                 setIsLogin(true);
+                setRegisterData({
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                    username: "",
+                    phonenumber: "",
+                    fullname: "",
+                    location: "",
+                  });
             } else {
                 alert(`Error: ${result.msg || "Registration failed"}`);
             }
