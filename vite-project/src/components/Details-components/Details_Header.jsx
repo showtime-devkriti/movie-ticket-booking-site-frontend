@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
+import { TbLogout } from "react-icons/tb";
 
 const Details_Header = () => {
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 750);
+    const [isMenu, setIsMenu] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -26,6 +29,10 @@ const Details_Header = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    const handleClick = () => {
+        setIsMenu(!isMenu);
+    };
 
     return (
         <>
@@ -87,7 +94,18 @@ const Details_Header = () => {
                                 </div>
                             </div>
                             <div className="menu">
-                                <Link to="/details"><IoMenu size={55} /></Link>
+                                <IoMenu size={55} onClick={handleClick} />
+                            </div>
+                        </div>
+                        <div className={isMenu ? ("sidebar open") : ("sidebar")}>
+                            <IoMdClose size={55} onClick={handleClick} />
+                            <div className="sidebar-text">
+                                <Link to="/"><h1>Home</h1></Link>
+                                <Link to="/about"><h1>About us</h1></Link>
+                                <div className="logout">
+                                    <h1>Logout</h1>
+                                    <TbLogout size={35} />
+                                </div>
                             </div>
                         </div>
                     </header >
@@ -137,7 +155,7 @@ const Details_Header = () => {
                                 </div>
                             </div>
                             <div className="menu">
-                                <Link to="/details"><IoMenu size={55} /></Link>
+                                <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
                             </div>
                         </div>
                         <div className="search-wrapper">
@@ -145,6 +163,17 @@ const Details_Header = () => {
                                 <span><IoIosSearch size={25} /></span>
                                 <div className="search">
                                     <input type="text" placeholder="Search for movies and theaters"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={isMenu ? ("sidebar open") : ("sidebar")}>
+                            <IoMdClose size={55} onClick={handleClick} />
+                            <div className="sidebar-text">
+                                <Link to="/"><h1>Home</h1></Link>
+                                <Link to="/about"><h1>About us</h1></Link>
+                                <div className="logout">
+                                    <h1>Logout</h1>
+                                    <TbLogout size={35} />
                                 </div>
                             </div>
                         </div>
@@ -189,7 +218,7 @@ const Details_Header = () => {
                             </svg>
                         </div></Link>
                         <div className="menu">
-                            <Link to="/details"><IoMenu size={55} /></Link>
+                            <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
                         </div>
                     </div>
                     <div className="search-wrapper">
@@ -197,6 +226,17 @@ const Details_Header = () => {
                             <span><IoIosSearch size={25} /></span>
                             <div className="search">
                                 <input type="text" placeholder="Search for movies and theaters"></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={isMenu ? ("sidebar open") : ("sidebar")}>
+                        <IoMdClose size={55} onClick={handleClick} />
+                        <div className="sidebar-text">
+                            <Link to="/"><h1>Home</h1></Link>
+                            <Link to="/about"><h1>About us</h1></Link>
+                            <div className="logout">
+                                <h1>Logout</h1>
+                                <TbLogout size={35} />
                             </div>
                         </div>
                     </div>
