@@ -11,23 +11,57 @@
 }
 
 .wrapper {
-    margin-top: 200px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     width: 400px;
     border-radius: 15px;
     padding: 40px;
-    text-align: center;
-    background: linear-gradient(135deg, #C4DBE8, #4598f7);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
-    translate: 0 -100px;
-    animation: fadeIn 0.5s ease-in-out forwards;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    transition: height 0.3s ease;
 }
 
-.wrapper .active {
-    animation: fadeIn 0.5s ease-in-out forwards;
-    translate: 0 -50px
+.wrapper.active {
+    height: 600px;
+
+}
+
+.wrapper .login-form {
+    text-align: center;
+    width: 400px;
+    opacity: 1;
+    transition: all 0.18s ease;
+}
+
+.wrapper .register-form {
+    text-align: center;
+    position: absolute;
+    translate: 500px;
+    width: 400px;
+    transition: none;
+    opacity: 0;
+}
+
+.wrapper.active .login-form {
+    text-align: center;
+    transition: none;
+    width: 400px;
+    translate: -500px;
+    opacity: 0;
+}
+
+.wrapper.active .register-form {
+    text-align: center;
+    width: 400px;
+    translate: 0;
+    opacity: 1;
+    transition: all 0.18s ease;
 }
 
 .switch {
@@ -40,15 +74,55 @@
     margin-left: 5px;
 }
 
-@keyframes fadeIn {
+@keyframes l-fadeIn {
     from {
+        diplay: none;
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateX(-100px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes l-fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        display: none;
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes r-fadeIn {
+    from {
+        display: none;
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes r-fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        display: none;
+        opacity: 0;
+        transform: translateX(100px);
     }
 }
 
@@ -64,6 +138,7 @@ form {
 
 form a {
     text-decoration: none;
+    color: #ffffff;
 }
 
 form h2 {
@@ -97,7 +172,7 @@ form h2 {
     border: none;
     outline: none;
     font-size: 16px;
-    color: #4792c4;
+    color: #ffffff;
     padding: 0 10px;
 }
 
@@ -106,7 +181,7 @@ form h2 {
     font-size: 0.9rem;
     top: 10px;
     transform: translateY(-150%);
-    color: #003675;
+    color: #ffffff;
 }
 
 .forget {
@@ -165,7 +240,7 @@ button:hover {
     color: #fff;
 }
 
-.login{
+.login {
     text-align: center;
     margin-top: 30px;
     color: #fff;
@@ -177,3 +252,16 @@ button:hover {
         max-width: 70vw;
     }
 }
+
+.forget label p {
+    padding-left: 10px;
+}
+
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: #ffffff !important; /* Optional: set your text color */
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: inherit;
+    background-color: transparent !important;
+  }
