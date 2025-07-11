@@ -1,0 +1,35 @@
+.url-location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-left: 40px;
+    padding: 10px 15px 10px 10px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.url-location svg {
+    color: #377884;
+}
+
+.url-location-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-weight: 500;
+    gap: 5px;
+}
+
+.url-location:hover {
+    transform: translateZ(5px);
+    background-color: rgba(255, 255, 255, 0.219);
+    backdrop-filter: 8px;
+    box-shadow: 0px 0px 15px #377884;   
+}
+
+.url-location .city {
+    font-size: 1.4rem;
+    font-weight: 700;
+}

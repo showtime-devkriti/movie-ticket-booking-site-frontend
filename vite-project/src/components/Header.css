@@ -49,40 +49,6 @@
     line-height: 1.1;
 }
 
-/* .url-header .search-container {
-    width: 20vw;
-    background-color: #111;
-    border-radius: 25px;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.5s ease-in-out;
-}
-
-.url-header .search-container:hover {
-    width: 48vw;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
-}
-
-.url-header .search {
-    width: 90%;
-}
-
-.url-header .search input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.url-header .search-container span {
-    color: white;
-    font-size: 1.2rem;
-} */
 
 .url-header .login-register {
     display: flex;
@@ -113,7 +79,7 @@
     box-shadow: 0px 0px 15px #377884;
 }
 
-.url-location {
+/* .url-location {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,14 +99,25 @@
     gap: 5px;
 }
 
-.url-location .city {
-    font-size: 1.65rem;
-    font-weight: 700;
+.url-location{
+    margin-left: 40px;
+    border: 2px solid #377884;
+    padding: 10px 15px 10px 10px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease-in-out;
 }
 
-.url-location .state {
-    font-size: 1.15rem;
+.url-location:hover {
+    transform: translateZ(5px);
+    box-shadow: 0px 0px 15px #377884;   
 }
+
+.url-location .city {
+    font-size: 1.4rem;
+    font-weight: 700;
+} */
 
 .url-header .logo a {
     display: inline-block;
@@ -159,24 +136,6 @@
         padding-left: 10px;
     }
 
-    /* .url-header .search-wrapper {
-        order: 1;
-        position: absolute;
-        top: 80px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .url-header .search-container {
-        width: 95%;
-        transition: all 0.5s ease-in-out;
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
-    }
-
-    .url-header .search-container input {
-        width: 75vw;
-    } */
 
     .url-location {
         gap: 3px;
@@ -192,17 +151,11 @@
 }
 
 @media (max-width: 750px) {
-    /* .url-header .search-container {
-        width: 90%;
-    } */
-
     .url-header .container {
         justify-content: space-between;
     }
 }
 
 @media (max-width: 550px) {
-    /* .url-header .search-container {
-        width: 85%;
-    } */
+
 }

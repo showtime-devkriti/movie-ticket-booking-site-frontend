@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from "react";
 import './Header.css';
 import { Link } from "react-router-dom";
-//import { IoIosSearch } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import SearchBar from "./Searchbar/SearchBar";
+import Location from "./Location/Location";
 
 const Header = () => {
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
@@ -71,22 +70,9 @@ const Header = () => {
                                         </text>
                                     </svg>
                                 </Link></div>
-                                <div className="url-location">
-                                    <span><FaLocationDot size={30} /></span>
-                                    <div className="details-location-text">
-                                        <div className="city">Hyderabad</div>
-                                        <div className="state">Telangana</div>
-                                    </div>
-                                </div>
+                                <Location />
                             </div>
-                            
-                                {/* <div className="search-container">
-                  <span><IoIosSearch size={25} /></span>
-                  <div className="search">
-                    <input type="text" placeholder="Search for movies and theaters"></input>
-                  </div>
-                </div> */}
-                                <SearchBar />
+                            <SearchBar />
                             
                             <div className="login-register">
                                 <Link to="/login?mode=register"><button>Register</button></Link>
@@ -132,26 +118,13 @@ const Header = () => {
                                     </text>
                                 </svg>
                             </div></Link>
-                            <div className="url-location">
-                                <span><FaLocationDot size={30} /></span>
-                                <div className="url-location-text">
-                                    <div className="city">Hyderabad</div>
-                                    <div className="state">Telangana</div>
-                                </div>
-                            </div>
+                            <Location />
                             <div className="login-register">
                                 <Link to="/login?mode=register"><button>Register</button></Link>
                                 <Link to="/login?mode=login"><button>Login</button></Link>
                             </div>
                         </div>
-                        
-                            {/* <div className="search-container">
-                <span><IoIosSearch size={25} /></span>
-                <div className="search">
-                  <input type="text" placeholder="Search for movies and theaters"></input>
-                </div>
-              </div> */}
-                            <SearchBar />
+                        <SearchBar />
                         
                     </header>
                 )
@@ -198,14 +171,7 @@ const Header = () => {
                             <Link to="/login?mode=login"><button>Login</button></Link>
                         </div>
                     </div>
-                    
-                        {/* <div className="search-container">
-              <span><IoIosSearch size={25} /></span>
-              <div className="search">
-                <input type="text" placeholder="Search for movies and theaters"></input>
-              </div>
-            </div> */}
-                        <SearchBar />
+                    <SearchBar />
                     
                 </header>
             )}

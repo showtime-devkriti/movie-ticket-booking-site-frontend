@@ -4,15 +4,15 @@ import "./SearchResults.css";
 
 const SearchResults = ({results}) => {
 
-    // const onResultClick = (result) => {
-    //     alert(`You clicked on: ${result}`)
-    // }
+    const onResultClick = (result) => {
+        alert(`You clicked on: ${result}`)
+    }
 
     return (
         <>
             <div className={`results-list ${results.length === 0 ? 'hidden' : ''}`}>
                 {results.map((result, index) => {
-                    <div className="result-item" key={index} onClick={onResultClick(result)}>{result}</div>
+                    return <div className="result-item" key={index} onClick={() => onResultClick(result)}>{result}</div>
                 })}
                 {/* <div className="result-item">A</div>
                 <div className="result-item">B</div>
