@@ -155,7 +155,7 @@ const About_Header = () => {
                                 </div>
                             </div>
                             <div className="menu">
-                                <Link to="/about"><IoMenu size={55} onClick={handleClick} /></Link>
+                                <IoMenu size={55} onClick={handleClick} />
                             </div>
                         </div>
                         <div className="search-wrapper">
@@ -218,7 +218,7 @@ const About_Header = () => {
                             </svg>
                         </div></Link>
                         <div className="menu">
-                            <Link to="/about"><IoMenu size={55} onClick={handleClick} /></Link>
+                            <IoMenu size={55} onClick={handleClick} />
                         </div>
                     </div>
                     <div className="search-wrapper">

@@ -121,12 +121,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     margin-top: 25px;
 }
 
 .aboutcard {
-    min-width: 430px;
+    min-width: 350px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -175,8 +175,8 @@
 
 @media (max-width: 550px) {
     .aboutcard {
-        min-width: 78vw;
-        max-width: 78vw;
+        min-width: 300px;
+        max-width: 300px;
     }
 
     .aboutcard h1 {

@@ -139,7 +139,7 @@
     gap: 25px;
     flex-direction: column;
     transition: transform 0.35s ease-in-out;
-    transform: translateX(100%);
+    transform: translateX(200%);
 }
 
 .about-header .sidebar.open {

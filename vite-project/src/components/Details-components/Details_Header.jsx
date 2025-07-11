@@ -218,7 +218,7 @@ const Details_Header = () => {
                             </svg>
                         </div></Link>
                         <div className="menu">
-                            <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
+                            <IoMenu size={55} onClick={handleClick} />
                         </div>
                     </div>
                     <div className="search-wrapper">
