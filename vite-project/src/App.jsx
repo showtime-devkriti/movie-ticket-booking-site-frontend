@@ -10,6 +10,7 @@ import Loginpage from './Loginpage';
 import Aboutpage from './Aboutpage';
 import Detailspage from './Detailspage';
 import './App.css';
+import Home from "./components/Home/Home";
 
 const HomePage = () => (
     <>
@@ -65,6 +66,7 @@ function App() {
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/details" element={<DetailsPage />} />
+                <Route path="/home" element={<Home />} />
             </Routes>
         </Router>
     );

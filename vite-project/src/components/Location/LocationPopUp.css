@@ -1,3 +1,18 @@
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 99;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
 .pop-up-container {
     backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.938);
@@ -7,12 +22,12 @@
     height: 465px;
     padding: 10px;
     position: absolute;
-    z-index: 1;
+    z-index: 100;
     border-radius: 15px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
     display: flex;
     flex-direction: column;
-    animation: fadeIn 0.5s ease-in-out forwards;
+    animation: fadeIn 0.5s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -28,7 +43,8 @@
 }
 
 .pop-up-container.hidden {
-    animation: fadeOut 0.5s ease-in-out forwards;
+    display: none;
+    animation: fadeOut 0.5s ease forwards;
 }
 
 @keyframes fadeOut {
@@ -98,7 +114,7 @@
     background-color: #377884;
     cursor: pointer;
     margin-left: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 .location-input input:focus,
@@ -133,7 +149,7 @@
 .location-list div:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
     translate: 0px -2px 5px;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     cursor: pointer;
 }
 

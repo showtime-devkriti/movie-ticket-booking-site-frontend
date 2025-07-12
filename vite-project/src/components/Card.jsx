@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.css';
 import { Link } from 'react-router-dom';
 
-const Card = () => {
+const Card = ({image, title, details}) => {
     return (
         <>
             <div className="moviecard">

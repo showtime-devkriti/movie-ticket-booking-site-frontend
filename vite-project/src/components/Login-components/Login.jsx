@@ -29,6 +29,7 @@ const Login = () => {
             const res = await fetch("http://localhost:3000/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify(loginData),
             });
 
@@ -37,7 +38,7 @@ const Login = () => {
             if (res.ok) {
                 alert("Login successful!");
                 setLoginData({ check: "", password: "" });
-                navigate("/"); // Redirect to home or desired page
+                navigate("/home"); // Redirect to home or desired page
             } else {
                 alert(`Error: ${result.msg || "Login failed"}`);
             }
@@ -105,7 +106,7 @@ const Login = () => {
         <div className="login-container">
             <div className={`wrapper ${isLogin ? "" : "active"}`}>
                 {/* Login Form */}
-                {isLogin && (
+                
                     <div className="login-form">
                         <form onSubmit={handleLoginSubmit}>
                             <h2>Login</h2>
@@ -137,10 +138,10 @@ const Login = () => {
                             </div>
                         </form>
                     </div>
-                )}
+                
 
                 {/* Register Form */}
-                {!isLogin && (
+                
                     <div className="register-form">
                         <form onSubmit={handleRegisterSubmit}>
                             <h2>Register</h2>
@@ -196,7 +197,7 @@ const Login = () => {
                             </div>
                         </form>
                     </div>
-                )}
+                
             </div>
         </div>
     );

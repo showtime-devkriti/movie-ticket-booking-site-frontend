@@ -36,7 +36,7 @@
     text-align: center;
     width: 400px;
     opacity: 1;
-    transition: all 0.18s ease;
+    transition: all 0.1s ease;
 }
 
 .wrapper .register-form {
@@ -61,7 +61,7 @@
     width: 400px;
     translate: 0;
     opacity: 1;
-    transition: all 0.18s ease;
+    transition: all 0.1s ease;
 }
 
 .switch {
@@ -72,58 +72,6 @@
     cursor: pointer;
     text-decoration: underline;
     margin-left: 5px;
-}
-
-@keyframes l-fadeIn {
-    from {
-        diplay: none;
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes l-fadeOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    to {
-        display: none;
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-}
-
-@keyframes r-fadeIn {
-    from {
-        display: none;
-        opacity: 0;
-        transform: translateX(100px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes r-fadeOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    to {
-        display: none;
-        opacity: 0;
-        transform: translateX(100px);
-    }
 }
 
 
