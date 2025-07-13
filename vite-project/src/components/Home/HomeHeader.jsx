@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomeHeader.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
@@ -9,12 +9,14 @@ import { IoMdClose } from "react-icons/io";
 import { TbLogout } from "react-icons/tb";
 import SearchBar from "../Searchbar/SearchBar";
 import Location from "../Location/Location";
+import Cookies from "js-cookie"
 
 const HomeHeader = () => {
 
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 750);
     const [isMenu, setIsMenu] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleResize = () => {
@@ -38,6 +40,11 @@ const HomeHeader = () => {
         setIsMenu(!isMenu);
     };
 
+    const handleLogout = () => {
+        Cookies.remove("token");  // Remove token cookie
+        navigate("/");       // Redirect to login page
+      };
+
     return (
         <>
             {!isMobile ? (
@@ -46,7 +53,7 @@ const HomeHeader = () => {
                     <header className='details-header' >
                         <div className="container">
                             <div className="logo-location">
-                                <div className="logo"><Link to="/">
+                                <div className="logo"><Link to="/home">
                                     <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                         <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                             <path d="M80,40 
@@ -93,7 +100,7 @@ const HomeHeader = () => {
                             <div className="sidebar-text">
                                 <Link to="/"><h1>Home</h1></Link>
                                 <Link to="/about"><h1>About us</h1></Link>
-                                <div className="logout">
+                                <div className="logout" onClick={handleLogout}>
                                     <h1>Logout</h1>
                                     <TbLogout size={35} />
                                 </div>
@@ -103,7 +110,7 @@ const HomeHeader = () => {
                 ) : (
                     <header className='details-header'>
                         <div className="container">
-                            <Link to="/"><div className="logo">
+                            <Link to="/home"><div className="logo">
                                 <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                     <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                         <path d="M80,40 
@@ -160,7 +167,7 @@ const HomeHeader = () => {
             ) : (
                 <header className='details-header'>
                     <div className="container">
-                        <Link to="/"><div className="logo">
+                        <Link to="/home"><div className="logo">
                             <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                 <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                     <path d="M80,40 

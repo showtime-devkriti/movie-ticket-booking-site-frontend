@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"
 import "./Login.css";
 
 const Login = () => {
@@ -36,6 +37,7 @@ const Login = () => {
             const result = await res.json();
 
             if (res.ok) {
+                //Cookies.set("token", data.token, { expires: 7 }); // Set token in cookies for 7 days
                 alert("Login successful!");
                 setLoginData({ check: "", password: "" });
                 navigate("/home"); // Redirect to home or desired page

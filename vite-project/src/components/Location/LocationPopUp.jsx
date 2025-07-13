@@ -1,15 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './LocationPopUp.css'
 import { IoClose } from "react-icons/io5";
+import Cookies from "js-cookie"
 
 const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
     useEffect(() => {
+        const token = Cookies.get("token")
+
+        if(!token) setPopUp(false)
         document.body.style.overflow = popUpShow ? 'hidden' : 'auto';
     }, [popUpShow]);
 
     const [location, setLocation] = useState('')
     const [language, setLanguage] = useState("")
+    const navigate = useNavigate()
 
     const onLocationClick = async (value) => {
         //console.log(location)
@@ -51,6 +57,7 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
             if (res.ok) {
                 alert("Language change successful!");
                 setPopUp(false);
+                navigate("/home")
             } else {
                 alert(`Error: ${result.msg || "Language change failed"}`);
             }

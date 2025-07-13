@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './Details_Banner.css';
 import { FaPlay } from "react-icons/fa";
 
-const Details_Banner = () => {
+const Details_Banner = ({ data }) => {
     return (
         <>
             <div className="details-banner-container">
                 <div className="details-banner-front">
-                    <img src="https://assetscdn1.paytm.com/images/cinema/poster_0013_Kannapa4-4bcb5160-50f9-11f0-9951-6bd98bb9c412.jpg"></img>
+                    <img src={data?.posterurl}></img>
                     <div className="front-info">
-                        <h1>Kannappa</h1>
+                        <h1>{data?.title}</h1>
+
                         <div className="btn">
                             <button>Watch trailer <FaPlay size={20} /></button>
                             <button>Book tickets</button>
@@ -17,7 +18,10 @@ const Details_Banner = () => {
                     </div>
                 </div>
                 <div className="back-container">
-                    <div className="details-banner-back">
+                    <div className="details-banner-back" style={{
+                            backgroundImage: `url(${data?.backdropurl})`,  
+                        }}>
+                        
                     </div>
                 </div>
             </div>
