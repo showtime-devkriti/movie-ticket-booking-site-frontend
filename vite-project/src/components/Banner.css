@@ -1,38 +1,67 @@
 .banner-container {
+    top: 90px;
     position: relative;
-    height: 100vh;
-}
-
-.image{
+    height: calc(100vh - 90px);
     display: flex;
-    justify-content: flex-start;
-    z-index: -1; 
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    transition: all .3s ease;
+    margin-bottom: 90px;
+    transform: scale(0.95);
+    border-radius: 20px;
 }
 
-.image img {
+.image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+.image>div {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100vw;
-    height: 100vh;
-    object-fit: cover; 
-    transition: all .3s ease;
+    height: 100%;
+    transform: scale(0.95);
+    border-radius: 20px;
+}
+
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex-shrink: 0;
+    width: 100vw;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .banner-icons {
     position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    top: 0;
-    height: 100%;
+    top: 50%;
+    left: 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 90%;
+    transform: translateY(-50%);
     color: #377884;
-    z-index: 1;
+    z-index: 2;
 }
 
 .banner-icons svg {
     cursor: pointer;
+    transition: color 0.1s;
 }
 
 .banner-icons svg:hover {
@@ -47,7 +76,7 @@
     z-index: 1;
 }
 
-.button > button {
+.button>button {
     font-size: 1.25rem;
     background-color: #377884;
     border-radius: 12px;
@@ -58,8 +87,40 @@
     transition-timing-function: ease-in-out;
 }
 
-.button > button:hover {
+.button>button:hover {
     background-color: #2f6a75;
     transform: translateY(-10%);
     box-shadow: 0px 0px 15px #377884;
+}
+
+@media (max-width: 1375px) {
+    .banner-container {
+        top: 140px;
+        height: calc(100vh - 140px);
+        margin-bottom: 140px;
+    }
+}
+
+@media (max-width: 1025px) {
+    .banner-container {
+        height: calc(45vh - 140px);
+    }
+
+    .banner-icons {
+        gap: 78%;
+    }
+}
+
+@media (max-width: 750px) {
+    .banner-container .button {
+        font-size: 1rem;
+    }
+
+    .banner-icons {
+        gap: 60%;
+    }
+
+    .banner-icons svg {
+        transform: scale(0.6);
+    }
 }
