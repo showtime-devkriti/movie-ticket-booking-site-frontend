@@ -85,14 +85,6 @@ const About_Header = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="search-wrapper">
-                                <div className="search-container">
-                                    <span><IoIosSearch size={25} /></span>
-                                    <div className="search">
-                                        <input type="text" placeholder="Search for movies and theaters"></input>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -158,14 +150,6 @@ const About_Header = () => {
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
                         </div>
-                        <div className="search-wrapper">
-                            <div className="search-container">
-                                <span><IoIosSearch size={25} /></span>
-                                <div className="search">
-                                    <input type="text" placeholder="Search for movies and theaters"></input>
-                                </div>
-                            </div>
-                        </div>
                         <div className={isMenu ? ("sidebar open") : ("sidebar")}>
                             <IoMdClose size={55} onClick={handleClick} />
                             <div className="sidebar-text">
@@ -219,14 +203,6 @@ const About_Header = () => {
                         </div></Link>
                         <div className="menu">
                             <IoMenu size={55} onClick={handleClick} />
-                        </div>
-                    </div>
-                    <div className="search-wrapper">
-                        <div className="search-container">
-                            <span><IoIosSearch size={25} /></span>
-                            <div className="search">
-                                <input type="text" placeholder="Search for movies and theaters"></input>
-                            </div>
                         </div>
                     </div>
                     <div className={isMenu ? ("sidebar open") : ("sidebar")}>

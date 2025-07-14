@@ -6,6 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { TbLogout } from "react-icons/tb";
+import SearchBar from "../Searchbar/SearchBar";
 
 const Details_Header = () => {
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
@@ -85,14 +86,7 @@ const Details_Header = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="search-wrapper">
-                                <div className="search-container">
-                                    <span><IoIosSearch size={25} /></span>
-                                    <div className="search">
-                                        <input type="text" placeholder="Search for movies and theaters"></input>
-                                    </div>
-                                </div>
-                            </div>
+                            <SearchBar />
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -158,14 +152,7 @@ const Details_Header = () => {
                                 <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
                             </div>
                         </div>
-                        <div className="search-wrapper">
-                            <div className="search-container">
-                                <span><IoIosSearch size={25} /></span>
-                                <div className="search">
-                                    <input type="text" placeholder="Search for movies and theaters"></input>
-                                </div>
-                            </div>
-                        </div>
+                        <SearchBar />
                         <div className={isMenu ? ("sidebar open") : ("sidebar")}>
                             <IoMdClose size={55} onClick={handleClick} />
                             <div className="sidebar-text">
@@ -221,14 +208,7 @@ const Details_Header = () => {
                             <IoMenu size={55} onClick={handleClick} />
                         </div>
                     </div>
-                    <div className="search-wrapper">
-                        <div className="search-container">
-                            <span><IoIosSearch size={25} /></span>
-                            <div className="search">
-                                <input type="text" placeholder="Search for movies and theaters"></input>
-                            </div>
-                        </div>
-                    </div>
+                    <SearchBar />
                     <div className={isMenu ? ("sidebar open") : ("sidebar")}>
                         <IoMdClose size={55} onClick={handleClick} />
                         <div className="sidebar-text">
