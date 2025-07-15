@@ -7,6 +7,7 @@ import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { TbLogout } from "react-icons/tb";
 import SearchBar from "../Searchbar/SearchBar";
+import Location from "../Location/Location";
 
 const Details_Header = () => {
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
@@ -78,13 +79,7 @@ const Details_Header = () => {
                                         </text>
                                     </svg>
                                 </Link></div>
-                                <div className="details-location">
-                                    <span><FaLocationDot size={30} /></span>
-                                    <div className="details-location-text">
-                                        <div className="city">Hyderabad</div>
-                                        <div className="state">Telangana</div>
-                                    </div>
-                                </div>
+                                <Location/>
                             </div>
                             <SearchBar />
                             <div className="menu">

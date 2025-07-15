@@ -20,7 +20,7 @@ const Banner = ({ data }) => {
 
     const explore = () => {
         const id = data[curr].id
-        if (id) navigate(`/details?id=${id}`)
+        if (id) navigate(`/movies?id=${id}`)
     }
 
     return (

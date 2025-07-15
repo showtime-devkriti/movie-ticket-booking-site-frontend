@@ -4,7 +4,7 @@ import './Location.css';
 import { FaLocationDot } from "react-icons/fa6";
 import LocationPopUp from "./LocationPopUp"
 
-const Location = ({ setLocation }) => {
+const Location = () => {
     const [popUpShow, setPopUp] = useState(false);
     const [location, setLocationState] = useState('Hyderabad');
     const [isFirstVisit, setIsFirstVisit] = useState(false);

@@ -6,7 +6,7 @@ const Card = ({id, posterurl, title}) => {
     return (
         <>
             <div className="moviecard">
-                <Link to={`/details?id=${id}`}>
+                <Link to={`/movies?id=${id}`}>
                     <img src={posterurl}></img>
                     <div className="moviecard-info">
                         <div className="moviecard-title">{title}</div>

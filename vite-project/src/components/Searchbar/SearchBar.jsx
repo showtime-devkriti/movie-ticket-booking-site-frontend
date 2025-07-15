@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./SearchBar.css"
 import SearchResults from "./SearchResults";
 
@@ -15,19 +16,35 @@ const sampleData = [
     "PVR Cinemas - Hyderabad",
     "INOX GVK One Mall",
     "Cinepolis - Kukatpally",
-  ];
+];
 
 const SearchBar = () => {
     const [input, setInput] = useState("");
     const [results, setResults] = useState([]);
+    const location = useLocation();
 
-    const handleSearch = (query) => {
-        const filtered = sampleData.filter((item) => {
-            return query && item.toLowerCase().includes(query.toLowerCase())
-        });
+    const handleSearch = async (query) => {
+        if (location.pathname === "/home" || location.pathname === "/") {
+            if (query) {
+                const res = await fetch(`http://localhost:3000/api/search?query=${query}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include"
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    //console.log(data);
+                    setResults(data);
+                }
+            }else {
+                setResults([]);
+            }
 
-        setResults(filtered);
-        //console.log(filtered)
+        } else if (location.pathname === "/movie") {
+
+        }
     }
 
     const handleInputChange = (e) => {
@@ -43,7 +60,7 @@ const SearchBar = () => {
                     <input type="text" placeholder="Search for movies and theaters" value={input} onChange={handleInputChange}></input>
                 </div>
             </div>
-            <SearchResults results={results}/>
+            <SearchResults results={results} />
         </div>
     </>
 }
