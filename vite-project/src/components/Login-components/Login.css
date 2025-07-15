@@ -8,6 +8,7 @@
     background-image: url("https://media.istockphoto.com/id/915697084/photo/concept-of-reserved-seats.jpg?s=612x612&w=0&k=20&c=vYKpKwkfF3FLLt-v9UUgOZop9veyg-nen8QxFKnhDro=");
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'open sans', sans-serif;
 }
 
 .wrapper {
@@ -25,24 +26,28 @@
 }
 
 .wrapper.active {
-    height: 65vh;
-
+    
 }
 
 .wrapper .login-form {
+    position: relative;
     text-align: center;
     width: 400px;
     opacity: 1;
     transition: all 0.1s ease;
+    visibility: visible;
 }
 
 .wrapper .register-form {
     text-align: center;
     position: absolute;
     translate: 500px;
-    width: 400px;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
     transition: none;
     opacity: 0;
+    visibility: hidden;
 }
 
 .wrapper.active .login-form {
@@ -51,6 +56,7 @@
     width: 400px;
     translate: -500px;
     opacity: 0;
+    visibility: hidden;
 }
 
 .wrapper.active .register-form {
@@ -59,6 +65,7 @@
     translate: 0;
     opacity: 1;
     transition: all 0.1s ease;
+    visibility: visible;
 }
 
 .switch {
@@ -202,7 +209,10 @@ button:hover {
 }
 
 
-input:-webkit-autofill {
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
     box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-text-fill-color: #ffffff !important; /* Optional: set your text color */
     transition: background-color 5000s ease-in-out 0s;
