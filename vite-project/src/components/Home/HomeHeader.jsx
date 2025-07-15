@@ -18,6 +18,8 @@ const HomeHeader = () => {
     const [isMenu, setIsMenu] = useState(false);
     const navigate = useNavigate()
 
+    
+
     useEffect(() => {
         const handleResize = () => {
             setIsLarge(window.innerWidth >= 1375);

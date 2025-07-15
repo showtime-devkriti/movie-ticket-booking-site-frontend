@@ -5,7 +5,7 @@ import './LocationPopUp.css'
 import { IoClose } from "react-icons/io5";
 import Cookies from "js-cookie"
 
-const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
+const LocationPopUp = ({ popUpShow, setPopUp, setLocationState, isFirstVisit}) => {
     useEffect(() => {
         const token = Cookies.get("token")
 
@@ -15,15 +15,17 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
 
     const [location, setLocation] = useState('')
     const [language, setLanguage] = useState("")
-    const navigate = useNavigate()
 
     const onLocationClick = async (value) => {
+        const token = Cookies.get("token")
         //console.log(location)
         setLocation(value)
         try{
             const res = await fetch("http://localhost:3000/api/user/location", {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                     "authorization": `Bearer ${token}`,
+                     "Content-Type": "application/json" },
                 credentials: "include",
                 body: JSON.stringify({location: value}),
             })
@@ -33,6 +35,7 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
             if (res.ok) {
                 alert("Location change successful!");
                 setLocationState(value);
+                if(!isFirstVisit) window.location.reload();
             } else {
                 alert(`Error: ${result.msg || "Location change failed"}`);
             }
@@ -43,11 +46,14 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
     }
 
     const onLanguClick = async (value) => {
+        const token = Cookies.get("token")
         setLanguage(value)
         try{
             const res = await fetch("http://localhost:3000/api/user/language", {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json" },
                 credentials: "include",
                 body: JSON.stringify({language: value}),
             })
@@ -57,7 +63,7 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState}) => {
             if (res.ok) {
                 alert("Language change successful!");
                 setPopUp(false);
-                navigate("/home")
+                window.location.reload();
             } else {
                 alert(`Error: ${result.msg || "Language change failed"}`);
             }

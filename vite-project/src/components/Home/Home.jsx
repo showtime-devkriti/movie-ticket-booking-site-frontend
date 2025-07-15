@@ -12,19 +12,22 @@ const Home = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate()
 
+    
+
     useEffect(() => {
         const token = Cookies.get("token")
         console.log(token)
 
-        if(!token) navigate("/")
+        if (!token) navigate("/")
 
         const fetchData = async () => {
             try {
                 const res = await fetch("http://localhost:3000/api/home", {
                     method: "GET",
-                    headers: { 
+                    headers: {
                         "authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json" },
+                        "Content-Type": "application/json"
+                    },
                     credentials: "include",
                 });
 
@@ -45,13 +48,13 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        
+
     })
 
     return (
         <>
             <HomeHeader />
-            <Banner data={data.banners}/>
+            <Banner data={data.banners} />
             <div className="showing"><h1>Now Showing</h1></div>
             <div className="display-cards">
                 {data.recommended && data.recommended.map((item, index) => (
