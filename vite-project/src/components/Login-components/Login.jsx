@@ -23,7 +23,6 @@ const Login = () => {
                 }
                 else
                 parentRef.current.style.height = `${height+100}px`;
-                console.log("Child height:", height);
             } else {
                 console.warn("childRef is null");
             }
@@ -31,7 +30,6 @@ const Login = () => {
             if (loginRef.current && parentRef.current) {
                 const height = loginRef.current.clientHeight;
                 parentRef.current.style.height = `${height}px`;
-                console.log("Child height:", height);
             } else {
                 console.warn("childRef is null");
             }

@@ -37,7 +37,7 @@ const Detailspage = () => {
         <>
             {data && <Details_Banner data={data} />}
             <div className="detailspage-details">
-                <h1>Overview</h1>
+                <h1>Description</h1>
                 <span>
                     {data?.description?.length > 0 ? data.description : "No description available."}
                 </span>

@@ -62,6 +62,10 @@
     gap: 10px;
 }
 
+.details-banner-front .front-info .btn a {
+    text-decoration: none;
+}
+
 .back-container {
     position: absolute;
     top: 0;
@@ -96,4 +100,38 @@
             rgba(26, 26, 26, 0.1) 95.45%,
             rgb(26, 26, 26) 100%);
     z-index: -1;
+}
+
+.horizontal {
+    color: white;
+    font-size: 1.25rem;
+    display: flex;
+    gap: 15px;
+    width: 50vw;
+}
+
+.horizontal > div {
+    border-right: 2px solid white;
+    padding-right: 10px;
+}
+
+.horizontal > div:last-child {
+    border: none;
+}
+
+.rating svg {
+    color: yellow;
+}
+
+.rating {
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.format {
+    color: white;
+    font-size: 1.25rem;
 }
