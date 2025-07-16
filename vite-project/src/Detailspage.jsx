@@ -3,7 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import './Detailspage.css';
 import Details_Banner from "./components/Details-components/Details_Banner";
 import DetailsCard from "./components/Details-components/Details_Card";
-import Details_Header from "./components/Details-components/Details_Header";
+import Header2 from "./components/Header2";
 import Footer from "./components/Footer";
 
 
@@ -94,12 +94,12 @@ const Detailspage = () => {
 
     return (
         <>
-            <Details_Header />
+            <Header2 />
             {data && <Details_Banner data={data.movie} />}
             <div className="detailspage-details">
                 <h1>Description</h1>
                 <span>
-                    {data?.movie?.description?.length > 0 ? data.description : "No description available."}
+                    {data?.movie?.description?.length > 0 ? data.movie.description : "No description available."}
                 </span>
                 <h1>Cast</h1>
                 <div className="cast">

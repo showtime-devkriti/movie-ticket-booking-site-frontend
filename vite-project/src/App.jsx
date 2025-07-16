@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie"
 import Header from './components/Header';
-import About_Header from './components/About-components/About_Header';
-import Details_Header from './components/Details-components/Details_Header';
 import Footer from './components/Footer';
 import Banner from './components/Banner';
 import Card from './components/Card';

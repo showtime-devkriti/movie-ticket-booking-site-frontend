@@ -1,5 +1,102 @@
-.shows-container {
+.shows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.show {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+    width: 90vw;
+    height: 60px;
+}
+
+.show .timings {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
+}
+
+.show .timings>div {
+    color: green;
+    border: 1px solid green;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.theatre-wrapper {
+    margin-top: 90px;
+}
+
+.theatre-wrapper .theatre-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    padding: 25px;
+    width: calc(100% - 50px);
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.theatre-wrapper .theatre-text svg {
+    color: #377884;
+}
+
+.theatre-wrapper .theatre-text .theatre-location {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.dates {
+    display: flex;
+    justify-content: start;
+    width: 90vw;
+    gap: 5px;
+    margin: 10px 0px 5px 0px;
+}
+
+.dates .date-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #377884;
+    width: 60px;
+    height: 60px;
+    padding: 7px;
+    border-radius: 12px;
+    transform: scale(0.9);
+}
+
+.dates .date-box .date {
+    font-size: 1.5rem;
+}
+
+.theatre-wrapper .centre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.theatre-wrapper .movie-details h4 {
+    font-weight: normal;
+}
+
+.theatre-wrapper .theatre-data {
+    background-image: url('https://assets-in.bmscdn.com/moviesmaster/assets/ambh/001_1740488313965.jpg');
+    height: calc(100vh - 90px);
+    width: 90vw;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }

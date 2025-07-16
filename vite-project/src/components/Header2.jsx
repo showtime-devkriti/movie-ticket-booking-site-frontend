@@ -1,18 +1,22 @@
-import { React, useState, useEffect } from "react";
-import './Details_Header.css';
-import { Link } from "react-router-dom";
-import { IoIosSearch } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
+import React from "react";
+import "./Header2.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { TbLogout } from "react-icons/tb";
-import SearchBar from "../Searchbar/SearchBar";
-import Location from "../Location/Location";
+import SearchBar from "./Searchbar/SearchBar";
+import Location from "./Location/Location";
+import Cookies from "js-cookie"
 
-const Details_Header = () => {
+const Header2 = () => {
+
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 750);
     const [isMenu, setIsMenu] = useState(false);
+    const navigate = useNavigate()
+
+    
 
     useEffect(() => {
         const handleResize = () => {
@@ -36,6 +40,11 @@ const Details_Header = () => {
         setIsMenu(!isMenu);
     };
 
+    const handleLogout = () => {
+        Cookies.remove("token");  // Remove token cookie
+        navigate("/");       // Redirect to login page
+      };
+
     return (
         <>
             {!isMobile ? (
@@ -44,7 +53,7 @@ const Details_Header = () => {
                     <header className='details-header' >
                         <div className="container">
                             <div className="logo-location">
-                                <div className="logo"><Link to="/">
+                                <div className="logo"><Link to="/home">
                                     <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                         <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                             <path d="M80,40 
@@ -81,7 +90,7 @@ const Details_Header = () => {
                                 </Link></div>
                                 <Location/>
                             </div>
-                            <SearchBar />
+                            <SearchBar/>
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -91,7 +100,7 @@ const Details_Header = () => {
                             <div className="sidebar-text">
                                 <Link to="/"><h1>Home</h1></Link>
                                 <Link to="/about"><h1>About us</h1></Link>
-                                <div className="logout">
+                                <div className="logout" onClick={handleLogout}>
                                     <h1>Logout</h1>
                                     <TbLogout size={35} />
                                 </div>
@@ -101,7 +110,7 @@ const Details_Header = () => {
                 ) : (
                     <header className='details-header'>
                         <div className="container">
-                            <Link to="/"><div className="logo">
+                            <Link to="/home"><div className="logo">
                                 <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                     <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                         <path d="M80,40 
@@ -136,20 +145,14 @@ const Details_Header = () => {
                                     </text>
                                 </svg>
                             </div></Link>
-                            <div className="details-location">
-                                <span><FaLocationDot size={30} /></span>
-                                <div className="details-location-text">
-                                    <div className="city">Hyderabad</div>
-                                    <div className="state">Telangana</div>
-                                </div>
-                            </div>
+                            <Location/>
                             <div className="menu">
                                 <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
                             </div>
                         </div>
-                        <SearchBar />
+                        <SearchBar/>
                         <div className={isMenu ? ("sidebar open") : ("sidebar")}>
-                            <IoMdClose size={55} onClick={handleClick} />
+                            <IoMdClose size={50} onClick={handleClick} />
                             <div className="sidebar-text">
                                 <Link to="/"><h1>Home</h1></Link>
                                 <Link to="/about"><h1>About us</h1></Link>
@@ -164,7 +167,7 @@ const Details_Header = () => {
             ) : (
                 <header className='details-header'>
                     <div className="container">
-                        <Link to="/"><div className="logo">
+                        <Link to="/home"><div className="logo">
                             <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                 <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
                                     <path d="M80,40 
@@ -219,6 +222,6 @@ const Details_Header = () => {
             )}
         </>
     );
-};
+}
 
-export default Details_Header;
+export default Header2;

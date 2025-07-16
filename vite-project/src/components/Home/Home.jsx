@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import "./Home.css";
-import HomeHeader from "./HomeHeader";
 import Footer from "../Footer";
 import Card from "../Card";
 import Banner from "../Banner";
+import Header2 from "../Header2"
 
 const Home = () => {
     const [data, setData] = useState({ recommended: [] });
@@ -52,7 +52,7 @@ const Home = () => {
 
     return (
         <>
-            <HomeHeader />
+            <Header2 />
             <Banner data={data.banners} />
             <div className="showing"><h1>Now Showing</h1></div>
             <div className="display-cards">
