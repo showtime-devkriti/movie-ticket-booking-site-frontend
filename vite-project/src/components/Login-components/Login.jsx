@@ -14,6 +14,13 @@ const Login = () => {
     const parentRef = useRef(null);
 
     useEffect(() => {
+        const token = Cookies.get("token");
+
+        if(token){
+            navigate("/home");
+            return;
+        }
+
         if(mode === "register") {
             if (parentRef.current && registerRef.current) {
                 const height = registerRef.current.getBoundingClientRect().height;

@@ -5,29 +5,30 @@ import './LocationPopUp.css'
 import { IoClose } from "react-icons/io5";
 import Cookies from "js-cookie"
 
-const LocationPopUp = ({ popUpShow, setPopUp, setLocationState, isFirstVisit}) => {
+const LocationPopUp = ({ popUpShow, setPopUp, setLocationState, isFirstVisit }) => {
     useEffect(() => {
         const token = Cookies.get("token")
 
-        if(!token) setPopUp(false)
+        if (!token) setPopUp(false)
         document.body.style.overflow = popUpShow ? 'hidden' : 'auto';
     }, [popUpShow]);
 
-    const [location, setLocation] = useState('')
-    const [language, setLanguage] = useState("")
+    const [location, setLocation] = useState(localStorage.getItem("location"))
+    const [language, setLanguage] = useState(localStorage.getItem("language"))
 
     const onLocationClick = async (value) => {
         const token = Cookies.get("token")
         //console.log(location)
         setLocation(value)
-        try{
+        try {
             const res = await fetch("http://localhost:3000/api/user/location", {
                 method: "PUT",
                 headers: {
-                     "authorization": `Bearer ${token}`,
-                     "Content-Type": "application/json" },
+                    "authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
                 credentials: "include",
-                body: JSON.stringify({location: value}),
+                body: JSON.stringify({ location: value }),
             })
 
             const result = await res.json();
@@ -35,11 +36,13 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState, isFirstVisit}) =
             if (res.ok) {
                 alert("Location change successful!");
                 setLocationState(value);
-                if(!isFirstVisit) window.location.reload();
+                localStorage.setItem("location", value);
+                localStorage.setItem("language", language && language);
+                if (!isFirstVisit) window.location.reload();
             } else {
                 alert(`Error: ${result.msg || "Location change failed"}`);
             }
-        }catch (err) {
+        } catch (err) {
             console.error("Location change failed:", err);
             alert("Something went wrong");
         }
@@ -48,14 +51,15 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState, isFirstVisit}) =
     const onLanguClick = async (value) => {
         const token = Cookies.get("token")
         setLanguage(value)
-        try{
+        try {
             const res = await fetch("http://localhost:3000/api/user/language", {
                 method: "PUT",
-                headers: { 
+                headers: {
                     "authorization": `Bearer ${token}`,
-                    "Content-Type": "application/json" },
+                    "Content-Type": "application/json"
+                },
                 credentials: "include",
-                body: JSON.stringify({language: value}),
+                body: JSON.stringify({ language: value }),
             })
 
             const result = await res.json();
@@ -63,11 +67,13 @@ const LocationPopUp = ({ popUpShow, setPopUp, setLocationState, isFirstVisit}) =
             if (res.ok) {
                 alert("Language change successful!");
                 setPopUp(false);
+                localStorage.setItem("location", location && location);
+                localStorage.setItem("language", value);
                 window.location.reload();
             } else {
                 alert(`Error: ${result.msg || "Language change failed"}`);
             }
-        }catch (err) {
+        } catch (err) {
             console.error("Language change failed:", err);
             alert("Something went wrong");
         }

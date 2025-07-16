@@ -35,15 +35,47 @@ const SearchBar = () => {
                 });
                 if (res.ok) {
                     const data = await res.json();
-                    //console.log(data);
+                    console.log(data);
                     setResults(data);
                 }
             }else {
                 setResults([]);
             }
 
-        } else if (location.pathname === "/movie") {
-
+        } else if (location.pathname === "/movies") {
+            if (query) {
+                const res = await fetch(`http://localhost:3000/api/movies/allmovies?search=${query}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include"
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    console.log(data);
+                    setResults(data);
+                }
+            }else {
+                setResults([]);
+            }
+        }else if (location.pathname === "/theatre") {
+            if (query) {
+                const res = await fetch(`http://localhost:3000/api/theatres/alltheatres?search=${query}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include"
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    console.log(data);
+                    setResults(data);
+                }
+            }else {
+                setResults([]);
+            }
         }
     }
 

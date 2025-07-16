@@ -11,12 +11,17 @@ const Location = () => {
 
     useEffect(() => {
         const alreadyTriggered = sessionStorage.getItem("alreadyTriggered");
+        const locationFromSession = localStorage.getItem("location");
 
         if (!alreadyTriggered) {
             setIsFirstVisit(true);
             sessionStorage.setItem("alreadyTriggered", "true");
             console.log("Triggered for the first time in this session!");
             setPopUp(true);
+        }
+
+        if (locationFromSession) {
+            setLocationState(locationFromSession);
         }
 
     }, []);

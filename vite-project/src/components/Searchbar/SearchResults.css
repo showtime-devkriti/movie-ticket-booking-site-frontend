@@ -1,21 +1,29 @@
-.results-list {
-    width: 30vw;
-    max-height: 300px;
-    padding: 10px;
+.result-container{
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.87);
-    border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
-    color: #fff;
-    overflow-y: auto;
-    transition: all 0.3s ease;
+    overflow: scroll;
     z-index: 10;
     position: absolute;
     top: 80px;
     backdrop-filter: blur(10px);
-    scrollbar-width: none;   
-    overflow: scroll;
+    scrollbar-width: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
+    
+}
+
+
+.results-list {
+    width: 30vw;
+    max-height: 250px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.87);
+    color: #fff;
+    overflow-y: auto;
+    transition: all 0.5s ease-in-out;
+    overscroll-behavior: contain;
 }
 
 .result-item {
@@ -40,8 +48,76 @@
 }
 
 .result-item:hover {
+    color: #36e5ebcc;
     border-radius: 10px;
     background-color: #353535;
+}
+
+.theatre-result {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.theatre-result .pos{
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+}
+
+.theatre-result .title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.theatre-result .location{
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+
+.theatre-result:hover {
+    color: #36e5ebcc;
+    border-radius: 10px;
+    background-color: #353535;
+}
+
+ .Theatre {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #36e5ebcc;
+    padding-top: 10px;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.87);
+}
+
+.Theatre.hidden {
+    display: none;
+}
+
+ .movie {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #36e5ebcc;
+    padding-top: 10px;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.87);
+}
+
+.movie.hidden {
+    display: none;
+}
+
+.text{
+    height: 50px;
+    position: relative;
+    display: flex;
 }
 
 .results-list.hidden {
