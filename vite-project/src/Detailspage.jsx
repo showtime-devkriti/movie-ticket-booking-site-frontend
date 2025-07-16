@@ -3,6 +3,8 @@ import { useSearchParams, Link } from "react-router-dom";
 import './Detailspage.css';
 import Details_Banner from "./components/Details-components/Details_Banner";
 import DetailsCard from "./components/Details-components/Details_Card";
+import Details_Header from "./components/Details-components/Details_Header";
+import Footer from "./components/Footer";
 
 
 const MovieCard = ({ genre, id, language, posterurl, rating, title }) => {
@@ -66,30 +68,51 @@ const Detailspage = () => {
         if (id) fetchData();
     }, [id]);
 
+    const removeRepeat = (someData) => {
+        const count = {};
+        const newData = [];
+
+        for (const item of someData) {
+            if (count[item.name]) {
+                count[item.name] += 1;
+            } else {
+                count[item.name] = 1;
+            }
+        }
+
+        for (const item of someData) {
+            if (count[item.name] && count[item.name] > 0) {
+                newData.push(item);
+                count[item.name] = 0;
+            }
+        }
+
+        return newData.map((item, index) => (
+            <DetailsCard key={index} data={item} />
+        ));
+    };
+
     return (
         <>
+            <Details_Header />
             {data && <Details_Banner data={data.movie} />}
             <div className="detailspage-details">
                 <h1>Description</h1>
                 <span>
-                    {data?.description?.length > 0 ? data.description : "No description available."}
+                    {data?.movie?.description?.length > 0 ? data.description : "No description available."}
                 </span>
                 <h1>Cast</h1>
                 <div className="cast">
-                    {data?.cast?.length > 0 ? (
-                        data.cast.map((item, index) => (
-                            <DetailsCard key={index} name={item} />
-                        ))
+                    {data?.movie?.castDetails?.length > 0 ? (
+                        (removeRepeat(data.movie.castDetails))
                     ) : (
                         <p>No cast available.</p>
                     )}
                 </div>
                 <h1>Crew</h1>
                 <div className="crew">
-                    {data?.crew?.length > 0 ? (
-                        data.crew.map((item, index) => (
-                            <DetailsCard key={index} name={item} />
-                        ))
+                    {data?.movie?.crewDetails?.length > 0 ? (
+                        (removeRepeat(data.movie.crewDetails))
                     ) : (
                         <p>No crew available.</p>
                     )}
@@ -100,6 +123,7 @@ const Detailspage = () => {
                     ))}
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

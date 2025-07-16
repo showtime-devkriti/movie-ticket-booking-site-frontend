@@ -20,17 +20,3 @@
     margin-top: 8px;
     font-size: 1rem;
 }
-
-.card-wrapper p {
-    margin-top: 2px;
-    color: gray;
-    font-size: 0.9rem;
-    margin-top: 8px;
-    font-weight: bold;
-    text-align: center;
-    min-height: 3em;
-    line-height: 1.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

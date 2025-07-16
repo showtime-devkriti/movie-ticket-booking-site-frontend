@@ -12,6 +12,7 @@ import Aboutpage from './Aboutpage';
 import Detailspage from './Detailspage';
 import './App.css';
 import Home from "./components/Home/Home";
+import Theatrepage from './Theatrepage';
 
 const HomePage = () => {
     const [user, setUser] = useState(null);
@@ -101,22 +102,6 @@ const HomePage = () => {
     </>
 };
 
-const AboutPage = () => (
-    <>
-        <About_Header />
-        <Aboutpage />
-        <Footer />
-    </>
-);
-
-const DetailsPage = () => (
-    <>
-        <Details_Header />
-        <Detailspage />
-        <Footer />
-    </>
-)
-
 const ScrollToTop = () => {
     const { pathname, key } = useLocation();
 
@@ -134,17 +119,16 @@ const ScrollToTop = () => {
 };
 
 function App() {
-
-
     return (
         <Router>
             <ScrollToTop />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Loginpage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/movies" element={<DetailsPage />} />
+                <Route path="/about" element={<Aboutpage />} />
+                <Route path="/movies" element={<Detailspage />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/theatre" element={<Theatrepage />} />
             </Routes>
         </Router>
     );

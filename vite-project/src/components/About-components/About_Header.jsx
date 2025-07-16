@@ -41,7 +41,6 @@ const About_Header = () => {
                 isLarge ? (
                     <header className='about-header' >
                         <div className="container">
-                            <div className="logo-location">
                                 <div className="logo"><Link to="/">
                                     <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                         <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
@@ -77,14 +76,6 @@ const About_Header = () => {
                                         </text>
                                     </svg>
                                 </Link></div>
-                                <div className="about-location">
-                                    <span><FaLocationDot size={30} /></span>
-                                    <div className="about-location-text">
-                                        <div className="city">Hyderabad</div>
-                                        <div className="state">Telangana</div>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -139,13 +130,6 @@ const About_Header = () => {
                                     </text>
                                 </svg>
                             </div></Link>
-                            <div className="about-location">
-                                <span><FaLocationDot size={30} /></span>
-                                <div className="about-location-text">
-                                    <div className="city">Hyderabad</div>
-                                    <div className="state">Telangana</div>
-                                </div>
-                            </div>
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>

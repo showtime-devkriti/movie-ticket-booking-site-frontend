@@ -144,12 +144,6 @@
 }
 
 @media (max-width: 1375px) {
-    .about-header {
-        height: 120px;
-        align-items: start;
-        padding: 10px 0px;
-    }
-
     .about-header .container {
         justify-content: space-between;
         padding-left: 10px;
