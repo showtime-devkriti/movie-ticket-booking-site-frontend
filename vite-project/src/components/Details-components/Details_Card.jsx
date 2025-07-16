@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import "./Card.css";
+import "./Details_Card.css";
 
-const Card = ({name}) => {
+const DetailsCard = ({name}) => {
     return (
         <>
             <div className="card-wrapper">
@@ -13,4 +13,4 @@ const Card = ({name}) => {
     )
 } 
 
-export default Card
+export default DetailsCard

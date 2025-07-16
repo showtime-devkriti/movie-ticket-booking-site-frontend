@@ -23,3 +23,41 @@
     align-items: center;
     gap: 15px;
 }
+
+.detailspage-details .display-cards {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.detailspage-details .display-cards .moviecard{
+    transform: scale(0.8);
+}
+
+.detailspage-details .display-cards .moviecard-info{
+    height: 100px;
+}
+
+.detailspage-details .display-cards .moviecard-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.detailspage-details .display-cards .moviecard-details {
+    color: #ccc;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.detailspage-details .display-cards  span {
+    font-size: 1rem;
+}

@@ -3,6 +3,38 @@ import './Banner.css';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
+
+const BannerText = ({ backdropurl, genre, id, language, rating, title, logos }) => {
+    return <div
+        className="slide"
+        style={{ backgroundImage: `url(${backdropurl})` }}
+    >
+        <div className="banner-text">
+            <div className="title" style={{ backgroundImage: `url(${logos})` }} />
+            <div className="details">
+                <div className="language">
+                    {language?.map((item, index) => (
+                        <span key={index}>
+                            {item}{index !== language.length - 1 ? ',  ' : ''}
+                        </span>
+                    ))}
+                </div>
+                <div className="genre">
+                    {genre?.map((item, index) => (
+                        <span key={index}>
+                            {item}{index !== genre?.length - 1 ? ',  ' : ''}
+                        </span>
+                    ))}
+                </div>
+                <div className="rating">
+                    <FaStar size={20} />
+                    {rating.toFixed(1)}
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 const Banner = ({ data }) => {
     //const images = ["https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/kannappa-et00377025-1750744616.jpg", "https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/f1-the-movie-et00403839-1750674185.jpg"];
@@ -32,15 +64,7 @@ const Banner = ({ data }) => {
                         style={{ transform: `translateX(-${curr * 100}%)` }}
                     >
                         {data && data.map((item, index) => (
-                            <div
-                                key={index}
-                                className="slide"
-                                style={{ backgroundImage: `url(${item.backdropurl})` }}
-                            >
-                                <div className="banner-text">
-                                    <h1>{item.title}</h1>
-                                </div>
-                            </div>
+                            <BannerText key={index} {...item} />
                         ))}
                     </div>
                 </div>

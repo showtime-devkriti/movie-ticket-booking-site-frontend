@@ -1,8 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import './Detailspage.css';
 import Details_Banner from "./components/Details-components/Details_Banner";
-import Card from "./components/Details-components/Card";
+import DetailsCard from "./components/Details-components/Details_Card";
+
+
+const MovieCard = ({ genre, id, language, posterurl, rating, title }) => {
+    return (
+        <>
+            <div className="moviecard">
+                <Link to={`/movies?id=${id}`}>
+                    <img src={posterurl}></img>
+                    <div className="moviecard-info">
+                        <div className="moviecard-title">{title}</div>
+                        <div className="moviecard-details">
+                            <div className="language">
+                                {language?.map((item, index) => (
+                                    <span key={index}>
+                                        {item}{index !== language.length - 1 ? ', ' : ''}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className="genre">
+                                {genre?.slice(0, 3)?.map((item, index) => (
+                                    <span key={index}>
+                                        {item}{index !== genre?.slice(0, 2)?.length - 1 ? ', ' : ''}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+        </>
+    );
+};
+
 
 const Detailspage = () => {
     const [searchParams] = useSearchParams();
@@ -23,8 +56,8 @@ const Detailspage = () => {
                 }
 
                 const result = await res.json();
-                setData(result.movie);
-                console.log("Fetched details:", result.movie);
+                setData(result);
+                console.log("Fetched details:", result);
             } catch (err) {
                 console.error("Failed to fetch details:", err);
             }
@@ -35,7 +68,7 @@ const Detailspage = () => {
 
     return (
         <>
-            {data && <Details_Banner data={data} />}
+            {data && <Details_Banner data={data.movie} />}
             <div className="detailspage-details">
                 <h1>Description</h1>
                 <span>
@@ -45,7 +78,7 @@ const Detailspage = () => {
                 <div className="cast">
                     {data?.cast?.length > 0 ? (
                         data.cast.map((item, index) => (
-                            <Card key={index} name={item} />
+                            <DetailsCard key={index} name={item} />
                         ))
                     ) : (
                         <p>No cast available.</p>
@@ -55,11 +88,16 @@ const Detailspage = () => {
                 <div className="crew">
                     {data?.crew?.length > 0 ? (
                         data.crew.map((item, index) => (
-                            <Card key={index} name={item} />
+                            <DetailsCard key={index} name={item} />
                         ))
                     ) : (
                         <p>No crew available.</p>
                     )}
+                </div>
+                <div className="display-cards">
+                    {data?.moviesYouAlsoLike?.map((item, index) => (
+                        <MovieCard key={index} {...item} />
+                    ))}
                 </div>
             </div>
         </>

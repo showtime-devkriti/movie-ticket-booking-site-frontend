@@ -96,11 +96,44 @@
 .slide {
     display: flex;
     align-items: flex-end;
+    
 }
 
 .slide .banner-text {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.2) 100%) ;
+    box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
     color: white;
     padding: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.banner-text .title{
+    height: 150px;
+    width: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.banner-text .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+    gap: 10px;
+}
+
+.banner-text .details .language {
+    font-size: 1.5rem;
+}
+
+.banner-text .details .genre{
+    font-size: 1.25rem;
+}
+
+.banner-text .details .rating{
+    font-size: 1.25rem;
 }
 
 @media (max-width: 1375px) {
