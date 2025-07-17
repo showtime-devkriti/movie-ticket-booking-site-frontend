@@ -11,7 +11,6 @@ const MovieResult = ({ _id, title, posterurl }) => {
     }
 
     return <div className="result-item" onClick={() => onResultClick(title)}>
-
         <div className="pos" style={{ backgroundImage: `url(${posterurl})` }}></div>
         <p className="title">{title}</p>
     </div>
@@ -25,7 +24,6 @@ const TheatreResult = ({ _id, location, theatretitle }) => {
     }
 
     return <div className="theatre-result" onClick={() => onResultClick(theatretitle)}>
-
         <div className="pos" style={{ backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRElPSPvGXZfVX9nOpPaV6TYfJmzhbx_2jmaQ&s)` }}></div>
         <div className="details">
             <p className="title">{theatretitle}</p>
@@ -52,18 +50,12 @@ const SearchResults = ({ results }) => {
             <div className="result-container">
                 <div className={`movie ${results?.movies?.length ? "" : "hidden"}`}>Movies</div>
                 <div ref={movieResultsRef} className={`results-list movies ${results?.movies?.length ? "" : "hidden"}`}>
-                    <div className="text">
-                        
-                    </div>
                     {results?.movies?.map((result, index) => {
                         return <MovieResult key={index} {...result} />
                     })}
                 </div>
                 <div className={`Theatre ${results?.theatres?.length ? "" : "hidden"}`}>Theatres</div>
                 <div ref={theatreResultsRef} className={`results-list theatres ${results?.theatres?.length ? "" : "hidden"}`}>
-                    <div className="text">
-                        
-                    </div>
                     {results?.theatres?.map((result, index) => {
                         return <TheatreResult key={index} {...result} />
                     })}

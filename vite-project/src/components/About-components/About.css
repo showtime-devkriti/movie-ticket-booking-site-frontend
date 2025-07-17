@@ -60,7 +60,7 @@
 }
 
 .circletext {
-    font-size: 1.3rem;
+    font-size: 1.075rem;
     padding-left: 15px;
 }
 
@@ -70,7 +70,7 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 50px;
-    margin: 150px 0px 100px 0px;
+    margin: 120px 0px 50px 0px;
 }
 
 .abouttext {
@@ -126,16 +126,27 @@
 }
 
 .aboutcard {
-    min-width: 350px;
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 700px;
+    max-height: 900px;
+    gap: 15px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 12px;
     background-color: rgb(250, 250, 250);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
     padding: 25px;
+}
+
+.aboutcard .card-info {
+    font-size: 1.15rem;
+}
+
+.aboutcard h1 {
+    text-align: center;
 }
 
 .aboutcard img {
@@ -167,16 +178,15 @@
 }
 
 @media (max-width: 1375px) {
-    .aboutwrapper {
-        margin: 175px 0px 50px 0px;
+    .aboutwrapper { 
         gap: 25px;
     }
 }
 
 @media (max-width: 550px) {
     .aboutcard {
-        min-width: 300px;
-        max-width: 300px;
+        min-width: 75vw;
+        max-width: 75vw;
     }
 
     .aboutcard h1 {
@@ -192,7 +202,7 @@
     }
 
     .circletext {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
 
     .aboutcircle h1 {
@@ -203,16 +213,20 @@
         font-size: 1.5rem;
     }
 
+    .abouttext {
+        padding: 15px;
+    }
+
     .abouttext h1 {
         font-size: 2rem;
     }
 
     .abouttext li {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     .abouttext p {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 }
 
@@ -223,7 +237,7 @@
     }
 
     .circletext {
-        font-size: 0.85rem;
+        font-size: 0.675rem;
     }
 
     .aboutcircle h1 {
@@ -232,5 +246,10 @@
 
     .aboutcircle h2 {
         font-size: 1.25rem;
+    }
+
+    .aboutcard {
+        min-width: 75vw;
+        max-width: 75vw;
     }
 }

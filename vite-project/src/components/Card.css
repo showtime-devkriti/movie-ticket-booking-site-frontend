@@ -1,7 +1,7 @@
 .moviecard {
     position: relative;
-    width: 270px;
-    height: 375px;
+    width: 300px;
+    height: 450px;
     border-radius: 12px;
     overflow: hidden;
     transition-duration: 0.35s;
@@ -49,4 +49,60 @@
     justify-content: space-between;
     margin-bottom: 5px;
     font-weight: 500;
+    overflow: scroll;
+    position: relative;
+    overscroll-behavior: contain;
+}
+
+.moviecard-details .vertical {
+    overflow: scroll;
+}
+
+@media (max-width: 1470px) {
+    .moviecard {
+        width: 350px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 1270px) {
+    .moviecard {
+        width: 300px;
+        height: 450px;
+    }
+}
+
+@media (max-width: 1120px) {
+    .moviecard {
+        width: 400px;
+        height: 550px;
+    }
+}
+
+@media (max-width: 970px) {
+    .moviecard {
+        width: 350px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 870px) {
+    .moviecard {
+        width: 300px;
+        height: 450px;
+    }
+}
+
+@media (max-width: 770px) {
+    .moviecard {
+        width: 70vw;
+        height: auto;
+    }
+}
+
+@media (max-width: 450px) {
+    .moviecard {
+        width: 80vw;
+        height: auto;
+    }
 }

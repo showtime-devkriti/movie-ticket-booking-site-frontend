@@ -96,20 +96,21 @@
 .slide {
     display: flex;
     align-items: flex-end;
-    
+
 }
 
 .slide .banner-text {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.2) 100%) ;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.2) 100%);
     box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     color: white;
     padding: 25px;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
-.banner-text .title{
+.banner-text .title {
     height: 150px;
     width: 300px;
     background-size: contain;
@@ -122,17 +123,18 @@
     justify-content: center;
     margin-left: 50px;
     gap: 10px;
+    overflow: scroll;
 }
 
 .banner-text .details .language {
     font-size: 1.5rem;
 }
 
-.banner-text .details .genre{
+.banner-text .details .genre {
     font-size: 1.25rem;
 }
 
-.banner-text .details .rating{
+.banner-text .details .rating {
     font-size: 1.25rem;
 }
 
@@ -145,16 +147,46 @@
 }
 
 @media (max-width: 1025px) {
+    .slide .banner-text {
+        padding: 15px;
+    }
+
     .banner-container {
-        height: calc(45vh - 140px);
+        height: 45vh;
     }
 
     .banner-icons {
         gap: 78%;
     }
+
+    .banner-text .title {
+        height: 75px;
+        width: 150px;
+    }
+
+    .banner-text .details {
+        gap: 5px;
+        margin-left: 25px;
+    }
+
+    .banner-text .details .language {
+        font-size: 1rem;
+    }
+
+    .banner-text .details .genre {
+        font-size: 0.95rem;
+    }
+
+    .banner-text .details .rating {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 750px) {
+    .banner-container {
+        height: 40vh;
+    }
+
     .banner-container .button {
         font-size: 1rem;
     }
@@ -165,5 +197,26 @@
 
     .banner-icons svg {
         transform: scale(0.6);
+    }
+}
+
+@media (max-width: 460px) {
+    .slide .banner-text {
+        justify-content: space-between;
+    }
+
+    .banner-text .details {
+        margin-left: 0px;
+        transform: scale(0.75);
+    }
+}
+
+@media (max-width: 430px) {
+    .banner-container {
+        height: 35vh;
+    }
+
+    .slide .banner-text {
+        padding: 0px 10px;
     }
 }

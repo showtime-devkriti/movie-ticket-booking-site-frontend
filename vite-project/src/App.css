@@ -1,11 +1,18 @@
 .display-cards {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 50px;
+    padding: 0px 60px;
     flex-wrap: wrap;
 }
 
 .showing {
     padding-left: 25px;
     margin-bottom: 25px;
+}
+
+@media (max-width: 450px) {
+    .display-cards {
+        padding: 0px;
+    }
 }

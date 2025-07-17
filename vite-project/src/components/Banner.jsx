@@ -27,10 +27,6 @@ const BannerText = ({ backdropurl, genre, id, language, rating, title, logos }) 
                         </span>
                     ))}
                 </div>
-                <div className="rating">
-                    <FaStar size={20} />
-                    {rating.toFixed(1)}
-                </div>
             </div>
         </div>
     </div>
@@ -58,7 +54,7 @@ const Banner = ({ data }) => {
     return (
         <>
             <div className="banner-container">
-                <div className="image">
+                <div className="image" onClick={explore}>
                     <div
                         className="slider-track"
                         style={{ transform: `translateX(-${curr * 100}%)` }}
@@ -72,9 +68,6 @@ const Banner = ({ data }) => {
                 <div className="banner-icons">
                     <MdKeyboardArrowLeft size={100} onClick={handlePrev} />
                     <MdKeyboardArrowRight size={100} onClick={handleNext} />
-                </div>
-                <div className="button" onClick={explore}>
-                    <button>Explore</button>
                 </div>
             </div>
         </>

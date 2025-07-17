@@ -11,11 +11,22 @@ const Details_Banner = ({ data }) => {
         return `${hrs}hr ${min}min`
     }
 
+    const [isSmall, setIsSmall] = useState(window.innerWidth <= 800);
+
+    useEffect(() => {
+            const handleResize = () => {
+                setIsSmall(window.innerWidth <= 800);
+            };
+    
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
     return (
         <>
             <div className="details-banner-container">
                 <div className="details-banner-front">
-                    <img src={data?.posterurl}></img>
+                    {isSmall ? <></> : <img src={data?.posterurl}></img>}
                     <div className="front-info">
                         <h1>{data?.title}</h1>
                         <div className="format">

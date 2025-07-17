@@ -33,16 +33,20 @@
     margin-top: 90px;
 }
 
+.theatre-wrapper .theatre-data-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .theatre-wrapper .theatre-text {
     display: flex;
     flex-direction: column;
     gap: 10px;
     color: white;
-    position: absolute;
-    bottom: 0;
     padding: 25px;
-    width: calc(100% - 50px);
-    background-color: rgba(0, 0, 0, 0.65);
+    width: calc(90% - 50px);
+    background-color: black;
 }
 
 .theatre-wrapper .theatre-text svg {
@@ -52,7 +56,7 @@
 .theatre-wrapper .theatre-text .theatre-location {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 10px;
 }
 
 .dates {
@@ -71,7 +75,7 @@
     background-color: #377884;
     width: 60px;
     height: 60px;
-    padding: 7px;
+    padding: 15px;
     border-radius: 12px;
     transform: scale(0.9);
 }
@@ -99,4 +103,74 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
+}
+
+@media (max-width: 1375px) {
+    .theatre-wrapper {
+        margin-top: 140px;
+    }
+
+    .theatre-wrapper .theatre-data {
+        height: calc(100vh - 140px);
+    }
+}
+
+@media (max-width: 1050px) {
+    .theatre-wrapper .theatre-data {
+        height: calc(85vh - 140px);
+    }
+
+    .theatre-wrapper .theatre-text .theatre-location {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 870px) {
+    .theatre-wrapper .theatre-data {
+        height: calc(70vh - 140px);
+    }
+
+    .theatre-wrapper .theatre-text {
+        padding: 15px;
+        width: calc(90vw - 30px);
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(0, 0, 0, 1);
+    }
+
+    .theatre-wrapper .theatre-text h1 {
+        font-size: 1.75rem;
+    }
+
+    .shows {
+        gap: 20px;
+    }
+
+    .show {
+        flex-direction: column;
+        height: fit-content;
+        padding: 10px;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 550px) {
+    .theatre-wrapper .theatre-data {
+        height: calc(60vh - 140px);
+    }
+
+    .theatre-wrapper .theatre-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .theatre-wrapper .theatre-text .theatre-location {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 400px) {
+    .theatre-wrapper .theatre-data {
+        height: calc(55vh - 140px);
+    }
 }

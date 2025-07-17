@@ -19,7 +19,6 @@
 }
 
 .search-bar-container:hover {
-    /* width: 48vw; */
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);
 }
 
@@ -73,5 +72,6 @@
 @media (max-width: 550px) {
     .search-bar-container {
         width: 85%;
+        gap: 5px;
     }
 }

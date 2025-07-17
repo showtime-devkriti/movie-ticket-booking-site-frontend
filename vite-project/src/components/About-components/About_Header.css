@@ -105,6 +105,7 @@
     flex-direction: column;
     transition: transform 0.35s ease-in-out;
     transform: translateX(200%);
+    margin-right: 30px;
 }
 
 .about-header .sidebar.open {
@@ -146,11 +147,10 @@
 @media (max-width: 1375px) {
     .about-header .container {
         justify-content: space-between;
-        padding-left: 10px;
     }
 
     .about-header .menu {
-        padding-right: 10px;
+        padding-right: 25px;
     }
 
     .about-location {
@@ -159,10 +159,6 @@
 
     .about-location .about-location-text {
         gap: 3px;
-    }
-
-    .about-header .logo {
-        transform: scale(0.9);
     }
 
     .about-header .menu {
