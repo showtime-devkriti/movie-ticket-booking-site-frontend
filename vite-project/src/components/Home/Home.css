@@ -1,0 +1,107 @@
+.display-cards{
+    padding-left: 60px;
+    padding-right: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-div {
+    display: flex;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    align-items: center;
+    height: 500px;
+    scroll-behavior: smooth;
+}
+
+.scroll-left {
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    width: 150px;
+    left: 60px;
+    z-index: 1;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 60%, transparent 100%);
+    transition: all 0.1s ease-in-out;
+}
+
+.scroll-right{
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    width: 150px;
+    right: 60px;
+    z-index: 1;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6) 60%, transparent);
+    transition: all 0.1s ease-in-out;
+}
+
+.scroll-left svg, .scroll-right svg {
+    cursor: pointer;
+    opacity: .6;
+}
+
+.scroll-left svg:hover, .scroll-right svg:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.scroll-left.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.scroll-right.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.scroll-right svg{
+    position: absolute;
+    right: 0;
+}
+
+.showing{
+    padding-left: 25px;
+    margin-top: 25px;
+}
+
+@media( max-width:  1000px) {
+    .display-cards{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .scroll-div {
+        height: 400px;
+    }
+
+    .scroll-left {
+        left: 30px;
+        height: 400px;
+    }
+
+    .scroll-right{
+        right: 30px;
+        height: 400px;
+    }
+
+    .moviecard{
+        width: 250px;
+        height: 360px;
+    }
+
+    .moviecard:hover {
+        transform: translateY(-5%);
+        box-shadow: 10px 15px 8px rgba(0,0,0,0.35);
+    }
+}

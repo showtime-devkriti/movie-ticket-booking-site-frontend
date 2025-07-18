@@ -25,9 +25,9 @@
     transition: height 0.3s ease;
 }
 
-.wrapper.active {
+/* .wrapper.active {
     
-}
+} */
 
 .wrapper .login-form {
     position: relative;

@@ -142,7 +142,7 @@ const Header2 = () => {
                                         </g>
                                     </g>
 
-                                    <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" transform="translate(-150,0)" font-weight="bold">
+                                    <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
                                         SHOWTIME
                                     </text>
                                 </svg>
@@ -201,7 +201,7 @@ const Header2 = () => {
                                     </g>
                                 </g>
 
-                                <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" transform="translate(-150,0)" font-weight="bold">
+                                <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
                                     SHOWTIME
                                 </text>
                             </svg>

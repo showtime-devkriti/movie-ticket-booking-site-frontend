@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
 
 const Card = ({ genre, id, language, posterurl, rating, title }) => {
-    const limitedArray = genre.slice(0, 3);
     return (
         <>
             <div className="moviecard">
@@ -22,7 +21,7 @@ const Card = ({ genre, id, language, posterurl, rating, title }) => {
                                     ))}
                                 </div>
                                 <div className="genre">
-                                    {genre?.slice(0, 3)?.map((item, index) => (
+                                    { genre?.slice(0, 3)?.map((item, index) => (
                                         <span key={index}>
                                             {item}{index !== genre?.slice(0, 3)?.length - 1 ? ', ' : ''}
                                         </span>

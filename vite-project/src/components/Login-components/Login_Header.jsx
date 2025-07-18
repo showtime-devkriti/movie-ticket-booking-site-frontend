@@ -37,7 +37,7 @@ const Login_Header = () => {
                                 </g>
                             </g>
 
-                            <text className='title' x="180" y="130" font-family="Sans" font-size="99" fill="white" font-weight="bold" transform='translate(-145,0)'>
+                            <text className='title' x="180" y="130" fontFamily="Sans" fontSize="99" fill="white" fontWeight="bold" transform='translate(-145,0)'>
                                 SHOWTIME
                             </text>
                         </svg>

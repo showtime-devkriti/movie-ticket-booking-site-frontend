@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import './Detailspage.css';
 import Details_Banner from "./components/Details-components/Details_Banner";
 import DetailsCard from "./components/Details-components/Details_Card";
 import Header2 from "./components/Header2";
 import Footer from "./components/Footer";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 
 const MovieCard = ({ genre, id, language, posterurl, rating, title }) => {
@@ -43,6 +45,62 @@ const Detailspage = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const [data, setData] = useState(null); // Initialize with null or {}
+    const scrollRef = useRef(null);
+    const [atStart, setAtStart] = useState(true);
+    const [atEnd, setAtEnd] = useState(false);
+
+    const checkScrollPosition = () => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        setAtStart(el.scrollLeft <= 1);
+        setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth);
+    };
+
+    useEffect(() => {
+        const add = () => {
+            const el = scrollRef.current;
+            if (!el) return;
+            checkScrollPosition()
+            el.addEventListener("scroll", checkScrollPosition);
+        }
+
+        const remove = () => {
+            const el = scrollRef.current;
+            if (!el) return;
+            el.removeEventListener("scroll", checkScrollPosition);
+        }
+
+        const timeoutId = setTimeout(() => {
+            add();
+        }, 100);
+
+        return () => {
+            clearTimeout(timeoutId);
+            remove();
+        };
+    }, []);
+
+    const handleScrollLeft = () => {
+        const el = scrollRef.current;
+        if (el) {
+            el.scrollLeft -= el.clientWidth;
+        }
+    };
+
+    const handleScrollRight = () => {
+        const el = scrollRef.current;
+        if (el) {
+            el.scrollLeft += el.clientWidth;
+        }
+    };
+
+    const SetScrollStart = () => {
+        const el = scrollRef.current;
+        if (el) {
+            el.scrollLeft = 0;
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,6 +118,8 @@ const Detailspage = () => {
                 const result = await res.json();
                 setData(result);
                 console.log("Fetched details:", result);
+                checkScrollPosition();
+                SetScrollStart();
             } catch (err) {
                 console.error("Failed to fetch details:", err);
             }
@@ -118,9 +178,17 @@ const Detailspage = () => {
                     )}
                 </div>
                 <div className="display-cards">
-                    {data?.moviesYouAlsoLike?.map((item, index) => (
-                        <MovieCard key={index} {...item} />
-                    ))}
+                    <div className={`scroll-left ${!atStart ? "" : "hidden"}`} >
+                        <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft()} />
+                    </div>
+                    <div ref={scrollRef} className="scroll-div">
+                        {data?.moviesYouAlsoLike?.map((item, index) => (
+                            <MovieCard key={index} {...item} />
+                        ))}
+                    </div>
+                    <div className={`scroll-right ${!atEnd ? "" : "hidden"}`} >
+                        <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight()} />
+                    </div>
                 </div>
             </div>
             <Footer />

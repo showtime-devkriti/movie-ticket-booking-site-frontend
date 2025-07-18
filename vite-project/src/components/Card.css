@@ -1,6 +1,6 @@
 .moviecard {
     position: relative;
-    width: 300px;
+    min-width: 300px;
     height: 450px;
     border-radius: 12px;
     overflow: hidden;
@@ -58,7 +58,7 @@
     overflow: scroll;
 }
 
-@media (max-width: 1470px) {
+/* @media (max-width: 1470px) {
     .moviecard {
         width: 350px;
         height: 500px;
@@ -105,4 +105,4 @@
         width: 80vw;
         height: auto;
     }
-}
+} */

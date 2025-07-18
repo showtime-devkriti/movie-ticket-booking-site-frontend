@@ -71,11 +71,11 @@ const About_Header = () => {
                                         </g>
                                     </g>
 
-                                    <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" transform="translate(-150,0)" font-weight="bold">
-                                        SHOWTIME
-                                    </text>
-                                </svg>
-                            </Link></div>
+                                        <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
+                                            SHOWTIME
+                                        </text>
+                                    </svg>
+                                </Link></div>
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -127,7 +127,7 @@ const About_Header = () => {
                                         </g>
                                     </g>
 
-                                    <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" transform="translate(-150,0)" font-weight="bold">
+                                    <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
                                         SHOWTIME
                                     </text>
                                 </svg>
@@ -184,7 +184,7 @@ const About_Header = () => {
                                     </g>
                                 </g>
 
-                                <text x="180" y="130" font-family="Sans" font-size="99" fill="#111" transform="translate(-150,0)" font-weight="bold">
+                                <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
                                     SHOWTIME
                                 </text>
                             </svg>

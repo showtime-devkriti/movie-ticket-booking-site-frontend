@@ -24,9 +24,8 @@ const Login = () => {
         if(mode === "register") {
             if (parentRef.current && registerRef.current) {
                 const height = registerRef.current.getBoundingClientRect().height;
-                if(first){
-                    parentRef.current.style.height = `${height}px`;
-                    onFirst(false);
+                if(height === 644){
+                    parentRef.current.style.height = `${544}px`;
                 }
                 else
                 parentRef.current.style.height = `${height+100}px`;
