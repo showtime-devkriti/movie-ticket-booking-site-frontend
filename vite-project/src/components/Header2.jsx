@@ -16,7 +16,7 @@ const Header2 = () => {
     const [isMenu, setIsMenu] = useState(false);
     const navigate = useNavigate()
 
-    
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -43,7 +43,7 @@ const Header2 = () => {
     const handleLogout = () => {
         Cookies.remove("token");  // Remove token cookie
         navigate("/");       // Redirect to login page
-      };
+    };
 
     return (
         <>
@@ -88,9 +88,9 @@ const Header2 = () => {
                                         </text>
                                     </svg>
                                 </Link></div>
-                                <Location/>
+                                <Location />
                             </div>
-                            <SearchBar/>
+                            <SearchBar />
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -100,6 +100,8 @@ const Header2 = () => {
                             <div className="sidebar-text">
                                 <Link to="/"><h1>Home</h1></Link>
                                 <Link to="/about"><h1>About us</h1></Link>
+                                <Link to="/FAQ"><h1>FAQs</h1></Link>
+                                <Link to="/contact"><h1>Contact Us</h1></Link>
                                 <div className="logout" onClick={handleLogout}>
                                     <h1>Logout</h1>
                                     <TbLogout size={35} />
@@ -145,17 +147,19 @@ const Header2 = () => {
                                     </text>
                                 </svg>
                             </div></Link>
-                            <Location/>
+                            <Location />
                             <div className="menu">
                                 <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
                             </div>
                         </div>
-                        <SearchBar/>
+                        <SearchBar />
                         <div className={isMenu ? ("sidebar open") : ("sidebar")}>
                             <IoMdClose size={50} onClick={handleClick} />
                             <div className="sidebar-text">
                                 <Link to="/"><h1>Home</h1></Link>
                                 <Link to="/about"><h1>About us</h1></Link>
+                                <Link to="/FAQ"><h1>FAQs</h1></Link>
+                                <Link to="/contact"><h1>Contact Us</h1></Link>
                                 <div className="logout">
                                     <h1>Logout</h1>
                                     <TbLogout size={35} />
@@ -212,6 +216,8 @@ const Header2 = () => {
                         <div className="sidebar-text">
                             <Link to="/"><h1>Home</h1></Link>
                             <Link to="/about"><h1>About us</h1></Link>
+                            <Link to="/FAQ"><h1>FAQs</h1></Link>
+                            <Link to="/contact"><h1>Contact Us</h1></Link>
                             <div className="logout">
                                 <h1>Logout</h1>
                                 <TbLogout size={35} />

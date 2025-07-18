@@ -11,6 +11,10 @@ import Detailspage from './Detailspage';
 import './App.css';
 import Home from "./components/Home/Home";
 import Theatrepage from './Theatrepage';
+import FAQ from './FAQ';
+import Contact from './Contact';
+import PP from './PP';
+import TC from './TC';
 
 const HomePage = () => {
     const [user, setUser] = useState(null);
@@ -127,6 +131,10 @@ function App() {
                 <Route path="/movies" element={<Detailspage />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/theatre" element={<Theatrepage />} />
+                <Route path="/FAQ" element={<FAQ />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path='/privacypolicy' element={<PP />} />
+                <Route path='/termsandconditions' element={<TC />} />
             </Routes>
         </Router>
     );

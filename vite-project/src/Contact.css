@@ -1,0 +1,118 @@
+.contact-wrapper {
+    margin-top: 115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-left {
+    width: 30%;
+    background-color: #377884;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    gap: 45px;
+}
+
+.contact-left h1 {
+    font-size: 2.25rem;
+}
+
+.contact-right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 70vh;
+    background-color: white;
+}
+
+.contact-right form {
+    margin-left: 50px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    font-size: 1.25rem;
+}
+
+.contacts {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.numbers {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mail {
+    display: flex;
+    gap: 25px;
+}
+
+.address {
+    display: flex;
+    gap: 25px;
+}
+
+.contact-timings {
+    display: flex;
+    gap: 25px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.25rem;
+}
+
+.contact-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-submit button {
+    border: none;
+    outline:  none;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background-color: #377884;
+}
+
+.contact-name {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-number {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-mail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-query {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-query textarea {
+    padding: 10px;
+    height: 200px;
+}

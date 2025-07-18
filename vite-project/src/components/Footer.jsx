@@ -1,10 +1,36 @@
 import React from 'react';
 import './Footer.css';
+import { Link } from 'react-router-dom';
+import { IoLogoGithub } from "react-icons/io";
 
-const Footer =  ()=>{
+const Footer = () => {
     return (
         <>
             <footer>
+                <div className="showtime">
+                    <h3>Showtime</h3>
+                    <div className="showtime-links">
+                        <Link to="/about">About Us</Link>
+                        <Link to="/privacypolicy">Privacy Policy</Link>
+                        <Link to="/termsandconditions">Terms And Conditions</Link>
+                    </div>
+                </div>
+                <div className="get-help">
+                    <h3>Let Help</h3>
+                    <div className="get-help-links">
+                        <Link to="/FAQ">FAQs</Link>
+                        <Link to="/contact">Contact Us</Link>
+                        <div className="get-help-links">
+                        </div>
+                    </div>
+                </div>
+                <div className="follow-us">
+                    <h3>Follow Us</h3>
+                    <div className="repo">
+                        <a href="https://github.com/showtime-devkriti/movie-ticket-booking-site-frontend.git" target='_blank'><IoLogoGithub size={40} /></a>
+                        <a href="https://github.com/showtime-devkriti/movie-ticketing-site-backend" target='_blank'><IoLogoGithub size={40} /></a>
+                    </div>
+                </div>
             </footer>
         </>
     );

@@ -1,13 +1,77 @@
 footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: #222222;
     height: 50vh;
     margin-top: 25px;
+    color: white;
 }
 
 footer a {
     text-decoration: none;
     color: white;
+}
+
+footer h3 {
+    position: relative;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+footer h3::before  {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    background-color: #377884;
+    height: 2px;
+    width: 100%;
+}
+
+.showtime {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.showtime-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.get-help {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.get-help-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.follow-us {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.repo {
+    display: flex;
+    gap: 10px;
+}
+
+.repo svg {
+    border-radius: 50%;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.1s;
+}
+
+.repo svg:hover {
+    filter: invert(1);
+    background-color: black;
+    cursor: pointer;
 }
