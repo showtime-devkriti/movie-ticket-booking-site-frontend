@@ -14,6 +14,8 @@ import Theatrepage from './Theatrepage';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import Movies from './components/AllMovies/Movies';
+import Theatres from './components/AllTheatres/Theatres';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -327,6 +329,8 @@ function App() {
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/about" element={<Aboutpage />} />
                 <Route path="/movies" element={<Detailspage />} />
+                <Route path="/movies/all" element={<Movies />} />
+                <Route path="/theatres" element={<Theatres />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/theatre" element={<Theatrepage />} />
                 <Route path="/FAQ" element={<FAQ />} />

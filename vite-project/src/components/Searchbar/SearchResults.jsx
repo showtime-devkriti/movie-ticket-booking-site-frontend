@@ -3,11 +3,11 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchResults.css";
 
-const MovieResult = ({ _id, title, posterurl }) => {
+const MovieResult = ({ id, title, posterurl, o_language }) => {
     const navigate = useNavigate();
 
     const onResultClick = () => {
-        navigate(`/movies?id=${_id}`);
+        //navigate(`/movies?id=${id}`);
     }
 
     return <div className="result-item" onClick={() => onResultClick(title)}>
@@ -32,34 +32,35 @@ const TheatreResult = ({ _id, location, theatretitle }) => {
     </div>
 }
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({ movies }) => {
     const movieResultsRef = useRef(null);
     const theatreResultsRef = useRef(null);
 
     useEffect(() => {
+        console.log(movies)
         if (movieResultsRef.current) {
             movieResultsRef.current.scrollTop = 0;
         }
         if (theatreResultsRef.current) {
             theatreResultsRef.current.scrollTop = 0;
         }
-    }, [results]);
+    }, [movies]);
 
     return (
         <>
             <div className="result-container">
-                <div className={`movie ${results?.movies?.length ? "" : "hidden"}`}>Movies</div>
-                <div ref={movieResultsRef} className={`results-list movies ${results?.movies?.length ? "" : "hidden"}`}>
-                    {results?.movies?.map((result, index) => {
+                <div className={`movie ${movies?.length ? "" : "hidden"}`}>Movies</div>
+                <div ref={movieResultsRef} className={`results-list movies ${movies?.length ? "" : "hidden"}`}>
+                    {movies?.map((result, index) => {
                         return <MovieResult key={index} {...result} />
                     })}
                 </div>
-                <div className={`Theatre ${results?.theatres?.length ? "" : "hidden"}`}>Theatres</div>
+                {/* <div className={`Theatre ${results?.theatres?.length ? "" : "hidden"}`}>Theatres</div>
                 <div ref={theatreResultsRef} className={`results-list theatres ${results?.theatres?.length ? "" : "hidden"}`}>
                     {results?.theatres?.map((result, index) => {
                         return <TheatreResult key={index} {...result} />
                     })}
-                </div>
+                </div> */}
             </div>
         </>
     );

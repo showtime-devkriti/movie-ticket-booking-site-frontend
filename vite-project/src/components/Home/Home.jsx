@@ -147,7 +147,7 @@ const Home = () => {
             }
         };
 
-        fetchData();
+        //fetchData();
     }, []);
 
     return (
