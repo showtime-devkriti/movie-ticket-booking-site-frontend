@@ -82,7 +82,7 @@ const About = () => {
                         Worked on both the front and back sides of the project. Helped build UI components with React and also wrote backend code using Node.js and MongoDB. He connected everything together—making sure the data flowed smoothly between the front-end and back-end. Also helped with testing, fixing bugs, and deploying the final app. Basically, helped glue all the parts of the project into one working system.
                     </div>
                     <div className="socialmedia">
-                        <a href="https://github.com/yashwanth-9-42" target="_blank"><IoLogoGithub size={40} /></a>
+                        <a className="github" href="https://github.com/yashwanth-9-42" target="_blank"><IoLogoGithub size={40} /></a>
                         <a href="https://www.linkedin.com/in/yashwanth-pendem-77ba04330/overlay/about-this-profile/" target="_blank"><FaLinkedin size={38} /></a>
                     </div >
                 </div >

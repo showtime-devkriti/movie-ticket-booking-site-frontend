@@ -91,7 +91,7 @@ const Header2 = () => {
                                 <Location />
                             </div>
                             <SearchBar />
-                            <div className="menu">
+                            <div className="user-menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
                         </div>
@@ -148,7 +148,7 @@ const Header2 = () => {
                                 </svg>
                             </div></Link>
                             <Location />
-                            <div className="menu">
+                            <div className="user-menu">
                                 <Link to="/details"><IoMenu size={55} onClick={handleClick} /></Link>
                             </div>
                         </div>
@@ -206,7 +206,7 @@ const Header2 = () => {
                                 </text>
                             </svg>
                         </div></Link>
-                        <div className="menu">
+                        <div className="user-menu">
                             <IoMenu size={55} onClick={handleClick} />
                         </div>
                     </div>

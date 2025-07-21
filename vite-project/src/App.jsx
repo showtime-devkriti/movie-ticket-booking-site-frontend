@@ -16,6 +16,8 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import Movies from './components/AllMovies/Movies';
 import Theatres from './components/AllTheatres/Theatres';
+import User from './User';
+import Booking_History from './Booking_History';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -337,6 +339,8 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path='/privacypolicy' element={<PP />} />
                 <Route path='/termsandconditions' element={<TC />} />
+                <Route path="/user" element={<User />} />
+                <Route path='/booking-history' element={<Booking_History />} />
             </Routes>
         </Router>
     );
