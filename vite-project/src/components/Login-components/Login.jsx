@@ -24,8 +24,9 @@ const Login = () => {
         if(mode === "register") {
             if (parentRef.current && registerRef.current) {
                 const height = registerRef.current.getBoundingClientRect().height;
-                if(height === 644){
-                    parentRef.current.style.height = `${544}px`;
+                console.log(height)
+                if(height === 642 || height === 644){
+                    parentRef.current.style.height = `${height-100}px`;
                 }
                 else
                 parentRef.current.style.height = `${height+100}px`;
@@ -70,8 +71,6 @@ const Login = () => {
             const result = await res.json();
 
             if (res.ok) {
-                //Cookies.set("token", data.token, { expires: 7 }); // Set token in cookies for 7 days
-                alert("Login successful!");
                 setLoginData({ check: "", password: "" });
                 navigate("/home"); // Redirect to home or desired page
             } else {

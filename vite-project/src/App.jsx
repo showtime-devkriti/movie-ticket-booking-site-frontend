@@ -16,6 +16,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import Movies from './components/AllMovies/Movies';
 import Theatres from './components/AllTheatres/Theatres';
+import api from './components/getData'
 import User from './User';
 import Booking_History from './Booking_History';
 
@@ -94,24 +95,21 @@ const HomePage = () => {
         const elements = scrollRef.current;
         const handlers = [];
 
-        // Function to add scroll event listeners
+        if(loading) return;
+
         const addScrollListeners = () => {
             elements.forEach((el, index) => {
                 if (!el) return;
 
-                // Initial position check
                 checkScrollPosition(el, index);
 
-                // Add scroll event listener
                 const handler = () => checkScrollPosition(el, index);
                 el.addEventListener("scroll", handler);
 
-                // Store the handler for cleanup
                 handlers[index] = handler;
             });
         };
 
-        // Function to remove scroll event listeners
         const removeScrollListeners = () => {
             elements.forEach((el, index) => {
                 if (!el || !handlers[index]) return;
@@ -119,17 +117,15 @@ const HomePage = () => {
             });
         };
 
-        // Wait for DOM elements to render before adding listeners
         const timeoutId = setTimeout(() => {
             addScrollListeners();
         }, 10);
 
-        // Cleanup function
         return () => {
             clearTimeout(timeoutId);
             removeScrollListeners();
         };
-    }, [])
+    }, [loading])
 
     const handleScrollLeft = (index) => {
         const el = scrollRef.current[index];
@@ -193,19 +189,21 @@ const HomePage = () => {
         const elements = scrollRef.current;
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/home", {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" },
-                    credentials: "include",
-                });
+                // const res = await fetch("http://localhost:3000/api/home", {
+                //     method: "GET",
+                //     headers: { "Content-Type": "application/json" },
+                //     credentials: "include",
+                // });
 
-                if (!res.ok) {
-                    throw new Error(`Error: ${res.status} ${res.statusText}`);
-                }
+                // if (!res.ok) {
+                //     throw new Error(`Error: ${res.status} ${res.statusText}`);
+                // }
 
-                const result = await res.json();
-                setData(result); // JSON is already parsed
-                console.log("Fetched data:", result);
+                // const result = await res.json();
+
+                //const result = api.getallmovies()
+                //setData(result); 
+                //console.log("Fetched data:", result);
                 elements.forEach((el, index) => {
                     if (!el) return;
                     checkScrollPosition(el, index);
@@ -221,9 +219,11 @@ const HomePage = () => {
 
         
         
-    }, []); // Re-run when `data` changes
+    }, []); 
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="loader-container" >
+        <div className="loader"></div>
+    </div>
 
     return <>
         <Header />
@@ -233,11 +233,11 @@ const HomePage = () => {
             <div className={`scroll-left ${!atStart[0] ? "" : "hidden"}`} >
                 <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(0)} />
             </div>
-            <div ref={(el) => (scrollRef.current[0] = el)} className="scroll-div">
+            {loading && <div ref={(el) => (scrollRef.current[0] = el)} className="scroll-div">
                 {data.recommended && data.recommended.map((item, index) => (
                     <Card key={index} {...item} />
                 ))}
-            </div>
+            </div>}
             <div className={`scroll-right ${!atEnd[0] ? "" : "hidden"}`} >
                 <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(0)} />
             </div>
@@ -248,11 +248,11 @@ const HomePage = () => {
             <div className={`scroll-left ${!atStart[1] ? "" : "hidden"}`} >
                 <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(1)} />
             </div>
-            <div ref={(el) => (scrollRef.current[1] = el)} className="scroll-div">
+            {loading && <div ref={(el) => (scrollRef.current[1] = el)} className="scroll-div">
                 {data.comedy && data.comedy.map((item, index) => (
                     <GenreCard key={index} {...item} />
                 ))}
-            </div>
+            </div>}
             <div className={`scroll-right ${!atEnd[1] ? "" : "hidden"}`} >
                 <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(1)} />
             </div>
@@ -263,11 +263,11 @@ const HomePage = () => {
             <div className={`scroll-left ${!atStart[2] ? "" : "hidden"}`} >
                 <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(2)} />
             </div>
-            <div ref={(el) => (scrollRef.current[2] = el)} className="scroll-div">
+            {loading && <div ref={(el) => (scrollRef.current[2] = el)} className="scroll-div">
                 {data.crime && data.crime.map((item, index) => (
                     <GenreCard key={index} {...item} />
                 ))}
-            </div>
+            </div>}
             <div className={`scroll-right ${!atEnd[2] ? "" : "hidden"}`} >
                 <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(2)} />
             </div>
@@ -278,11 +278,11 @@ const HomePage = () => {
             <div className={`scroll-left ${!atStart[3] ? "" : "hidden"}`} >
                 <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(3)} />
             </div>
-            <div ref={(el) => (scrollRef.current[3] = el)} className="scroll-div">
+            {loading && <div ref={(el) => (scrollRef.current[3] = el)} className="scroll-div">
                 {data.actionAndAdventure && data.actionAndAdventure.map((item, index) => (
                     <GenreCard key={index} {...item} />
                 ))}
-            </div>
+            </div>}
             <div className={`scroll-right ${!atEnd[3] ? "" : "hidden"}`} >
                 <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(3)} />
             </div>
@@ -293,11 +293,11 @@ const HomePage = () => {
             <div className={`scroll-left ${!atStart[4] ? "" : "hidden"}`} >
                 <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(4)} />
             </div>
-            <div ref={(el) => (scrollRef.current[4] = el)} className="scroll-div">
+            {loading && <div ref={(el) => (scrollRef.current[4] = el)} className="scroll-div">
                 {data.romance && data.romance.map((item, index) => (
                     <GenreCard key={index} {...item} />
                 ))}
-            </div>
+            </div>}
             <div className={`scroll-right ${!atEnd[4] ? "" : "hidden"}`} >
                 <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(4)} />
             </div>

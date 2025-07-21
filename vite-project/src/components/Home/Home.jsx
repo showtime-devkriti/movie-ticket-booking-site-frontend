@@ -9,6 +9,7 @@ import Header2 from "../Header2";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import api from "../getData"
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -42,8 +43,8 @@ const GenreCard = ({ id, language, posterurl, rating, title }) => {
 
 const Home = () => {
     const [data, setData] = useState({ recommended: [] });
-    const [error, setError] = useState(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const scrollRef = useRef([null, null, null, null, null]);
     const [atStart, setAtStart] = useState([true, true, true, true, true]);
@@ -72,6 +73,8 @@ const Home = () => {
         const elements = scrollRef.current;
         const handlers = [];
 
+        if(loading) return;
+
         elements.forEach((el, index) => {
             if (!el) return;
 
@@ -87,7 +90,7 @@ const Home = () => {
                 el.removeEventListener("scroll", handlers[index]);
             });
         };
-    }, []);
+    }, [loading]);
 
     const handleScrollLeft = (index) => {
         const el = scrollRef.current[index];
@@ -118,22 +121,22 @@ const Home = () => {
 
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/home", {
-                    method: "GET",
-                    headers: {
-                        "authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include",
-                });
+                // const res = await fetch("http://localhost:3000/api/home", {
+                //     method: "GET",
+                //     headers: {
+                //         "authorization": `Bearer ${token}`,
+                //         "Content-Type": "application/json"
+                //     },
+                //     credentials: "include",
+                // });
+                // if (!res.ok) {
+                //     throw new Error(`Error: ${res.status} ${res.statusText}`);
+                // }
+                // const result = await res.json();
 
-                if (!res.ok) {
-                    throw new Error(`Error: ${res.status} ${res.statusText}`);
-                }
-
-                const result = await res.json();
-                setData(result); // JSON is already parsed
-                console.log("Fetched data:", result);
+                api.getHome();
+                //setData(result); 
+                //console.log("Fetched data:", result);
                 
                 elements.forEach((el, index) => {
                     if (!el) return;
@@ -143,11 +146,10 @@ const Home = () => {
 
             } catch (err) {
                 console.error("Failed to fetch data:", err);
-                setError(err.message);
             }
         };
 
-        //fetchData();
+        fetchData();
     }, []);
 
     return (
@@ -159,11 +161,11 @@ const Home = () => {
                 <div className={`scroll-left ${!atStart[0] ? "" : "hidden"}`} >
                     <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(0)} />
                 </div>
-                <div ref={(el) => (scrollRef.current[0] = el)} className="scroll-div">
+                {loading && <div ref={(el) => (scrollRef.current[0] = el)} className="scroll-div">
                     {data.recommended && data.recommended.map((item, index) => (
                         <Card key={index} {...item} />
                     ))}
-                </div>
+                </div>}
                 <div className={`scroll-right ${!atEnd[0] ? "" : "hidden"}`} >
                     <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(0)} />
                 </div>
@@ -174,11 +176,11 @@ const Home = () => {
                 <div className={`scroll-left ${!atStart[1] ? "" : "hidden"}`} >
                     <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(1)} />
                 </div>
-                <div ref={(el) => (scrollRef.current[1] = el)} className="scroll-div">
+                {loading && <div ref={(el) => (scrollRef.current[1] = el)} className="scroll-div">
                     {data.comedy && data.comedy.map((item, index) => (
                         <GenreCard key={index} {...item} />
                     ))}
-                </div>
+                </div>}
                 <div className={`scroll-right ${!atEnd[1] ? "" : "hidden"}`} >
                     <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(1)} />
                 </div>
@@ -189,11 +191,11 @@ const Home = () => {
                 <div className={`scroll-left ${!atStart[2] ? "" : "hidden"}`} >
                     <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(2)} />
                 </div>
-                <div ref={(el) => (scrollRef.current[2] = el)} className="scroll-div">
+                {loading && <div ref={(el) => (scrollRef.current[2] = el)} className="scroll-div">
                     {data.crime && data.crime.map((item, index) => (
                         <GenreCard key={index} {...item} />
                     ))}
-                </div>
+                </div>}
                 <div className={`scroll-right ${!atEnd[2] ? "" : "hidden"}`} >
                     <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(2)} />
                 </div>
@@ -204,11 +206,11 @@ const Home = () => {
                 <div className={`scroll-left ${!atStart[3] ? "" : "hidden"}`} >
                     <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(3)} />
                 </div>
-                <div ref={(el) => (scrollRef.current[3] = el)} className="scroll-div">
+                {loading && <div ref={(el) => (scrollRef.current[3] = el)} className="scroll-div">
                     {data.actionAndAdventure && data.actionAndAdventure.map((item, index) => (
                         <GenreCard key={index} {...item} />
                     ))}
-                </div>
+                </div>}
                 <div className={`scroll-right ${!atEnd[3] ? "" : "hidden"}`} >
                     <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(3)} />
                 </div>
@@ -219,11 +221,11 @@ const Home = () => {
                 <div className={`scroll-left ${!atStart[4] ? "" : "hidden"}`} >
                     <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(4)} />
                 </div>
-                <div ref={(el) => (scrollRef.current[4] = el)} className="scroll-div">
+                {loading && <div ref={(el) => (scrollRef.current[4] = el)} className="scroll-div">
                     {data.romance && data.romance.map((item, index) => (
                         <GenreCard key={index} {...item} />
                     ))}
-                </div>
+                </div>}
                 <div className={`scroll-right ${!atEnd[4] ? "" : "hidden"}`} >
                     <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(4)} />
                 </div>

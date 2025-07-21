@@ -1,0 +1,65 @@
+.th-wrapper{
+    padding-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.342);
+}
+
+.theatre-details{
+    padding: 10px 40px 10px 30px;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.theatre-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.theatre-location{
+    display: flex;
+    align-items: center;
+}
+
+.theatre-location svg{
+    font-size: 1.8rem;
+}
+
+.theatre-location p{
+    font-size: 1.1rem;
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+.show-heading{
+    font-size: 1.3rem;
+    padding-left: 30px;
+    font-weight: 500;
+}
+
+.show-list{
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+}
+
+.th-show{
+    padding: 10px 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.342);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.th-show:hover{
+    box-shadow: 0 0 10px rgba(55, 121, 132, 0.836);
+}

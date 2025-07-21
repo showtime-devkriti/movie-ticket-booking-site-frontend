@@ -26,7 +26,7 @@ const Details_Banner = ({ data }) => {
         <>
             <div className="details-banner-container">
                 <div className="details-banner-front">
-                    {isSmall ? <></> : <img src={data?.posterurl}></img>}
+                    {isSmall ? <></> : <img src={data?.poster_url}></img>}
                     <div className="front-info">
                         <h1>{data?.title}</h1>
                         <div className="format">
@@ -45,9 +45,9 @@ const Details_Banner = ({ data }) => {
                                 ))}
                             </div>
                             <div className="genre">
-                                {data?.genre?.map((item, index) => (
+                                {data?.genres?.map((item, index) => (
                                     <span key={index}>
-                                        {item}{index !== data.genre.length - 1 ? ', ' : ''}
+                                        {item}{index !== data.genres.length - 1 ? ', ' : ''}
                                     </span>
                                 ))}
                             </div>
@@ -60,14 +60,14 @@ const Details_Banner = ({ data }) => {
                             {data?.rating.toFixed(1)}/10
                         </div>
                         <div className="btn">
-                            <a href={data?.trailerurl} target="_blank"><button>Watch trailer <FaPlay size={20} /></button></a>
+                            <a href={data?.trailer_url[0]} target="_blank"><button>Watch trailer <FaPlay size={20} /></button></a>
                             <button>Book tickets</button>
                         </div>
                     </div>
                 </div>
                 <div className="back-container">
                     <div className="details-banner-back" style={{
-                        backgroundImage: `url(${data?.backdropurl})`,
+                        backgroundImage: `url(${data?.backdrop_url})`,
                     }}>
 
                     </div>

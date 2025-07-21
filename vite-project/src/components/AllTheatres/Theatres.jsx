@@ -1,7 +1,10 @@
 import React from "react";
 import "./Theatres.css"
 import TheatreCard from "./TheatreCard";
-import Header2 from "../Header2";
+import Header from "../About-components/About_Header";
+import Footer from "../Footer";
+import { IoIosSearch } from "react-icons/io";
+import { FaMapLocationDot } from "react-icons/fa6";
 
 const theatres = [
     {
@@ -41,9 +44,39 @@ const theatres = [
     }
 ]
 
+const Search = () => {
+    return <div className="search-wrapper">
+        <div className="search-bar-container">
+            <span><IoIosSearch size={25} /></span>
+            <div className="search-input">
+                <input type="text" placeholder="Search for movies and theaters" ></input>
+            </div>
+        </div>
+    </div>
+}
+
 const Theatres = () => {
     return <>
-        <Header2/>
+        <Header />
+        <div className="movie-container">
+            <div className="h">
+                <h1 className="theatre-heading">All Theatres</h1>
+                <div className="search-div">
+                    <Search />
+                </div>
+                <div className="location">
+                    <FaMapLocationDot />
+                    <p>Location</p>
+                </div>
+            </div>
+            <div className="list">
+                <TheatreCard />
+                <TheatreCard />
+                <TheatreCard />
+                <TheatreCard />
+            </div>
+        </div>
+        <Footer />
     </>
 }
 

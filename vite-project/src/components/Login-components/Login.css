@@ -25,9 +25,9 @@
     transition: height 0.3s ease;
 }
 
-/* .wrapper.active {
-    
-} */
+.login-header .logo text{
+    font-size: 5.5rem;
+}
 
 .wrapper .login-form {
     position: relative;

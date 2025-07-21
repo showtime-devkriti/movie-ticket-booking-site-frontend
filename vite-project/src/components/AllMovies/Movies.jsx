@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./Movies.css"
 import MoviesCard from "./MoviesCard";
 import Header2 from "../About-components/About_Header";
 import { IoIosSearch } from "react-icons/io";
 import Footer from "../Footer";
+import api from "../getData"
 
 const data = [
     {
@@ -65,6 +66,10 @@ const Search = () => {
 }
 
 const Movies = () => {
+    useEffect(() => {
+        api.getallmovies()
+    }, [])
+
     return <>
         <Header2 />
         <div className="movie-container">

@@ -7,14 +7,15 @@ import Header2 from "./components/Header2";
 import Footer from "./components/Footer";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import api from "./components/getData";
 
 
-const MovieCard = ({ genre, id, language, posterurl, rating, title }) => {
+const MovieCard = ({ genre, id, language, poster_url, rating, title }) => {
     return (
         <>
             <div className="moviecard">
                 <Link to={`/movies?id=${id}`}>
-                    <img src={posterurl}></img>
+                    <img src={poster_url}></img>
                     <div className="moviecard-info">
                         <div className="moviecard-title">{title}</div>
                         <div className="moviecard-details">
@@ -48,6 +49,7 @@ const Detailspage = () => {
     const scrollRef = useRef(null);
     const [atStart, setAtStart] = useState(true);
     const [atEnd, setAtEnd] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const checkScrollPosition = () => {
         const el = scrollRef.current;
@@ -58,6 +60,8 @@ const Detailspage = () => {
     };
 
     useEffect(() => {
+        if(loading) return
+
         const add = () => {
             const el = scrollRef.current;
             if (!el) return;
@@ -79,7 +83,7 @@ const Detailspage = () => {
             clearTimeout(timeoutId);
             remove();
         };
-    }, []);
+    }, [loading]);
 
     const handleScrollLeft = () => {
         const el = scrollRef.current;
@@ -103,23 +107,36 @@ const Detailspage = () => {
     };
 
     useEffect(() => {
+
+        setLoading(true);
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/movies/${id}`, {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json" },
-                    credentials: "include",
-                });
-
-                if (!res.ok) {
-                    throw new Error(`Error: ${res.status} ${res.statusText}`);
-                }
-
-                const result = await res.json();
+                const result = await api.getMovieById(id);
                 setData(result);
                 console.log("Fetched details:", result);
+
+                const imgUrls = [];
+                imgUrls.push(result.poster_url)
+                imgUrls.push(result.backdrop_url)
+                imgUrls.push(result.cast.filter(cast => cast.profile && cast.profile).map(cast => cast.profile ))
+                imgUrls.push(result.crew.filter(crew => crew.profile && crew.profile).map(crew => crew.profile ))
+                imgUrls.push(result.recommended.map(item => item.poster_url))
+                imgUrls.push(result.title_logo)
+
+                const imagePromises = imgUrls.map((url) =>
+                    new Promise((resolve) => {
+                        const img = new Image();
+                        img.src = url;
+                        img.onload = resolve;
+                        img.onerror = resolve; // resolve even if failed, to prevent blocking
+                    })
+                );
+
+                await Promise.all(imagePromises);
+                setLoading(false);
                 checkScrollPosition();
                 SetScrollStart();
+
             } catch (err) {
                 console.error("Failed to fetch details:", err);
             }
@@ -152,27 +169,31 @@ const Detailspage = () => {
         ));
     };
 
+    if (loading) return <div className="loader-container" >
+        <div className="loader"></div>
+    </div>
+
     return (
         <>
             <Header2 />
-            {data && <Details_Banner data={data.movie} />}
+            {data && <Details_Banner data={data} />}
             <div className="detailspage-details">
                 <h1>Description</h1>
                 <span>
-                    {data?.movie?.description?.length > 0 ? data.movie.description : "No description available."}
+                    {data?.description?.length > 0 ? data.description : "No description available."}
                 </span>
                 <h1>Cast</h1>
                 <div className="cast">
-                    {data?.movie?.castDetails?.length > 0 ? (
-                        (removeRepeat(data.movie.castDetails))
+                    {data?.cast?.length > 0 ? (
+                        (removeRepeat(data.cast))
                     ) : (
                         <p>No cast available.</p>
                     )}
                 </div>
                 <h1>Crew</h1>
                 <div className="crew">
-                    {data?.movie?.crewDetails?.length > 0 ? (
-                        (removeRepeat(data.movie.crewDetails))
+                    {data?.crew?.length > 0 ? (
+                        (removeRepeat(data.crew))
                     ) : (
                         <p>No crew available.</p>
                     )}
@@ -181,11 +202,11 @@ const Detailspage = () => {
                     <div className={`scroll-left ${!atStart ? "" : "hidden"}`} >
                         <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft()} />
                     </div>
-                    <div ref={scrollRef} className="scroll-div">
-                        {data?.moviesYouAlsoLike?.map((item, index) => (
+                    {!loading && <div ref={scrollRef} className="scroll-div">
+                        {data?.recommended?.map((item, index) => (
                             <MovieCard key={index} {...item} />
                         ))}
-                    </div>
+                    </div>}
                     <div className={`scroll-right ${!atEnd ? "" : "hidden"}`} >
                         <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight()} />
                     </div>

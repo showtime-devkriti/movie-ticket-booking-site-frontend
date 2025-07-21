@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchResults.css";
 
-const MovieResult = ({ id, title, posterurl, o_language }) => {
+const MovieResult = ({ id, title, posterurl }) => {
     const navigate = useNavigate();
 
     const onResultClick = () => {
@@ -37,7 +37,7 @@ const SearchResults = ({ movies }) => {
     const theatreResultsRef = useRef(null);
 
     useEffect(() => {
-        console.log(movies)
+        //console.log(movies)
         if (movieResultsRef.current) {
             movieResultsRef.current.scrollTop = 0;
         }
