@@ -19,6 +19,11 @@ import Theatres from './components/AllTheatres/Theatres';
 import api from './components/getData'
 import User from './User';
 import Booking_History from './Booking_History';
+import FAQ from './FAQ';
+import Contact from './Contact';
+import PP from './PP';
+import TC from './TC';
+import Booktickets from './Booktickets';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -49,10 +54,6 @@ const GenreCard = ({ id, language, posterurl, rating, title }) => {
         </>
     );
 };
-import FAQ from './FAQ';
-import Contact from './Contact';
-import PP from './PP';
-import TC from './TC';
 
 const HomePage = () => {
     const [user, setUser] = useState(null);
@@ -341,6 +342,7 @@ function App() {
                 <Route path='/termsandconditions' element={<TC />} />
                 <Route path="/user" element={<User />} />
                 <Route path='/booking-history' element={<Booking_History />} />
+                <Route path='/book-tickets' element={<Booktickets />} />
             </Routes>
         </Router>
     );

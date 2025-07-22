@@ -1,0 +1,11 @@
+.book-tickets-container {
+    margin-top: 90px;
+}
+
+.book-tickets-container .shows {
+    align-items: center;
+}
+
+.book-movie {
+    display: flex;
+}

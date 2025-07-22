@@ -24,7 +24,7 @@ const Theatrepage = () => {
                 <div className="theatre-data-wrapper">
                     <div className="theatre-data"></div >
                     <div className="theatre-text">
-                        <h1>AMB Cinemas : Gachibowli</h1>
+                        <h1>AMB Cinemas: Gachibowli</h1>
                         <div className="theatre-location">
                             {isMobile ? <></> : <FaLocationDot size={30} />}
                             Sarath City Capital Mall, Forest Dept Colony, Kondapur, Gachibowli - Miyapur Road, White Field Road, Opposite Mahindra Showroom, Hyderabad, Telangana 500084, India

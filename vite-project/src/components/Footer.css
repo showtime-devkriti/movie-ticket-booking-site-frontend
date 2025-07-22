@@ -1,6 +1,6 @@
 footer {
     background-color: #222222;
-    height: 50vh;
+    min-height: 50vh;
     margin-top: 25px;
     color: white;
     display: flex;

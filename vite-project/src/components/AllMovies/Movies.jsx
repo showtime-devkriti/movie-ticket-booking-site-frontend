@@ -5,6 +5,8 @@ import Header2 from "../About-components/About_Header";
 import { IoIosSearch } from "react-icons/io";
 import Footer from "../Footer";
 import api from "../getData"
+import { IoLanguage } from "react-icons/io5";
+import { FaTheaterMasks } from "react-icons/fa";
 
 const data = [
     {
@@ -77,6 +79,16 @@ const Movies = () => {
                 <h1 className="movies-heading">All Movies</h1>
                 <div className="search-div">
                     <Search />
+                </div>
+                <div className="filters">
+                    <div className="language-filter">
+                        <IoLanguage size={30}/>
+                        <div>Language</div>
+                    </div>
+                    <div className="genre-filter">
+                        <FaTheaterMasks size={30}/>
+                        <div>Genre</div>
+                    </div>
                 </div>
             </div>
             <div className="list">
