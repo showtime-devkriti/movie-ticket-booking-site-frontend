@@ -24,6 +24,7 @@ import Contact from './Contact';
 import PP from './PP';
 import TC from './TC';
 import Booktickets from './Booktickets';
+import Seat_Layout from './Seat_Layout';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -343,6 +344,7 @@ function App() {
                 <Route path="/user" element={<User />} />
                 <Route path='/booking-history' element={<Booking_History />} />
                 <Route path='/book-tickets' element={<Booktickets />} />
+                <Route path='/seat-layout' element={<Seat_Layout />} />
             </Routes>
         </Router>
     );

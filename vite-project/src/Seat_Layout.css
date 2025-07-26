@@ -1,0 +1,43 @@
+.layout-wrapper {
+    padding-top: 120px;
+    background: linear-gradient(135deg,
+            rgb(26, 26, 26, 0.98) 5.95%,
+            rgb(26, 26, 26, 0.90) 10.3%,
+            rgba(26, 26, 26, 0.58) 45.45%,
+            rgb(26, 26, 26) 100%);
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.layout img {
+    width: 600px;
+}
+
+.row button {
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.row h2 {
+    color: white;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './Details_Banner.css';
 import { FaPlay } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom"
 
 const Details_Banner = ({ data }) => {
     const convert = () => {
@@ -61,7 +62,7 @@ const Details_Banner = ({ data }) => {
                         </div>
                         <div className="btn">
                             <a href={data?.trailer_url[0]} target="_blank"><button>Watch trailer <FaPlay size={20} /></button></a>
-                            <button>Book tickets</button>
+                            <Link to="/book-tickets"><button>Book tickets</button></Link>
                         </div>
                     </div>
                 </div>
