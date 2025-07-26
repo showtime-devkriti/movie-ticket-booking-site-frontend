@@ -1,21 +1,21 @@
 .layout-wrapper {
     padding-top: 125px;
-    background: linear-gradient(135deg,
-            rgb(26, 26, 26, 0.98) 5.95%,
-            rgb(26, 26, 26, 0.90) 10.3%,
-            rgba(26, 26, 26, 0.58) 45.45%,
-            rgb(26, 26, 26) 100%);
+    background: linear-gradient(to right,
+            #1A2980 0%,
+            #26D0CE 51%,
+            #1A2980 100%);
 }
 
 .layout {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
 }
 
 .layout img {
     width: 600px;
+    padding-bottom: 20px;
 }
 
 .row button {
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .row h2 {
@@ -39,5 +39,5 @@
 .column {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }

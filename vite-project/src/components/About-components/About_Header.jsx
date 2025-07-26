@@ -1,11 +1,9 @@
 import { React, useState, useEffect } from "react";
 import './About_Header.css';
 import { Link } from "react-router-dom";
-import { IoIosSearch } from "react-icons/io";
-import { FaLocationDot } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-import { TbLogout } from "react-icons/tb";
+import { TbLogout } from "react-icons/tb";  
 
 const About_Header = () => {
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);

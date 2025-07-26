@@ -1,8 +1,15 @@
+.user-wrapper {
+    background: linear-gradient(to right,
+            #1A2980 0%,
+            #26D0CE 51%,
+            #1A2980 100%);
+}
+
 .user-container {
-    margin-top: 90px;
+    padding-top: 150px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 35px;
 }
 
 .user {
@@ -18,8 +25,8 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background-color: white;
-    padding: 25px;
+    background-color: #377884;
+    padding: 25px 40px;
     border-radius: 12px;
 }
 
@@ -28,12 +35,12 @@
     flex-direction: column;
     gap: 15px;
     font-size: 1.25rem;
-    background-color: white;
-    padding: 25px;
+    background-color: #377884;
+    padding: 25px 40px;
     border-radius: 12px;
 }
 
-.user-info > div {
+.user-info>div {
     display: flex;
     align-items: center;
     gap: 5px
@@ -43,6 +50,7 @@
     display: flex;
     gap: 25px;
     justify-content: center;
+    padding-bottom: 15px;
 }
 
 .user-container .user-btn a {
@@ -73,4 +81,6 @@
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 12px;
+    background-color: black;
+    color: white;
 }

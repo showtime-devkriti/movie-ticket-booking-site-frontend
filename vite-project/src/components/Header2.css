@@ -3,6 +3,7 @@
     backdrop-filter: blur(8px);
     height: 60px;
     padding: 15px;
+    padding-left: 0px;
     z-index: 10;
     width: 100vw;
     position: fixed;
@@ -51,6 +52,8 @@
 
 .details-header .menu {
     padding-right: 35px;
+    cursor: pointer;
+    color: #377884;
 }
 
 .details-header .menu a {
