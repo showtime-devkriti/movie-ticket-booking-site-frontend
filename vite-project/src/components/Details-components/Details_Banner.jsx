@@ -7,21 +7,21 @@ import { Link } from "react-router-dom"
 const Details_Banner = ({ data }) => {
     const convert = () => {
         let screenTime = parseInt(data?.runtime);
-        const hrs = Math.floor(screenTime/60);
-        const min = screenTime%60
+        const hrs = Math.floor(screenTime / 60);
+        const min = screenTime % 60
         return `${hrs}hr ${min}min`
     }
 
     const [isSmall, setIsSmall] = useState(window.innerWidth <= 800);
 
     useEffect(() => {
-            const handleResize = () => {
-                setIsSmall(window.innerWidth <= 800);
-            };
-    
-            window.addEventListener("resize", handleResize);
-            return () => window.removeEventListener("resize", handleResize);
-        }, []);
+        const handleResize = () => {
+            setIsSmall(window.innerWidth <= 800);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
         <>
@@ -31,9 +31,9 @@ const Details_Banner = ({ data }) => {
                     <div className="front-info">
                         <h1>{data?.title}</h1>
                         <div className="format">
-                            {data?.format?.map((item,index) => (
+                            {data?.format?.map((item, index) => (
                                 <span key={index}>
-                                    {item}{index !== data.format.length-1 ? ', ' : ''}
+                                    {item}{index !== data.format.length - 1 ? ', ' : ''}
                                 </span>
                             ))}
                         </div>
@@ -57,13 +57,17 @@ const Details_Banner = ({ data }) => {
                             </div>
                         </div>
                         <div className="rating">
-                            <FaStar size={20}/>
+                            <FaStar size={20} />
                             {data?.rating.toFixed(1)}/10
                         </div>
-                        <div className="btn">
-                            <a href={data?.trailer_url[0]} target="_blank"><button>Watch trailer <FaPlay size={20} /></button></a>
-                            <Link to="/book-tickets"><button>Book tickets</button></Link>
-                        </div>
+                        {data?.trailer_url[0] ?
+                            (<div className="btn">
+                                <a href={data?.trailer_url[0]} target="_blank"><button>Watch trailer <FaPlay size={20} /></button></a>
+                                <Link to="/book-tickets"><button>Book tickets</button></Link>
+                            </div>) :
+                            (<div className="btn">
+                                <Link to="/book-tickets"><button>Book tickets</button></Link>
+                            </div>)}
                     </div>
                 </div>
                 <div className="back-container">

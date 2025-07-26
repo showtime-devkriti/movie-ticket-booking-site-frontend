@@ -1,6 +1,7 @@
 .card-wrapper {
     position: relative;
     width: 120px;
+    min-height: 175px;
     margin-left: 10px;
     display: flex;
     flex-direction: column;
