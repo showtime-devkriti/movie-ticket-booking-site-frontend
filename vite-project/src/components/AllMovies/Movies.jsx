@@ -7,6 +7,8 @@ import Footer from "../Footer";
 import api from "../getData"
 import { IoLanguage } from "react-icons/io5";
 import { FaTheaterMasks } from "react-icons/fa";
+import GenreDropDown from "./Genre/GenreDropDown";
+import LanguageDropDown from "./Language/LanguageDropDown";
 
 const data = [
     {
@@ -82,12 +84,10 @@ const Movies = () => {
                 </div>
                 <div className="filters">
                     <div className="language-filter">
-                        <IoLanguage size={30}/>
-                        <div>Language</div>
+                        <LanguageDropDown/>
                     </div>
                     <div className="genre-filter">
-                        <FaTheaterMasks size={30}/>
-                        <div>Genre</div>
+                        <GenreDropDown/>
                     </div>
                 </div>
             </div>

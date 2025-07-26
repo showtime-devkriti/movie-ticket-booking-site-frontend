@@ -9,7 +9,7 @@ import Header2 from "../Header2";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
-import api from "../getData"
+import api from "./getRecommened"
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
