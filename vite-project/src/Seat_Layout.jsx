@@ -1,6 +1,5 @@
 import React from "react";
 import "./Seat_Layout.css";
-import Footer from "./components/Footer";
 import Layout_Header from "./components/Layout-components/Layout_Header";
 
 const Seat_Layout = () => {
@@ -117,7 +116,6 @@ const Seat_Layout = () => {
                     </div>
                     <img src="https://district.ticketnew.com/movies_assets/_next/static/media/screen-img-light.b7b18ffd.png"></img>
                 </div>
-                <Footer />
             </div>
         </>
     );
