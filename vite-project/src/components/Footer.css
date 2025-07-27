@@ -1,13 +1,15 @@
 footer {
     background-color: #222222;
     min-height: 50vh;
+    min-width: 100vw;
     margin-top: 25px;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
+    padding-top: 20px;
 }
 
 .footer-top {
@@ -15,6 +17,14 @@ footer {
     justify-content: space-around;
     align-items: center;
     width: 75vw;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.footer-top>div {
+    flex: 1 1 30%;
+    min-width: 200px;
+    max-width: 100%;
 }
 
 .footer-top a {
@@ -31,11 +41,11 @@ footer {
 .footer-top h3::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: calc(50% - 75px);
     bottom: -5px;
     background-color: #377884;
     height: 2px;
-    width: 100%;
+    width: 150px;
 }
 
 .showtime {
@@ -48,6 +58,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
 .showtime-links a {
@@ -63,12 +74,14 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
 }
 
 .get-help-links {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
 .get-help-links a {
@@ -84,6 +97,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
 }
 
 .repo {
@@ -119,4 +133,22 @@ footer {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.footer-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-mail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-rights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

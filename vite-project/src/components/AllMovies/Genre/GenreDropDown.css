@@ -1,4 +1,4 @@
-.drop-btn{
+/* .drop-btn{
     border: 2px solid rgba(0, 0, 0, 0.6);
     border-radius: 15px;
     padding: 10px;
@@ -20,4 +20,63 @@
 
 .drop-down.hidden{
     visibility: hidden;
+} */
+
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.drop-btn {
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.drop-btn:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.342);
+}
+
+.drop-down {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 10px;
+    min-width: 120px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.drop-down.hidden {
+    display: none;
+}
+
+.drop-down ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.drop-down li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.drop-down li:hover {
+    background-color: #f0f0f0;
+}
+
+.drop-down input {
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 1.25rem;
+    width: 100%;
 }

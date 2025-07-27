@@ -23,6 +23,7 @@
 
 .pp h1 {
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .pp span {
@@ -33,4 +34,10 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+@media (max-width: 768px) {
+    .pp {
+        width: 70%;
+    }
 }

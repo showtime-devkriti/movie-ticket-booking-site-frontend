@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Movies.css"
 import MoviesCard from "./MoviesCard";
 import Header2 from "../About-components/About_Header";
 import { IoIosSearch } from "react-icons/io";
 import Footer from "../Footer";
 import api from "../getData"
-import { IoLanguage } from "react-icons/io5";
-import { FaTheaterMasks } from "react-icons/fa";
 import GenreDropDown from "./Genre/GenreDropDown";
 import LanguageDropDown from "./Language/LanguageDropDown";
 
@@ -70,6 +68,15 @@ const Search = () => {
 }
 
 const Movies = () => {
+    const divRef = useRef(null);
+    const [width, setWidth] = useState(0);
+
+    useEffect(() => {
+        if (divRef.current) {
+            setWidth(divRef.current.offsetWidth);
+        }
+    }, []);
+
     useEffect(() => {
         api.getallmovies()
     }, [])
@@ -83,17 +90,17 @@ const Movies = () => {
                     <Search />
                 </div>
                 <div className="filters">
-                    <div className="language-filter">
-                        <LanguageDropDown/>
+                    <div className="language-filter" ref={divRef}>
+                        <LanguageDropDown width={width} />
                     </div>
-                    <div className="genre-filter">
-                        <GenreDropDown/>
+                    <div className="genre-filter" ref={divRef}>
+                        <GenreDropDown width={width} />
                     </div>
                 </div>
             </div>
             <div className="list">
                 {data?.map((movie, index) => (
-                    <MoviesCard key={index} {...movie}/>
+                    <MoviesCard key={index} {...movie} />
                 ))}
             </div>
         </div>

@@ -1,19 +1,22 @@
 .contact-wrapper {
     margin-top: 115px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .contact-left {
-    width: 30%;
+    min-width: 450px;
+    max-width: 450px;
     background-color: #377884;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    gap: 45px;
+    height: 400px;
+    gap: 25px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 50px #377884;
 }
 
 .contact-left h1 {
@@ -21,12 +24,15 @@
 }
 
 .contact-right {
-    width: 30%;
+    min-width: 450px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 70vh;
     background-color: white;
+    padding: 20px 0px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
 }
 
 .contact-right form {
@@ -37,12 +43,14 @@
     justify-content: space-evenly;
     height: 100%;
     font-size: 1.25rem;
+    gap: 10px;
 }
 
 .contacts {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
 }
 
 .numbers {
@@ -53,17 +61,20 @@
 
 .mail {
     display: flex;
-    gap: 25px;
+    gap: 15px;
+    align-items: center;
 }
 
 .address {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 15px;
 }
 
 .contact-timings {
     display: flex;
-    gap: 25px;
+    gap: 15px;
+    align-items: center;
 }
 
 .contact-info {
@@ -115,4 +126,18 @@
 .contact-query textarea {
     padding: 10px;
     height: 200px;
+}
+
+@media (max-width: 1025px) {
+    .contact-wrapper {
+        flex-direction: column;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 475px) {
+    .contact-left, .contact-right {
+        min-width: 95vw;
+        max-width: 95vw;
+    }
 }

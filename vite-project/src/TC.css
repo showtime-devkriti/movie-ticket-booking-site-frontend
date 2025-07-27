@@ -21,6 +21,16 @@
     align-items: center;
 }
 
+.tc h1 {
+    text-align: center;
+}
+
 .tc span {
     font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .tc {
+        width: 70%;
+    }
 }

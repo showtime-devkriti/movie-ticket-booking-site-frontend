@@ -37,9 +37,9 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="footer-bottom">
-                    &copy; 2025 Showtime. All rights reserved.
-                    <p><MdMail />Email: naanigs2245@gmail.com</p>
-                    <p><FaPhone />Phone: +91 73967 62006 +91 79936 52006 +91 78939 33954</p>
+                    <p className='footer-rights'><span>&copy;</span> <span>2025 Showtime.</span> <span>All rights reserved.</span></p>
+                    <p className='footer-mail'><MdMail /><span>Email:</span> <span>naanigs2245@gmail.com</span></p>
+                    <p className='footer-numbers'><FaPhone /><span>Phone:</span> <span>+91 73967 62006</span> <span>+91 79936 52006</span> <span>+91 78939 33954</span></p>
                     <p><FaLocationDot />Location: Gwalior, India</p>
                 </div>
             </footer>

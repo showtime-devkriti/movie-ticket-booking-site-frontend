@@ -1,7 +1,6 @@
 import React from "react";
 import "./Booktickets.css";
 import Header2 from "./components/Header2";
-import Footer from "./components/Footer";
 
 const Booktickets = () => {
     return (
@@ -158,7 +157,6 @@ const Booktickets = () => {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </div>
         </>
     );

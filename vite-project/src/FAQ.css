@@ -34,6 +34,7 @@
 
 .FAQ h1 {
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .question {
@@ -59,4 +60,10 @@
     outline: none;
     font-size: 1.25rem;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .FAQ {
+        width: 70%;
+    }
 }
