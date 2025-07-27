@@ -23,7 +23,8 @@
     visibility: visible;
     transition: all .3s ease-in-out;
     opacity: 1;
-    min-width: 400px;
+    min-width: 100%;
+    width: 400px;
     height: 300px;
     border-radius: 15px;
     border: 2px solid rgba(121, 121, 121, 0.315);
@@ -36,4 +37,9 @@
     opacity: 0;
     transform: translateY(-5%);
     transition: transform 150ms ease-in-out, opacity 100ms ease-in-out;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  z-index: 1; /* optional, but good for clarity */
 }
