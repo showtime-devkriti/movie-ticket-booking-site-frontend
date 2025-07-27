@@ -3,6 +3,8 @@ import "./Seat_Layout.css";
 import Layout_Header from "./components/Layout-components/Layout_Header";
 
 const Seat_Layout = () => {
+    
+
     return (
         <>
             <div className="layout-wrapper">

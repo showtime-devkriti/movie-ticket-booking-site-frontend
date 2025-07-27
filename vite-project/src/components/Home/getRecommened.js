@@ -11,6 +11,20 @@ const options = {
     }
 };
 
+const languageMap = {
+    "Telugu": "te",
+    "Hindi": "hi",
+    "English": "en",
+    "Tamil": "ta",
+    "Malayalam": "ml",
+    "Kannada": "kn",
+    "Marathi": "mr",
+    "Bengali": "bn",
+    "Punjabi": "pa",
+    "Gujarati": "gu",
+    "Odia": "or",
+    "Urdu": "ur",
+};
 
 const getHome = async function () {
     try {
@@ -23,7 +37,7 @@ const getHome = async function () {
             const url = new URL(`${baseUrl}${endpoint}`);
 
             url.searchParams.append("api_key", api);
-            url.searchParams.append("with_original_language", `${userLang}`);
+            url.searchParams.append("with_original_language", `${languageMap[userLang]}`);
 
             Object.entries(params).forEach(([key, value]) => {
                 url.searchParams.append(key, value);

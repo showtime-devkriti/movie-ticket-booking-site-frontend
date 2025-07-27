@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import './Detailspage.css';
 import Details_Banner from "./components/Details-components/Details_Banner";
@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import api from "./components/getData";
+import { useMovieContext } from "./components/MovieContext/movieContext";
 
 
 const MovieCard = ({ genre, id, language, poster_url, rating, title }) => {
@@ -45,11 +46,12 @@ const MovieCard = ({ genre, id, language, poster_url, rating, title }) => {
 const Detailspage = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
-    const [data, setData] = useState(null); // Initialize with null or {}
+    //const [data, setData] = useState(null); // Initialize with null or {}
     const scrollRef = useRef(null);
     const [atStart, setAtStart] = useState(true);
     const [atEnd, setAtEnd] = useState(false);
     const [loading, setLoading] = useState(true);
+    const { data, setData } = useMovieContext();
 
     const checkScrollPosition = () => {
         const el = scrollRef.current;
@@ -60,7 +62,7 @@ const Detailspage = () => {
     };
 
     useEffect(() => {
-        if(loading) return
+        if (loading) return
 
         const add = () => {
             const el = scrollRef.current;
@@ -118,8 +120,8 @@ const Detailspage = () => {
                 const imgUrls = [];
                 imgUrls.push(result.poster_url)
                 imgUrls.push(result.backdrop_url)
-                imgUrls.push(result.cast.filter(cast => cast.profile && cast.profile).map(cast => cast.profile ))
-                imgUrls.push(result.crew.filter(crew => crew.profile && crew.profile).map(crew => crew.profile ))
+                imgUrls.push(result.cast.filter(cast => cast.profile && cast.profile).map(cast => cast.profile))
+                imgUrls.push(result.crew.filter(crew => crew.profile && crew.profile).map(crew => crew.profile))
                 imgUrls.push(result.recommended.map(item => item.poster_url))
                 imgUrls.push(result.title_logo)
 

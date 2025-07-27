@@ -9,7 +9,7 @@ import Header2 from "../Header2";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
-import api from "./getRecommened"
+import getHome from "./getRecommened"
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -134,7 +134,7 @@ const Home = () => {
                 // }
                 // const result = await res.json();
 
-                api.getHome();
+                getHome();
                 //setData(result); 
                 //console.log("Fetched data:", result);
                 
