@@ -5,12 +5,17 @@ const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
     const [data, setData] = useState(() => {
-        const stored = localStorage.getItem("movie");
-        return stored ? JSON.parse(stored) : [];
-    })
+        try {
+            const stored = localStorage.getItem("movie");
+            return stored ? JSON.parse(stored) : [];
+        } catch (e) {
+            console.error("Failed to parse localStorage movie data:", e);
+            return [];
+        }
+    });
 
     useEffect(() => {
-        localStorage.setItem("movie", JSON.stringify(data));
+        if (data) localStorage.setItem("movie", JSON.stringify(data));
     }, [data]);
 
     return (

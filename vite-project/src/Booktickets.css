@@ -2,13 +2,28 @@
     margin-top: 90px;
 }
 
-.book-tickets-container .shows {
+.book-tickets-container .theatres {
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+.book-tickets-container .theatre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+    width: 88vw;
+    padding: 10px 20px;
 }
 
 .book-movie-container {
     position: relative;
-    height: 85vh;
+    height: 60vh;
     padding: 20px 0px;
     margin-top: 90px;
     display: flex;
@@ -22,8 +37,8 @@
     gap: 40px;
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 82vh;
+    width: 98%;
+    height: 58vh;
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -87,6 +102,35 @@
 .book-movie-info > span {
     font-size: 1.25rem;
     width: 75vw;
+}
+
+.screens {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    font-size: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.timings {
+    display: flex;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.timings > div {
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.h-centre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 @media (max-width: 1375px) {
