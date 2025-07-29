@@ -1,7 +1,7 @@
 // context/DropdownContext.js
 import React, { createContext, useContext, useState } from "react";
 
-export const MovieContext = createContext();
+const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
     const [data, setData] = useState(null)

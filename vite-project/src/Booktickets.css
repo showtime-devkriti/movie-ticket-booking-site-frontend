@@ -6,6 +6,91 @@
     align-items: center;
 }
 
+.book-movie-container {
+    position: relative;
+    height: 85vh;
+    padding: 20px 0px;
+    margin-top: 90px;
+    display: flex;
+    align-items: center;
+}
+
 .book-movie {
     display: flex;
+    padding: 25px;
+    align-items: center;
+    gap: 40px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 82vh;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.book-movie::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg,
+            rgb(26, 26, 26, 0.98) 20.95%,
+            rgb(26, 26, 26, 0.98) 25.3%,
+            rgba(26, 26, 26, 0.1) 95.45%,
+            rgb(26, 26, 26) 100%);
+    z-index: -1;
+}
+
+.book-movie img {
+    min-width: 275px;
+    height: 400px;
+    border-radius: 12px;
+}
+
+.book-movie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: white;
+}
+
+.lgr {
+    color: black;
+}
+
+.lang-format {
+    display: flex;
+    gap: 5px;
+}
+
+.lang-format > h4 {
+    border-radius: 25px;
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+
+.language, .genre, .runtime, .rating{
+    font-size: 1.25rem;
+    color: white;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.book-movie-info > span {
+    font-size: 1.25rem;
+    width: 75vw;
+}
+
+@media (max-width: 1375px) {
+    .book-tickets-container {
+        margin-top: 140px;
+    }
 }
