@@ -6,16 +6,30 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie"
 
-const Show = ({ show }) => {
-    const add = (address) => {
-        return address.split("-")
-    }
-
+const Screen = ({ screen }) => {
     const t = (t) => {
         return t.split("T")[1]
     }
 
-    return <div className="show">
+    return <>
+        <div className="screen">
+            {screen.screenName}
+        </div>
+        <div className="timings">
+            {screen?.timings?.map((time, index) => (
+                <div key={index}>{t(time)}</div>
+            ))}
+        </div>
+    </>
+}
+
+const Theatre = ({ show }) => {
+    const add = (address) => {
+        return address.split("-")
+    }
+
+
+    return <div className="theatre">
         <div className="theatre-details">
             <h3>{add(show.address)[0]}</h3>
             <h4>{add(show.address)[1]}</h4>
@@ -25,12 +39,9 @@ const Show = ({ show }) => {
             </div>
             <h4>{show.location}</h4>
         </div>
-        <div className="screen">
-            {show.screenName}
-        </div>
-        <div className="timings">
-            {show?.timings?.map((time, index) => (
-                <div key={index}>{t(time)}</div>
+        <div className="screens">
+            {show?.screens?.map((screen, index) => (
+                <Screen key={index} screen={screen}/>
             ))}
         </div>
     </div>
@@ -164,9 +175,9 @@ const Booktickets = () => {
                         </div>
                     </div>
                 </div>
-                <div className="shows">
+                <div className="theatres">
                     {shows?.map((show, index) => (
-                        <Show key={index} show={show} />
+                        <Theatre key={index} show={show} />
                     ))}
                 </div>
             </div>

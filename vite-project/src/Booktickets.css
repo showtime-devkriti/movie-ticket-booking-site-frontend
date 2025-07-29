@@ -94,3 +94,12 @@
         margin-top: 140px;
     }
 }
+
+.show {
+    display: flex;
+}
+
+.show .theatre-details{
+    display: flex;
+    position: relative;
+}
