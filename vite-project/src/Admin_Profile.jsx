@@ -1,10 +1,10 @@
 import React from "react";
-import "./Admin.css";
+import "./Admin_Profile.css";
 import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 
-const Admin = () => {
+const Admin_Profile = () => {
     return (
         <>
             <div className="admin-wrapper">
@@ -29,4 +29,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default Admin_Profile;
