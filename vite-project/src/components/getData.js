@@ -82,8 +82,13 @@ const getSearchResults = async function getSearchResults(query, language) {
     //return movies;
 }
 
-const getMovieById = async (tmdbId) => {
+const getMovieById = async (id) => {
     try {
+        const ids = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids`, options)
+            .then(res => res.json())
+
+        const tmdbId = ids.id
+
         const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}`, options);
 
         if (!movieRes.ok) {
@@ -146,8 +151,7 @@ const getMovieById = async (tmdbId) => {
             .then(res => res.json())
 
 
-        const ids = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/external_ids`, options)
-            .then(res => res.json())
+        
 
         const videos = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/videos?language=en-US`, options)
             .then(res => res.json())
@@ -167,7 +171,7 @@ const getMovieById = async (tmdbId) => {
             director,
             producer,
             original_language: originalLangFull,
-            imdb_id: ids.imdb_id,
+            imdb_id: id,
             spoken_languages: allLanguages,
             reviews: reviews.results,
             cast: topCast,

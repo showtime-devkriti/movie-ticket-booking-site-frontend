@@ -25,9 +25,9 @@ const Screen = ({ screen }) => {
         <div className="screen">
             {screen.screenName}
             <div className="timings">
-                {/* {screen?.timings?.map((time, index) => (
-                    <Link className="link" to={`seat-layout?id=`} key={index}>{t(time)}</Link>
-                ))} */}
+                {screen?.timings?.map((time, index) => (
+                    <Link className="link" to={`seat-layout?id=${time.showid}`} key={index}>{t(time.starttime)}</Link>
+                ))}
             </div>
         </div>
     </>
@@ -74,7 +74,7 @@ const Booktickets = () => {
     useEffect(() => {
         const token = Cookies.get("token")
         const fetchData = async () => {
-            const res = await fetch("http://localhost:3000/api/movies/tt1375666/showtimes?date=2025-07-30",
+            const res = await fetch("http://localhost:3000/api/movies/tt8178634/showtimes?date=2025-08-04",
                 {
                     method: 'GET',
                     headers: {
@@ -84,13 +84,14 @@ const Booktickets = () => {
                 }
             ).then(res => res.json())
             setShows(res)
+            console.log(res)
         }
 
         fetchData()
     }, [])
 
     useEffect(() => {
-        console.log(shows)
+        
     }, [shows])
 
     // useEffect(() => {

@@ -2,23 +2,27 @@ import React, { useEffect, useRef } from "react";
 import "./Seat_Layout.css";
 import Layout_Header from "./components/Layout-components/Layout_Header";
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3000/api/movies/seat");
+import { useSearchParams, Link } from "react-router-dom"
+//const socket = io("http://localhost:3000/api/movies/seat");
 
 const Seat_Layout = () => {
-    useEffect(() => {
-        socket.on("admin-reply", (msg) => {
-            console.log("Reply from admin WS:", msg);
-        });
+    const [searchParams] = useSearchParams();
+    const id = searchParams.get("id");
 
-        return () => {
-            socket.disconnect();
-        };
-    }, []);
+    // useEffect(() => {
+    //     socket.on("admin-reply", (msg) => {
+    //         console.log("Reply from admin WS:", msg);
+    //     });
 
-    const send = () => {
-        socket.emit("admin-message", "Hello from Admin Panel");
-        console.log("Reply from admin WS:");
-    };
+    //     return () => {
+    //         socket.disconnect();
+    //     };
+    // }, []);
+
+    // const send = () => {
+    //     socket.emit("admin-message", "Hello from Admin Panel");
+    //     console.log("Reply from admin WS:");
+    // };
 
     return (
         <>
@@ -28,7 +32,7 @@ const Seat_Layout = () => {
                     <div className="column" >
                         <div className="row">
                             <h2>A</h2>
-                            <button onClick={send}>1</button>
+                            <button >1</button>
                             <button>1</button>
                             <button>1</button>
                             <button>1</button>
