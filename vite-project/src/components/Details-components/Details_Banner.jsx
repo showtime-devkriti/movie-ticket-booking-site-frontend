@@ -4,17 +4,19 @@ import { FaPlay } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom"
 
-const Details_Banner = ({ data }) => {
+const Details_Banner = ({ data, isOnScreen }) => {
     const convert = () => {
         let screenTime = parseInt(data?.runtime);
         const hrs = Math.floor(screenTime / 60);
         const min = screenTime % 60
         return `${hrs}hr ${min}min`
     }
-
+    
     const [isSmall, setIsSmall] = useState(window.innerWidth <= 800);
 
     useEffect(() => {
+
+
         const handleResize = () => {
             setIsSmall(window.innerWidth <= 800);
         };
@@ -63,10 +65,10 @@ const Details_Banner = ({ data }) => {
                         {data?.trailer_url[0] ?
                             (<div className="btn">
                                 <a href={data?.trailer_url[0]} target="_blank"><button>Watch trailer <FaPlay size={20} /></button></a>
-                                <Link to="/book-tickets"><button>Book tickets</button></Link>
+                                {isOnScreen && <Link to={`/book-tickets?id=${data?.imdb_id}`}><button>Book tickets</button></Link>}
                             </div>) :
                             (<div className="btn">
-                                <Link to="/book-tickets"><button>Book tickets</button></Link>
+                                {isOnScreen && <Link to={`/book-tickets?id=${data?.imdb_id}`}><button>Book tickets</button></Link>}
                             </div>)}
                     </div>
                 </div>

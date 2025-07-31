@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useSearchParams, Link } from "react-router-dom"
 import "./Booktickets.css";
 import { useMovieContext } from "./components/MovieContext/movieContext";
 import About_Header from "./components/About-components/About_Header";
@@ -24,9 +25,9 @@ const Screen = ({ screen }) => {
         <div className="screen">
             {screen.screenName}
             <div className="timings">
-                {screen?.timings?.map((time, index) => (
-                    <div key={index}>{t(time)}</div>
-                ))}
+                {/* {screen?.timings?.map((time, index) => (
+                    <Link className="link" to={`seat-layout?id=`} key={index}>{t(time)}</Link>
+                ))} */}
             </div>
         </div>
     </>
@@ -59,6 +60,8 @@ const Theatre = ({ show }) => {
 const Booktickets = () => {
     const { data, setData } = useMovieContext();
     const [shows, setShows] = useState(null);
+    const [searchParams] = useSearchParams();
+    const id = searchParams.get("id");
     const [day,setDay] = useState();
 
     const convert = () => {

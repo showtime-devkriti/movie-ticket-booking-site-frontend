@@ -1,4 +1,3 @@
-// context/DropdownContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const MovieContext = createContext();

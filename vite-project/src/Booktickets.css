@@ -120,7 +120,14 @@
     font-size: 1rem;
 }
 
-.timings > div {
+.timings  div {
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.timings a{
+    text-decoration: none;
     border: 1px solid green;
     border-radius: 5px;
     padding: 5px 10px;

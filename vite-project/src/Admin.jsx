@@ -1,6 +1,5 @@
 import React from "react";
-import "./admin.css";
-import Footer from "./components/Footer";
+import "./Admin.css";
 import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";

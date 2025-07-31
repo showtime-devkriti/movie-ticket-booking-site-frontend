@@ -52,6 +52,7 @@ const Detailspage = () => {
     const [atEnd, setAtEnd] = useState(false);
     const [loading, setLoading] = useState(true);
     const { data, setData } = useMovieContext();
+    const [isOnScreen, setOnScreen] = useState(null)
 
     const checkScrollPosition = () => {
         const el = scrollRef.current;
@@ -111,11 +112,18 @@ const Detailspage = () => {
     useEffect(() => {
 
         setLoading(true);
+
         const fetchData = async () => {
             try {
                 const result = await api.getMovieById(id);
                 setData(result);
                 console.log("Fetched details:", result);
+
+                const onScreen = await fetch(`http://localhost:3000/api/ismovieonscreen?movieid=${data.imdb_id}`, {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                }).then((res) => res.json())
+                setOnScreen(onScreen.isonscreen)
 
                 const imgUrls = [];
                 imgUrls.push(result.poster_url)
@@ -144,7 +152,18 @@ const Detailspage = () => {
             }
         };
 
-        if (id) fetchData();
+        let movie = []
+        try {
+            const stored = localStorage.getItem("movie");
+            movie = stored ? JSON.parse(stored) : [];
+        } catch (e) {
+            console.log("Failed to parse: ", e)
+        }
+        if (movie.id === id) {
+            setData(movie)
+        }else{
+            fetchData()
+        }
     }, [id]);
 
     const removeRepeat = (someData) => {
@@ -178,7 +197,7 @@ const Detailspage = () => {
     return (
         <>
             <Header2 />
-            {data && <Details_Banner data={data} />}
+            {data && <Details_Banner data={data} isOnScreen={isOnScreen} />}
             <div className="detailspage-details">
                 <h1>Description</h1>
                 <span>

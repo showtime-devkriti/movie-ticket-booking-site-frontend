@@ -25,7 +25,7 @@ import PP from './PP';
 import TC from './TC';
 import Booktickets from './Booktickets';
 import Seat_Layout from './Seat_Layout';
-import Admin from './admin';
+import Admin from './Admin';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
