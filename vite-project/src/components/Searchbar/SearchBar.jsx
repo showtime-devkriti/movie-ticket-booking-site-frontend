@@ -4,7 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./SearchBar.css"
 import SearchResults from "./SearchResults";
-import  getSearchResults  from "../getData";
+import  api  from "../getData";
 
 const SearchBar = () => {
     const [input, setInput] = useState("");
@@ -27,7 +27,7 @@ const SearchBar = () => {
                 //     console.log(data);
                 //     setResults(data);
                 // }
-                getSearchResults(query, language);
+                api.getSearchResults(query, language);
             }else {
                 setMovies([]);
             }

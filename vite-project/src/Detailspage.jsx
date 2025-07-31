@@ -124,6 +124,7 @@ const Detailspage = () => {
                     headers: { "Content-Type": "application/json" },
                 }).then((res) => res.json())
                 setOnScreen(onScreen.isonscreen)
+                console.log(onScreen)
 
                 const imgUrls = [];
                 imgUrls.push(result.poster_url)
