@@ -78,3 +78,8 @@
     flex-direction: column;
     gap: 15px;
 }
+
+.functions a {
+    color: white;
+    text-decoration: none;
+}
