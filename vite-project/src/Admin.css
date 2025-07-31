@@ -1,0 +1,46 @@
+.admin-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mail,
+.phone {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fullname,
+.username,
+.email,
+.phone-number {
+    width: calc(100vw - 300px);
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin img {
+    width: 200px;
+    border-radius: 50%;
+    filter: invert(1);
+}
+
+.admin {
+    width: calc(100vw - 300px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #377884;
+}
+
+.admin-info-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.25rem;
+    padding: 20px 25px;
+    border-radius: 12px;
+    background-color: white;
+    filter: invert(1);
+}

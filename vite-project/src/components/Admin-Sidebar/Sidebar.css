@@ -1,0 +1,80 @@
+.sidebar {
+    background-color: rgb(25,25,25);
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.admin-info {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.admin-info img {
+    border-radius: 50%;
+    width: 75px;
+}
+
+.functions {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.functions div {
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    width: 100%;
+    padding: 25px 0px;
+}
+
+.functions div:hover {
+    background-color: black;
+    color: rgb(200,200,200);
+    padding-left: 25px;
+}
+
+.functions h2 {
+    padding-left: 25px;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    padding: 25px 0px;
+    padding-left: 25px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.logout:hover {
+    background-color: black;
+    color: rgb(200,200,200);
+    padding-left: 50px;
+}
+
+.logout svg {
+    color: #377884;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

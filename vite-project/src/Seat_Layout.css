@@ -1,5 +1,6 @@
 .layout-wrapper {
     padding-top: 125px;
+    height: 100vh;
     background: linear-gradient(to right,
             #1A2980 0%,
             #26D0CE 51%,

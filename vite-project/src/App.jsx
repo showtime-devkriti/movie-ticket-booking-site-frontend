@@ -25,6 +25,7 @@ import PP from './PP';
 import TC from './TC';
 import Booktickets from './Booktickets';
 import Seat_Layout from './Seat_Layout';
+import Admin from './admin';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -345,6 +346,7 @@ function App() {
                 <Route path='/booking-history' element={<Booking_History />} />
                 <Route path='/book-tickets' element={<Booktickets />} />
                 <Route path='/seat-layout' element={<Seat_Layout />} />
+                <Route path='/admin' element={<Admin />} />
             </Routes>
         </Router>
     );

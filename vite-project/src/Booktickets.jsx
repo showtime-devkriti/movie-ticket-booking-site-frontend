@@ -90,9 +90,9 @@ const Booktickets = () => {
         console.log(shows)
     }, [shows])
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
+    // useEffect(() => {
+    //     console.log(data)
+    // }, [data])
 
     const Day = () => {
         return (
