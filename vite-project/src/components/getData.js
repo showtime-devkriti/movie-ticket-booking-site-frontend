@@ -4,18 +4,18 @@ const api = "3c3c1d1f41aba7ea370b09194c130360"
 const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzNjMWQxZjQxYWJhN2VhMzcwYjA5MTk0YzEzMDM2MCIsIm5iZiI6MTc1MzAwODEwOS4zMDMsInN1YiI6IjY4N2NjN2VkZGZmMDA4MWRhYzcyYzcxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OZc2ftgzkSiEcFi9nL7WnYsXFGjG3NC9XR4q0HlGk0g"
 
 const languageMap = {
-    "Telugu": "te-IN",
-    "Hindi": "hi-IN",
-    "English": "en-IN",
-    "Tamil": "ta-IN",
-    "Malayalam": "ml-IN",
-    "Kannada": "kn-IN",
-    "Marathi": "mr-IN",
-    "Bengali": "bn-IN",
-    "Punjabi": "pa-IN",
-    "Gujarati": "gu-IN",
-    "Odia": "or-IN",
-    "Urdu": "ur-IN",
+    "Telugu": "te",
+    "Hindi": "hi",
+    "English": "en",
+    "Tamil": "ta",
+    "Malayalam": "ml",
+    "Kannada": "kn",
+    "Marathi": "mr",
+    "Bengali": "bn",
+    "Punjabi": "pa",
+    "Gujarati": "gu",
+    "Odia": "or",
+    "Urdu": "ur",
 };
 
 const genreMap = {
@@ -54,17 +54,19 @@ const options = {
 const getSearchResults = async function getSearchResults(query, language) {
     const lang_code = languageMap[language] || "en";
 
-    const fetchPage = async (page) => {
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?&query=${query}&include_adult=false&language=${lang_code}&page=${page}`, options);
+    const fetchPage = async () => {
+        console.log(lang_code)
+        const res = await fetch(`https://api.themoviedb.org/3/search/movie?&query=${query}&include_adult=false&with_original_language=${lang_code}`, options);
         if (!res.ok) return [];
         const data = await res.json();
-        return data.results
-            .map(movie => ({
-                id: movie.id,
-                title: movie.title,
-                posterurl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "",
-                o_language: movie.original_language,
-            }));
+        // return data.results
+        //     .map(movie => ({
+        //         id: movie.id,
+        //         title: movie.title,
+        //         posterurl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "",
+        //         o_language: movie.original_language,
+        //     }));
+        return data
     };
 
     // for (let i = 1; i <= pageLimit; i += batchSize) {
@@ -78,16 +80,15 @@ const getSearchResults = async function getSearchResults(query, language) {
     // }
     //fetchPage(1)
 
-    console.log("Total filtered movies:", await fetchPage(1));
+    console.log( await fetchPage());
     //return movies;
 }
 
-const getMovieById = async (id) => {
+const getMovieById = async (tmdbId) => {
     try {
-        const ids = await fetch(`https://api.themoviedb.org/3/movie/${id}/external_ids`, options)
+        const ids = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/external_ids`, options)
             .then(res => res.json())
 
-        const tmdbId = ids.id
 
         const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}`, options);
 
@@ -171,7 +172,7 @@ const getMovieById = async (id) => {
             director,
             producer,
             original_language: originalLangFull,
-            imdb_id: id,
+            imdb_id: ids.imdb_id,
             spoken_languages: allLanguages,
             reviews: reviews.results,
             cast: topCast,
