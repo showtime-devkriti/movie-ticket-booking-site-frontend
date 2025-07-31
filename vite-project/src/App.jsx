@@ -28,6 +28,8 @@ import Seat_Layout from './Seat_Layout';
 import Admin_Profile from './Admin_Profile';
 import Admin_Login from './components/Login-components/Admin_Login';
 import Dashboard from './Dashboard';
+import Add_Shows from './Add_Shows';
+import Add_Screens from './Add_Screens';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -348,9 +350,11 @@ function App() {
                 <Route path='/booking-history' element={<Booking_History />} />
                 <Route path='/book-tickets' element={<Booktickets />} />
                 <Route path='/seat-layout' element={<Seat_Layout />} />
-                <Route path='admin' element={<Dashboard />} />
+                <Route path='/admin' element={<Dashboard />} />
                 <Route path='/admin/profile' element={<Admin_Profile />} />
                 <Route path="/admin/login" element={<Admin_Login />} />
+                <Route path="/admin/shows" element={<Add_Shows />} />
+                <Route path="/admin/screens" element={<Add_Screens />} />
             </Routes>
         </Router>
     );

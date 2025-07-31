@@ -1,0 +1,97 @@
+.add-shows-wrapper .sidebar-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.add-shows-wrapper .sidebar-wrapper .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.add-shows-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.add-shows {
+    padding: 10px;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    width: calc(100vw - 300px);
+}
+
+.my-shows {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    gap: 25px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    width: 50vw;
+}
+
+.my-shows p {
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.add-class {
+    display: flex;
+    gap: 10px;
+}
+
+.invisible {
+    visibility: collapse;
+}
+
+.my-show {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-shows button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 25px;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 1.25rem;
+    background-color: #377884;
+}
+
+table {
+    border-spacing: 25px;
+    font-size: 1.25rem;
+}
+
+th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.add-shows input {
+    padding: 5px 10px;
+    font-size: 1.25rem;
+}
+
+.add-show {
+    display: flex;
+    gap: 10px;
+}
+
+table input {
+    border: none;
+    background-color: transparent;
+}

@@ -56,8 +56,8 @@ const Sidebar = () => {
                 <div className="functions">
                     <Link to="/admin/profile"><div><h2>Admin Profile</h2></div></Link>
                     <Link to="/admin"><div><h2>Dashboard</h2></div></Link>
-                    <div><h2>Add Shows</h2></div>
-                    <div><h2>Add Screens</h2></div>
+                    <Link to="/admin/shows"><div><h2>Add Shows</h2></div></Link>
+                    <Link to="/admin/screens"><div><h2>Add Screens</h2></div></Link>
                 </div>
                 <div className="logout">
                     <h2>Logout </h2>
