@@ -79,7 +79,6 @@ const getHome = async function () {
         const genreMovies = genreRequests.reduce((acc, { key, movies }) => {
             acc[key] = movies
                 .filter((m) => m.poster_path)
-                .slice(0, 8)
                 .map((m) => ({
                     id: m.id,
                     posterurl: `https://image.tmdb.org/t/p/w500${m.poster_path}`,
@@ -98,7 +97,6 @@ const getHome = async function () {
         const formatMovieList = (list) =>
             list
                 .filter((m) => m.backdrop_path)
-                .slice(0, 8)
                 .map((m) => ({
                     id: m.id,
                     backdropurl: `https://image.tmdb.org/t/p/original${m.backdrop_path}`,
@@ -123,8 +121,8 @@ const getHome = async function () {
             crime: genreMovies.crime,
         };
 
-        console.log(responsePayload)
-
+        //console.log(responsePayload)
+        return responsePayload;
     } catch (error) {
         console.error("Error in Homepage:", error.message);
 

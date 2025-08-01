@@ -13,13 +13,13 @@ const BannerText = ({ backdropurl, genre, id, language, rating, title, logos }) 
         <div className="banner-text">
             <div className="title" style={{ backgroundImage: `url(${logos})` }} />
             <div className="details">
-                <div className="language">
+                {/* <div className="language">
                     {language?.map((item, index) => (
                         <span key={index}>
                             {item}{index !== language.length - 1 ? ',  ' : ''}
                         </span>
                     ))}
-                </div>
+                </div> */}
                 <div className="genre">
                     {genre?.map((item, index) => (
                         <span key={index}>

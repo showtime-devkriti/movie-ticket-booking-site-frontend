@@ -28,20 +28,18 @@ function SeatMatrix({ seatLayout, showtimeid }) {
     const [lockedSeats, setLockedSeats] = useState(new Map());
     const [userId] = useState(getStableUserId());
     const [isConnected, setIsConnected] = useState(socket.connected);
+    const [totalSeats, setTotalSeats] = useState(null)
+    const [cost, setCost] = useState(null)
 
-    // --- CRITICAL SECTION: SOCKET EVENT HANDLING ---
     useEffect(() => {
-        // Guard clause: Don't do anything if we don't have the required ID
         if (!showtimeid || !userId) return;
 
-        // Function to join the room
         const joinRoom = () => {
             console.log(`--- Joining room ${showtimeid} as user ${userId} with socket ${socket.id} ---`);
             socket.emit('join-showtime', { showtimeid });
             setIsConnected(true);
         }
 
-        // --- Event Handlers ---
         const handleConnect = () => {
             console.log("Socket connected!");
             joinRoom();
@@ -97,7 +95,15 @@ function SeatMatrix({ seatLayout, showtimeid }) {
             socket.off('seat-unlocked', handleSeatUnlocked);
         };
 
-    }, [showtimeid, userId]); 
+    }, [showtimeid, userId]);
+
+    useEffect(() => {
+        setTotalSeats(selectedSeats.size)
+        // setCost(selectedSeats.forEach((seat) => {
+        //     return seat
+        // }))
+        console.log(selectedSeats.size)
+    }, [selectedSeats])
 
     const selectSeat = useCallback((seat) => {
         if (seat.status === 'booked' || lockedSeats.has(seat.seatid)) {
@@ -119,7 +125,26 @@ function SeatMatrix({ seatLayout, showtimeid }) {
 
     useEffect(() => {
         if (!seatLayout || seatLayout.length === 0) return;
-        const sortedSeats=[...seatLayout].sort((a,b)=>{const rowA=a.row.toLowerCase().charCodeAt(0);const rowB=b.row.toLowerCase().charCodeAt(0);if(rowA===rowB)return a.column-b.column;return rowA-rowB;});const matrix=[];let currentRow=sortedSeats[0].row;let rowGroup=[];for(let seat of sortedSeats){if(seat.row===currentRow){rowGroup.push(seat);}else{matrix.push(rowGroup);rowGroup=[seat];currentRow=seat.row;}}matrix.push(rowGroup);setSeatMatrix(matrix);
+        const sortedSeats = [...seatLayout].sort((a, b) => {
+            const rowA = a.row.toLowerCase().charCodeAt(0);
+            const rowB = b.row.toLowerCase().charCodeAt(0);
+            if (rowA === rowB) return a.column - b.column;
+            return rowA - rowB;
+        });
+        const matrix = [];
+        let currentRow = sortedSeats[0].row;
+        let rowGroup = [];
+        for (let seat of sortedSeats) {
+            if (seat.row === currentRow) {
+                rowGroup.push(seat);
+            } else {
+                matrix.push(rowGroup);
+                rowGroup = [seat];
+                currentRow = seat.row;
+            }
+        }
+        matrix.push(rowGroup);
+        setSeatMatrix(matrix);
     }, [seatLayout]);
 
     const getSeatClassName = (seat) => {
@@ -155,21 +180,12 @@ const Seat_Layout = () => {
     const id = searchParams.get("id");
 
     const [selectedbyanother, setSelectedbyanother] = useState(false)
-    const showtimeid = "688a619a1b744ad5f07665d1";
+    //const showtimeid = "688a619a1b744ad5f07665d1";
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
         const token = Cookies.get("token")
-        // const result = await fetch("http://localhost:5000/api/bookticket/688a619a1b744ad5f07665d1",
-        //     {
-        //         "method": "GET",
-        //         headers: {
-        //             accept: 'application/json',
-        //             Authorization: `Bearer ${token}`
-        //         }
-        //     }
-        // ).then((res) => res.json()).then(res => console.log(res))
         try {
             const response = await axios.get(
                 "http://localhost:3000/api/bookticket/688a619a1b744ad5f07665d1",

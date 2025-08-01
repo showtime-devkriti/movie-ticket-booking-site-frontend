@@ -13,13 +13,13 @@ const Card = ({ genre, id, language, posterurl, rating, title }) => {
                         <div className="moviecard-title">{title}</div>
                         <div className="moviecard-details">
                             <div className='vertical'>
-                                <div className="language">
+                                {/* <div className="language">
                                     {language?.map((item, index) => (
                                         <span key={index}>
                                             {item}{index !== language.length - 1 ? ', ' : ''}
                                         </span>
                                     ))}
-                                </div>
+                                </div> */}
                                 <div className="genre">
                                     { genre?.slice(0, 3)?.map((item, index) => (
                                         <span key={index}>

@@ -21,13 +21,13 @@ const GenreCard = ({ id, language, posterurl, rating, title }) => {
                         <div className="moviecard-title">{title}</div>
                         <div className="moviecard-details">
                             <div className='vertical'>
-                                <div className="language">
+                                {/* <div className="language">
                                     {language?.map((item, index) => (
                                         <span key={index}>
                                             {item}{index !== language.length - 1 ? ', ' : ''}
                                         </span>
                                     ))}
-                                </div>
+                                </div> */}
                             </div>
                             <div className="rating">
                                 <FaStar size={20} />
@@ -41,195 +41,111 @@ const GenreCard = ({ id, language, posterurl, rating, title }) => {
     );
 };
 
+
+const Carousel = ({ title, movies, index }) => {
+    const scrollRef = useRef(null);
+    const [atStart, setAtStart] = useState(true);
+    const [atEnd, setAtEnd] = useState(false);
+
+    const checkScrollPosition = () => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        setAtStart(el.scrollLeft <= 1);
+        setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth);
+    };
+
+    const handleScroll = (direction) => {
+        const el = scrollRef.current;
+        if (el) {
+            const scrollAmount = el.clientWidth;
+            el.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount;
+        }
+    };
+
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        el.addEventListener("scroll", checkScrollPosition);
+        checkScrollPosition();
+
+        return () => {
+            el.removeEventListener("scroll", checkScrollPosition);
+        };
+    }, [movies]);
+
+    return (
+        <div className="carousel-container">
+            <div className="showing"><h1>{title}</h1></div>
+            <div className="display-cards">
+                <div className={`scroll-left ${!atStart ? "" : "hidden"}`} onClick={() => handleScroll('left')}>
+                    <MdKeyboardArrowLeft size={100} />
+                </div>
+                <div ref={scrollRef} className="scroll-div">
+                    {movies.map((item, i) => (
+                        <GenreCard key={i} {...item} />
+                    ))}
+                </div>
+                <div className={`scroll-right ${!atEnd ? "" : "hidden"}`} onClick={() => handleScroll('right')}>
+                    <MdKeyboardArrowRight size={100} />
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 const Home = () => {
-    const [data, setData] = useState({ recommended: [] });
+    const [data, setData] = useState({
+        recommended: [],
+        comedy: [],
+        crime: [],
+        actionAndAdventure: [],
+        romance: []
+    });
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
-    const scrollRef = useRef([null, null, null, null, null]);
-    const [atStart, setAtStart] = useState([true, true, true, true, true]);
-    const [atEnd, setAtEnd] = useState([false, false, false, false, false]);
-
-    const checkScrollPosition = (el, index) => {
-        if (!el) return;
-
-        const isAtStart = el.scrollLeft <= 1;
-        const isAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth;
-
-        setAtStart((prev) => {
-            const updated = [...prev];
-            updated[index] = isAtStart;
-            return updated;
-        });
-
-        setAtEnd((prev) => {
-            const updated = [...prev];
-            updated[index] = isAtEnd;
-            return updated;
-        });
-    };
-
     useEffect(() => {
-        const elements = scrollRef.current;
-        const handlers = [];
+        const token = Cookies.get("token");
 
-        if(loading) return;
-
-        elements.forEach((el, index) => {
-            if (!el) return;
-
-            const handler = () => checkScrollPosition(el, index);
-            handlers[index] = handler;
-
-            el.addEventListener("scroll", handler);
-        });
-
-        return () => {
-            elements.forEach((el, index) => {
-                if (!el) return;
-                el.removeEventListener("scroll", handlers[index]);
-            });
-        };
-    }, [loading]);
-
-    const handleScrollLeft = (index) => {
-        const el = scrollRef.current[index];
-        if (el) {
-            el.scrollLeft -= el.clientWidth;
+        if (!token) {
+            navigate("/");
+            return;
         }
-    };
-
-    const handleScrollRight = (index) => {
-        const el = scrollRef.current[index];
-        if (el) {
-            el.scrollLeft += el.clientWidth;
-        }
-    };
-
-    const SetScrollStart = (index) => {
-        const el = scrollRef.current[index];
-        if (el) {
-            el.scrollLeft = 0;
-        }
-    };
-
-    useEffect(() => {
-        const elements = scrollRef.current;
-        const token = Cookies.get("token")
-
-        if (!token) navigate("/")
 
         const fetchData = async () => {
+            setLoading(true);
             try {
-                // const res = await fetch("http://localhost:3000/api/home", {
-                //     method: "GET",
-                //     headers: {
-                //         "authorization": `Bearer ${token}`,
-                //         "Content-Type": "application/json"
-                //     },
-                //     credentials: "include",
-                // });
-                // if (!res.ok) {
-                //     throw new Error(`Error: ${res.status} ${res.statusText}`);
-                // }
-                // const result = await res.json();
-
-                getHome();
-                //setData(result); 
-                //console.log("Fetched data:", result);
-                
-                elements.forEach((el, index) => {
-                    if (!el) return;
-                    checkScrollPosition(el, index);
-                    SetScrollStart(index);
-                });
-
+                const result = await getHome();
+                setData(result);
+                console.log("Fetched data:", result);
             } catch (err) {
                 console.error("Failed to fetch data:", err);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
-    }, []);
+    }, [navigate]);
+
+    if (loading) return <div className="loader-container" >
+        <div className="loader"></div>
+    </div>
 
     return (
         <>
             <Header2 />
             <Banner data={data.banners} />
-            <div className="showing"><h1>Now Showing</h1></div>
-            <div className="display-cards">
-                <div className={`scroll-left ${!atStart[0] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(0)} />
-                </div>
-                {loading && <div ref={(el) => (scrollRef.current[0] = el)} className="scroll-div">
-                    {data.recommended && data.recommended.map((item, index) => (
-                        <Card key={index} {...item} />
-                    ))}
-                </div>}
-                <div className={`scroll-right ${!atEnd[0] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(0)} />
-                </div>
-            </div>
 
-            <div className="showing"><h1>Comedy</h1></div>
-            <div className="display-cards">
-                <div className={`scroll-left ${!atStart[1] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(1)} />
-                </div>
-                {loading && <div ref={(el) => (scrollRef.current[1] = el)} className="scroll-div">
-                    {data.comedy && data.comedy.map((item, index) => (
-                        <GenreCard key={index} {...item} />
-                    ))}
-                </div>}
-                <div className={`scroll-right ${!atEnd[1] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(1)} />
-                </div>
-            </div>
+            <Carousel title="Now Showing" movies={data.recommended} />
+            <Carousel title="Comedy" movies={data.comedy} />
+            <Carousel title="Crime" movies={data.crime} />
+            <Carousel title="Action and Adventure" movies={data.actionAndAdventure} />
+            <Carousel title="Romance" movies={data.romance} />
 
-            <div className="showing"><h1>Crime</h1></div>
-            <div className="display-cards">
-                <div className={`scroll-left ${!atStart[2] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(2)} />
-                </div>
-                {loading && <div ref={(el) => (scrollRef.current[2] = el)} className="scroll-div">
-                    {data.crime && data.crime.map((item, index) => (
-                        <GenreCard key={index} {...item} />
-                    ))}
-                </div>}
-                <div className={`scroll-right ${!atEnd[2] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(2)} />
-                </div>
-            </div>
-
-            <div className="showing"><h1>Action And Adventure</h1></div>
-            <div className="display-cards">
-                <div className={`scroll-left ${!atStart[3] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(3)} />
-                </div>
-                {loading && <div ref={(el) => (scrollRef.current[3] = el)} className="scroll-div">
-                    {data.actionAndAdventure && data.actionAndAdventure.map((item, index) => (
-                        <GenreCard key={index} {...item} />
-                    ))}
-                </div>}
-                <div className={`scroll-right ${!atEnd[3] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(3)} />
-                </div>
-            </div>
-
-            <div className="showing"><h1>Romance</h1></div>
-            <div className="display-cards">
-                <div className={`scroll-left ${!atStart[4] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft(4)} />
-                </div>
-                {loading && <div ref={(el) => (scrollRef.current[4] = el)} className="scroll-div">
-                    {data.romance && data.romance.map((item, index) => (
-                        <GenreCard key={index} {...item} />
-                    ))}
-                </div>}
-                <div className={`scroll-right ${!atEnd[4] ? "" : "hidden"}`} >
-                    <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight(4)} />
-                </div>
-            </div>
             <Footer />
         </>
     );
