@@ -1,4 +1,4 @@
-.sidebar {
+.admin-sidebar {
     background-color: rgb(25,25,25);
     width: 300px;
     height: 100vh;
@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-.sidebar-logo {
+.admin-sidebar-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@
     padding-left: 25px;
 }
 
-.logout {
+.admin-logout {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -63,13 +63,13 @@
     transition-timing-function: ease-in-out;
 }
 
-.logout:hover {
+.admin-logout:hover {
     background-color: black;
     color: rgb(200,200,200);
     padding-left: 50px;
 }
 
-.logout svg {
+.admin-logout svg {
     color: #377884;
 }
 

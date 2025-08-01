@@ -47,23 +47,23 @@ const Add_Screens = () => {
                             </tr>
                             <tr>
                                 <td>Gold</td>
-                                <td>5</td>
-                                <td>10</td>
+                                <td><input type="text" placeholder="Rows"></input></td>
+                                <td><input type="text" placeholder="Columns"></input></td>
                             </tr>
                             <tr>
                                 <td>Gold</td>
-                                <td>5</td>
-                                <td>10</td>
+                                <td><input type="text" placeholder="Rows"></input></td>
+                                <td><input type="text" placeholder="Columns"></input></td>
                             </tr>
                             <tr>
                                 <td>Gold</td>
-                                <td>5</td>
-                                <td>10</td>
+                                <td><input type="text" placeholder="Rows"></input></td>
+                                <td><input type="text" placeholder="Columns"></input></td>
                             </tr>
                             <tr>
                                 <td>Gold</td>
-                                <td>5</td>
-                                <td>10</td>
+                                <td><input type="text" placeholder="Rows"></input></td>
+                                <td><input type="text" placeholder="Columns"></input></td>
                             </tr>
                         </table>
                     </div>

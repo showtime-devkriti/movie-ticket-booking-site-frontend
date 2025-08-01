@@ -97,14 +97,6 @@ function SeatMatrix({ seatLayout, showtimeid }) {
 
     }, [showtimeid, userId]);
 
-    useEffect(() => {
-        setTotalSeats(selectedSeats.size)
-        // setCost(selectedSeats.forEach((seat) => {
-        //     return seat
-        // }))
-        console.log(selectedSeats.size)
-    }, [selectedSeats])
-
     const selectSeat = useCallback((seat) => {
         if (seat.status === 'booked' || lockedSeats.has(seat.seatid)) {
             return;
@@ -124,34 +116,39 @@ function SeatMatrix({ seatLayout, showtimeid }) {
     }, [selectedSeats, lockedSeats, showtimeid, userId]);
 
     useEffect(() => {
-        if (!seatLayout || seatLayout.length === 0) return;
+        if (!seatLayout || seatLayout.length === 0)
+            return;
+
         const sortedSeats = [...seatLayout].sort((a, b) => {
             const rowA = a.row.toLowerCase().charCodeAt(0);
             const rowB = b.row.toLowerCase().charCodeAt(0);
-            if (rowA === rowB) return a.column - b.column;
-            return rowA - rowB;
+            if (rowA === rowB) return a.column - b.column; return rowA - rowB;
         });
+
         const matrix = [];
         let currentRow = sortedSeats[0].row;
         let rowGroup = [];
+
         for (let seat of sortedSeats) {
             if (seat.row === currentRow) {
                 rowGroup.push(seat);
-            } else {
+            }
+            else {
                 matrix.push(rowGroup);
                 rowGroup = [seat];
                 currentRow = seat.row;
             }
         }
+
         matrix.push(rowGroup);
         setSeatMatrix(matrix);
     }, [seatLayout]);
 
     const getSeatClassName = (seat) => {
-        if (seat.status === "booked") return "booked";
-        if (selectedSeats.has(seat.seatid)) return "selected";
-        if (lockedSeats.has(seat.seatid)) return "locked";
-        return "available";
+        if (seat.status === "booked") return "Booked";
+        if (selectedSeats.has(seat.seatid)) return "Selected";
+        if (lockedSeats.has(seat.seatid)) return "Locked";
+        return "Available";
     };
 
     return (
@@ -162,11 +159,12 @@ function SeatMatrix({ seatLayout, showtimeid }) {
                     {row[0]?.row}:{'  '}
                     {row.map((seat) => (
                         <span
-                            className={getSeatClassName(seat)}
+                            className={`${getSeatClassName(seat)} tooltip`}
                             key={seat.seatid}
                             onClick={() => selectSeat(seat)}
                         >
                             {seat.seatid}
+                            <span className="tooltiptext">{getSeatClassName(seat)}</span>
                         </span>
                     ))}
                 </div>
@@ -221,7 +219,17 @@ const Seat_Layout = () => {
             <div className="layout-wrapper">
                 <Layout_Header />
                 <SeatMatrix seatLayout={data?.seatLayout} showtimeid={data.showtimeid} />
-                <img className="screen" src="https://district.ticketnew.com/movies_assets/_next/static/media/screen-img-light.b7b18ffd.png"></img>
+                <div className="district-screen">
+                    <img className="screen" src="https://district.ticketnew.com/movies_assets/_next/static/media/screen-img-light.b7b18ffd.png"></img>
+                </div>
+                <div className="bottom-bar-container">
+                    <div className="bottom-bar">
+                        <h2>Total Seats: {data?.seatLayout?.length}</h2>
+                        <h2>Seats Selected: </h2>
+                        <h2>Total Price: </h2>
+                        <button>Book Tickets</button>
+                    </div>
+                </div>
             </div>
         </>
     );

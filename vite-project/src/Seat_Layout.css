@@ -7,8 +7,8 @@
 }
 
 .screen {
-    width: 600px;
-    padding-bottom: 20px;
+    width: 1000px;
+    padding: 20px 0px;
 }
 
 .row span {
@@ -16,7 +16,7 @@
     width: 25px;
     height: 25px;
     border-radius: 5px;
-    border: 2px solid #1A2980 ;
+    border: 2px solid #1A2980;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,19 +24,19 @@
     cursor: pointer;
 }
 
-.row span.booked{
+.row span.Booked {
     background-color: #6b6354d7;
 }
 
-.row span.available{
+.row span.Available {
     background-color: #b3c040d7;
 }
 
-.row span.selected{
+.row span.Selected {
     background-color: #cf5536d7;
 }
 
-.row span.locked{
+.row span.Locked {
     background-color: #868686;
 }
 
@@ -55,4 +55,64 @@
     display: flex;
     flex-direction: column;
     /* gap: 5px; */
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    top: -45px;
+    z-index: 1;
+    border: none;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.district-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-bar-container {
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+}
+
+.bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 15px 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1;
+}
+
+.bottom-bar button {
+    border: none;
+    outline: none;
+    font-size: 1.25rem;
+    padding: 10px 15px;
+    border-radius: 25px;
+    background-color: #377884;
+    color: white;
+    cursor: pointer;
 }

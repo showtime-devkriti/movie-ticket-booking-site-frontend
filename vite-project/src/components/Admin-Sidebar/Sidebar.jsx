@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 const Sidebar = () => {
     return (
         <>
-            <div className="sidebar">
+            <div className="admin-sidebar">
                 <div className="top">
-                    <div className="sidebar-logo">
+                    <div className="admin-sidebar-logo">
                         <Link to="/admin">
                             <svg width="250" height="60" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
                                 <g transform="translate(-225,80) rotate(-60 100 100) scale(1.4,1.4)" >
@@ -59,7 +59,7 @@ const Sidebar = () => {
                     <Link to="/admin/shows"><div><h2>Add Shows</h2></div></Link>
                     <Link to="/admin/screens"><div><h2>Add Screens</h2></div></Link>
                 </div>
-                <div className="logout">
+                <div className="admin-logout">
                     <h2>Logout </h2>
                     <TbLogout size={30} />
                 </div>
