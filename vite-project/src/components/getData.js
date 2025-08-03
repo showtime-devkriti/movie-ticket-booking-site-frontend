@@ -238,6 +238,109 @@ const getallmovies = async function (search, genre, language) {
 };
 
 
+const getMovie = async (imdb_id) => {
+    try {
+        const ids = await fetch(`https://api.themoviedb.org/3/movie/${imdb_id}/external_ids`, options)
+            .then(res => res.json())
+
+        const tmdbId = ids.id
+
+        const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}`, options);
+
+        if (!movieRes.ok) {
+            throw new Error(`TMDB API responded with status `);
+        }
+
+        const movieDetails = await movieRes.json()
+
+        const creditsRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/credits`, options).then(res => res.json());
+
+        const crew = creditsRes.crew || [];
+        const cast = creditsRes.cast || [];
+
+        const topCast = cast.slice(0, 10).map((c) => ({
+            id: c.id,
+            name: c.name,
+            profile: c.profile_path
+                ? `https://image.tmdb.org/t/p/w500${c.profile_path}`
+                : null,
+        }));
+
+        const topCrew = crew.slice(0, 10).map((c) => ({
+            id: c.id,
+            name: c.name,
+            job: c.job,
+            profile: c.profile_path
+                ? `https://image.tmdb.org/t/p/w500${c.profile_path}`
+                : null,
+        }));
+
+        const imagesRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/images`, options).then(res => res.json());
+
+        const director = crew.find((m) => m.job === "Director")?.name || "Not available";
+        const producer = crew.find((m) => m.job === "Producer")?.name || "Not available";
+
+        const originalLangFull = languageMap[movieDetails.original_language] || movieDetails.original_language;
+
+        const allLanguages = (movieDetails.spoken_languages || []).map(
+            (lang) => languageMap[lang.iso_639_1] || lang.name
+        );
+
+        const logos = imagesRes.logos || [];
+        const logo_url = logos.length > 0
+            ? `https://image.tmdb.org/t/p/original${logos[0].file_path}`
+            : null;
+        const recommendationsRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/recommendations`, options).then(res => res.json());
+
+        const recommendedMovies = recommendationsRes.results
+            .filter(movie => movie.poster_path && movie.genre_ids)
+            .slice(0, 15)
+            .map(movie => ({
+                id: movie.id,
+                title: movie.title,
+                poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                rating: movie.vote_average,
+                genre: movie.genre_ids.map(id => genreMap[id]),
+            }));
+
+        const reviews = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/reviews?language=en-US&page=1`, options)
+            .then(res => res.json())
 
 
-export default { getSearchResults, getMovieById, getallmovies };
+        
+
+        const videos = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/videos?language=en-US`, options)
+            .then(res => res.json())
+
+        return {
+            id: movieDetails.id,
+            title: movieDetails.title,
+            description: movieDetails.overview,
+            poster_url: `https://image.tmdb.org/t/p/original${movieDetails.poster_path}`,
+            backdrop_url: `https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`,
+            title_logo: logo_url,
+            release_date: movieDetails.release_date,
+            release_year: movieDetails.release_date?.split("-")[0],
+            runtime: movieDetails.runtime,
+            genres: movieDetails.genres.map(g => g.name),
+            rating: movieDetails.vote_average,
+            director,
+            producer,
+            original_language: originalLangFull,
+            imdb_id: ids.imdb_id,
+            spoken_languages: allLanguages,
+            reviews: reviews.results,
+            cast: topCast,
+            crew: topCrew,
+            recommended: recommendedMovies,
+            trailer_url: videos.results.filter(video => video.type === "Trailer").map(video => `https://www.youtube.com/watch?v=${video.key}`),
+        };
+    } catch (err) {
+        console.error("TMDB fetch error:", err.message);
+    }
+};
+
+
+
+
+export default { getSearchResults, getMovieById, getallmovies, getMovie };

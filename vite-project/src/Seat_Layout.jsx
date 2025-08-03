@@ -22,14 +22,13 @@ const getStableUserId = () => {
 };
 
 // THE REFINED COMPONENT
-function SeatMatrix({ seatLayout, showtimeid }) {
+function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing }) {
     const [seatMatrix, setSeatMatrix] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState(new Set());
     const [lockedSeats, setLockedSeats] = useState(new Map());
     const [userId] = useState(getStableUserId());
     const [isConnected, setIsConnected] = useState(socket.connected);
-    const [totalSeats, setTotalSeats] = useState(null)
-    const [cost, setCost] = useState(null)
+
 
     useEffect(() => {
         if (!showtimeid || !userId) return;
@@ -97,6 +96,17 @@ function SeatMatrix({ seatLayout, showtimeid }) {
 
     }, [showtimeid, userId]);
 
+    useEffect(() => {
+        setTotalSeats(selectedSeats.size);
+
+        const totalCost = Array.from(selectedSeats).reduce((acc, seatid) => {
+            const seat = seatLayout.find(s => s.seatid === seatid);
+            return seat ? acc + seat.price : acc;
+        }, 0);
+
+        setCost(totalCost);
+    }, [selectedSeats, seatLayout]);
+
     const selectSeat = useCallback((seat) => {
         if (seat.status === 'booked' || lockedSeats.has(seat.seatid)) {
             return;
@@ -122,7 +132,8 @@ function SeatMatrix({ seatLayout, showtimeid }) {
         const sortedSeats = [...seatLayout].sort((a, b) => {
             const rowA = a.row.toLowerCase().charCodeAt(0);
             const rowB = b.row.toLowerCase().charCodeAt(0);
-            if (rowA === rowB) return a.column - b.column; return rowA - rowB;
+            if (rowA === rowB) return a.column - b.column;
+            return rowA - rowB;
         });
 
         const matrix = [];
@@ -153,7 +164,7 @@ function SeatMatrix({ seatLayout, showtimeid }) {
 
     return (
         <div className="column">
-            <h3>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</h3>
+            {/* <h3>Connection Status: {isConnected ? 'Connected' : 'Disconnected'}</h3> */}
             {seatMatrix.map((row, rowIndex) => (
                 <div className="row" key={rowIndex} style={{ marginBottom: '10px' }}>
                     {row[0]?.row}:{'  '}
@@ -176,8 +187,8 @@ function SeatMatrix({ seatLayout, showtimeid }) {
 const Seat_Layout = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
-
-    const [selectedbyanother, setSelectedbyanother] = useState(false)
+    const [totalSeats, setTotalSeats] = useState(null)
+    const [cost, setCost] = useState(null)
     //const showtimeid = "688a619a1b744ad5f07665d1";
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true);
@@ -218,15 +229,15 @@ const Seat_Layout = () => {
         <>
             <div className="layout-wrapper">
                 <Layout_Header />
-                <SeatMatrix seatLayout={data?.seatLayout} showtimeid={data.showtimeid} />
+                <SeatMatrix seatLayout={data?.seatLayout} showtimeid={data.showtimeid} setTotalSeats={setTotalSeats} setCost={setCost} pricing={data?.pricing} />
                 <div className="district-screen">
                     <img className="screen" src="https://district.ticketnew.com/movies_assets/_next/static/media/screen-img-light.b7b18ffd.png"></img>
                 </div>
                 <div className="bottom-bar-container">
                     <div className="bottom-bar">
                         <h2>Total Seats: {data?.seatLayout?.length}</h2>
-                        <h2>Seats Selected: </h2>
-                        <h2>Total Price: </h2>
+                        <h2>Seats Selected: {totalSeats ? totalSeats : 0}</h2>
+                        <h2>Total Price: {cost ? cost : 0}</h2>
                         <button>Book Tickets</button>
                     </div>
                 </div>

@@ -95,3 +95,9 @@ table input {
     border: none;
     background-color: transparent;
 }
+
+.movie-search {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

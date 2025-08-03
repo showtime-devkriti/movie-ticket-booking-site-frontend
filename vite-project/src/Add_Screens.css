@@ -46,8 +46,25 @@
     gap: 10px;
 }
 
-.invisible {
+.add-class input {
+    width: 60%;
+    border-radius: 15px;
+    border: 2px solid;
+    padding: 5px 10px;
+    font-size: 1.05rem;
+}
+
+.add-class input:focus{
+    border: none;
+}
+
+.add-class button {
+    width: 60%;
+}
+
+.hidden {
     visibility: collapse;
+    opacity: 0;
 }
 
 .my-screen {
@@ -69,7 +86,7 @@
 }
 
 table {
-    border-spacing: 25px;
+    border-spacing: 15px;
     font-size: 1.25rem;
 }
 
@@ -84,9 +101,32 @@ th, td {
 .add-screens input {
     padding: 5px 10px;
     font-size: 1.25rem;
+    
 }
 
 .add-screen {
     display: flex;
     gap: 10px;
+}
+
+.screen-info{
+    visibility: visible;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+}
+
+.screen-info table {
+    width: 100%;
+}
+
+.screen-info input {
+    width: 100%;
+}
+
+
+
+.my-screen-edit {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }

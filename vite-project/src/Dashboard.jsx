@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './Dashboard.css'
 import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
+import Cookies from "js-cookie"
 
 const Dashboard = () => {
+    const [theatreData, setTheatreData] = useState(null);
+    const [screenData, setScreenData] = useState(null);
+
+    useEffect(() => {
+        const admin = Cookies.get("admin")
+        //console.log(admin)
+        const fetchData = async function () {
+            const result = await fetch("http://localhost:3000/api/admin/profile", {
+                method: "GET",
+                headers: {
+                    "authorization": `Bearer ${admin}`,
+                     "Content-Type": "application/json" },
+                credentials: "include",
+            }).then(res => res.json())
+            setTheatreData(result?.admin)
+            //console.log(result)
+
+            const getScreens = await fetch("http://localhost:3000/api/admin/getscreen", {
+                method: "GET",
+                headers: {
+                    "authorization": `Bearer ${admin}`,
+                     "Content-Type": "application/json" },
+                credentials: "include",
+            }).then(res => res.json())
+            console.log(getScreens)
+            setScreenData(getScreens)
+        }
+
+        fetchData()
+    }, [])
+
     return (
         <>
             <div className="dashboard-wrapper">
@@ -14,18 +46,16 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="dashboard">
-                    <h1>AMB Cinemas: Gachibowli</h1>
+                    <h1>{theatreData?.theatretitle} - {theatreData?.location}</h1>
                     <div className="theatre-location">
                         <FaLocationDot size={25} />
-                        <p>Sarath City Capital Mall, Forest Dept Colony, Kondapur, Gachibowli - Miyapur Road, White Field Road, Opposite Mahindra Showroom, Hyderabad, Telangana 500084, India</p>
+                        <p>{theatreData?.address}</p>
                     </div>
                     <h2>Screens</h2>
                     <div className="admin-screens">
-                        <div>Screen 1</div>
-                        <div>Screen 1</div>
-                        <div>Screen 1</div>
-                        <div>Screen 1</div>
-                        <div>Screen 1</div>
+                        {screenData?.screens?.map((screen, index) => (
+                            <div  key={index}>{screen.screenName}</div>
+                        ))}
                     </div>
                     <h2>Movies</h2>
                     <div className="moviecards">
