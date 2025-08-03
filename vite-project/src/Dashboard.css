@@ -13,7 +13,7 @@
     gap: 0px;
 }
 
-.dashboard .moviecards {
+.dashboard .admin-moviecards {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;

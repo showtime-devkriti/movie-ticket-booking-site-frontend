@@ -30,6 +30,8 @@ import Admin_Login from './components/Login-components/Admin_Login';
 import Dashboard from './Dashboard';
 import Add_Shows from './Add_Shows';
 import Add_Screens from './Add_Screens';
+import Book_Preview from './Book_Preview';
+import Forgot_Password from './Forgot_Password';
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -355,6 +357,8 @@ function App() {
                 <Route path="/admin/login" element={<Admin_Login />} />
                 <Route path="/admin/shows" element={<Add_Shows />} />
                 <Route path="/admin/screens" element={<Add_Screens />} />
+                <Route path='/book-preview' element={<Book_Preview />} />
+                <Route path='/forgot' element={<Forgot_Password />} />
             </Routes>
         </Router>
     );

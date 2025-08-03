@@ -1,81 +1,90 @@
-.display-cards{
-    padding-right: 60px;
+.display-cards {
     display: flex;
     align-items: center;
 }
 
 .scroll-div {
     display: flex;
-    gap: 10px;
+    gap: 25px;
     scroll-snap-type: x mandatory;
     overflow-x: auto;
     align-items: center;
     height: 500px;
     scroll-behavior: smooth;
+    padding-left: 25px;
 }
 
 .scroll-left {
     visibility: visible;
     opacity: 1;
     position: absolute;
-    width: 150px;
+    width: 50px;
     left: 0px;
     z-index: 1;
-    height: 500px;
+    height: 450px;
     display: flex;
     align-items: center;
     color: rgb(0, 0, 0);
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 60%, transparent 100%);
+    background: linear-gradient(to right, rgba(50, 50, 50, 0.9) 0%, rgba(50, 50, 50, 0.6) 99%, rgba(50, 50, 50, 0.35) 100%);
     transition: all 0.1s ease-in-out;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    backdrop-filter: blur(5px);
 }
 
-.scroll-right{
+.scroll-right {
     visibility: visible;
     opacity: 1;
     position: absolute;
-    width: 150px;
+    width: 50px;
     right: 0px;
     z-index: 1;
-    height: 500px;
+    height: 450px;
     display: flex;
     align-items: center;
     color: rgb(0, 0, 0);
-    background: linear-gradient(to left, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6) 60%, transparent);
+    background: linear-gradient(to left, rgba(50, 50, 50, 0.9) 0%, rgba(50, 50, 50, 0.6) 99%, rgba(50, 50, 50, 0.35) 100%);
     transition: all 0.1s ease-in-out;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    backdrop-filter: blur(5px);
 }
 
-.scroll-left svg, .scroll-right svg {
+.scroll-left svg,
+.scroll-right svg {
     cursor: pointer;
-    opacity: .6;
-}
-
-.scroll-left svg:hover, .scroll-right svg:hover {
-    cursor: pointer;
+    color: white;
     opacity: 1;
 }
 
-.scroll-left.hidden{
+.scroll-left svg:hover,
+.scroll-right svg:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.scroll-left.hidden {
     visibility: hidden;
     opacity: 0;
 }
 
-.scroll-right.hidden{
+.scroll-right.hidden {
     visibility: hidden;
     opacity: 0;
 }
 
-.scroll-right svg{
+.scroll-right svg {
     position: absolute;
     right: 0;
 }
 
-.showing{
+.showing {
     padding-left: 25px;
     margin-top: 25px;
 }
 
-@media( max-width:  1000px) {
-    .display-cards{
+@media(max-width: 1000px) {
+    .display-cards {
         padding-left: 30px;
         padding-right: 30px;
     }
@@ -89,18 +98,18 @@
         height: 400px;
     }
 
-    .scroll-right{
+    .scroll-right {
         right: 30px;
         height: 400px;
     }
 
-    .moviecard{
+    .moviecard {
         width: 250px;
         height: 360px;
     }
 
     .moviecard:hover {
         transform: translateY(-5%);
-        box-shadow: 10px 15px 8px rgba(0,0,0,0.35);
+        box-shadow: 10px 15px 8px rgba(0, 0, 0, 0.35);
     }
 }

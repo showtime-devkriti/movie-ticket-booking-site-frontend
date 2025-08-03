@@ -236,9 +236,9 @@ const Seat_Layout = () => {
                 <div className="bottom-bar-container">
                     <div className="bottom-bar">
                         <h2>Total Seats: {data?.seatLayout?.length}</h2>
-                        <h2>Seats Selected: {totalSeats ? totalSeats : 0}</h2>
-                        <h2>Total Price: {cost ? cost : 0}</h2>
-                        <button>Book Tickets</button>
+                        <h2>Seats Selected: </h2>
+                        <h2>Total Price: </h2>
+                        <Link to="/book-preview"><button>Book Tickets</button></Link>
                     </div>
                 </div>
             </div>

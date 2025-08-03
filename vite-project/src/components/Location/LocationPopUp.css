@@ -17,10 +17,10 @@
     backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.938);
     top: 20vh;
-    left: 25%;
-    width: 35vw;
-    height: 65vh;
-    padding: 10px;
+    left: 34vw;
+    width: 29vw;
+    height: 465px;
+    padding: 25px;
     position: absolute;
     z-index: 100;
     border-radius: 15px;
@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     animation: fadeIn 0.5s ease forwards;
-    padding: 25px;
 }
 
 @keyframes fadeIn {
@@ -103,6 +102,7 @@
     font-weight: 500;
     color: #000000;
     background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
 }
 
 .location-input button {
@@ -126,7 +126,7 @@
 .location-list {
     width: 80%;
     padding: 15px;
-    overflow-y: auto;
+    overflow-y: scroll;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -137,7 +137,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 10px 15px;
     max-width: 120px;
     max-height: 50px;
     border-radius: 10px;
@@ -200,6 +200,7 @@
     font-size: 1.1rem;
     font-weight: 500;
     color: #000000;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
     background-color: rgba(255, 255, 255, 0.8);
 }
 

@@ -138,10 +138,6 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <div className="liquidGlass-wrapper">
-                <div className="liquidGlass-effect"></div>
-                <div className="liquidGlass-tint"></div>
-                <div className="liquidGlass-shine"></div>
                 <div ref={parentRef} className={`wrapper ${isLogin ? "" : "active"}`}>
                     {/* Login Form */}
 
@@ -161,7 +157,7 @@ const Login = () => {
                                     <input type="checkbox" id="remember" />
                                     <p>Remember me</p>
                                 </label>
-                                <a href="#">Forgot password?</a>
+                                <Link to="/forgot">Forgot password?</Link>
                             </div>
                             <div className="submit">
                                 <button type="submit">Log In</button>
@@ -238,7 +234,6 @@ const Login = () => {
 
                 </div>
             </div>
-        </div>
     );
 };
 

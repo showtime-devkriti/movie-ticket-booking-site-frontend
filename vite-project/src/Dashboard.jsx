@@ -58,7 +58,7 @@ const Dashboard = () => {
                         ))}
                     </div>
                     <h2>Movies</h2>
-                    <div className="moviecards">
+                    <div className="admin-moviecards">
                         <div className="admin-moviecard">
                             <img src="https://image.tmdb.org/t/p/original/khNVygolU0TxLIDWff5tQlAhZ23.jpg"></img>
                             <div className="moviecard-info">

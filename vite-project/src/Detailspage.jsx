@@ -222,7 +222,7 @@ const Detailspage = () => {
                 </div>
                 <div className="display-cards">
                     <div className={`scroll-left ${!atStart ? "" : "hidden"}`} >
-                        <MdKeyboardArrowLeft size={100} onClick={() => handleScrollLeft()} />
+                        <MdKeyboardArrowLeft size={50} onClick={() => handleScrollLeft()} />
                     </div>
                     {!loading && <div ref={scrollRef} className="scroll-div">
                         {data?.recommended?.map((item, index) => (
@@ -230,7 +230,7 @@ const Detailspage = () => {
                         ))}
                     </div>}
                     <div className={`scroll-right ${!atEnd ? "" : "hidden"}`} >
-                        <MdKeyboardArrowRight size={100} onClick={() => handleScrollRight()} />
+                        <MdKeyboardArrowRight size={50} onClick={() => handleScrollRight()} />
                     </div>
                 </div>
             </div>

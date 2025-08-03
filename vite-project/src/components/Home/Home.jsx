@@ -80,7 +80,7 @@ const Carousel = ({ title, movies, index }) => {
             <div className="showing"><h1>{title}</h1></div>
             <div className="display-cards">
                 <div className={`scroll-left ${!atStart ? "" : "hidden"}`} onClick={() => handleScroll('left')}>
-                    <MdKeyboardArrowLeft size={100} />
+                    <MdKeyboardArrowLeft size={50} />
                 </div>
                 <div ref={scrollRef} className="scroll-div">
                     {movies.map((item, i) => (
@@ -88,7 +88,7 @@ const Carousel = ({ title, movies, index }) => {
                     ))}
                 </div>
                 <div className={`scroll-right ${!atEnd ? "" : "hidden"}`} onClick={() => handleScroll('right')}>
-                    <MdKeyboardArrowRight size={100} />
+                    <MdKeyboardArrowRight size={50} />
                 </div>
             </div>
         </div>
