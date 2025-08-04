@@ -4,14 +4,20 @@ import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [theatreData, setTheatreData] = useState(null);
     const [screenData, setScreenData] = useState(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const admin = Cookies.get("admin")
-        //console.log(admin)
+
+        if(!admin) {
+            navigate("/admin/login")
+        }
+
         const fetchData = async function () {
             const result = await fetch("http://localhost:3000/api/admin/profile", {
                 method: "GET",
@@ -21,7 +27,6 @@ const Dashboard = () => {
                 credentials: "include",
             }).then(res => res.json())
             setTheatreData(result?.admin)
-            //console.log(result)
 
             const getScreens = await fetch("http://localhost:3000/api/admin/getscreen", {
                 method: "GET",

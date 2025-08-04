@@ -1,9 +1,17 @@
 import React from "react";
 import "./Sidebar.css";
 import { TbLogout } from "react-icons/tb";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import Cookies from "js-cookie"
 
 const Sidebar = () => {
+    const navigate = useNavigate()
+
+    const logout = () => {
+        Cookies.remove("admin")
+        navigate("/admin/login")
+    }
+
     return (
         <>
             <div className="admin-sidebar">
@@ -59,7 +67,7 @@ const Sidebar = () => {
                     <Link to="/admin/shows"><div><h2>Add Shows</h2></div></Link>
                     <Link to="/admin/screens"><div><h2>Add Screens</h2></div></Link>
                 </div>
-                <div className="admin-logout">
+                <div className="admin-logout" onClick={logout}>
                     <h2>Logout </h2>
                     <TbLogout size={30} />
                 </div>
