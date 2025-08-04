@@ -1,6 +1,15 @@
 .admin-wrapper {
     display: flex;
     justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-wrapper .sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .mail,
@@ -26,12 +35,15 @@
 }
 
 .admin {
-    width: calc(100vw - 300px);
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     background-color: #377884;
+    margin-left: 300px;
+    gap: 30px;
+    padding: 25px 0px;
 }
 
 .admin-info-right {

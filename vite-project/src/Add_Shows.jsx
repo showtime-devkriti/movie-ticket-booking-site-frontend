@@ -43,6 +43,20 @@ const SeatClass = ({ seatStructure, classes, setClasses }) => {
                 </tbody>
             </table>
         </div>
+        <div className="shows-showinfo">
+            <div className="shows-language">
+                Language
+                <input type="text" placeholder="Enter Language" />
+            </div>
+            <div className="shows-format">
+                Format
+                <input type="text" placeholder="Enter Format" />
+            </div>
+            <div className="shows-showtime">
+                Showtime
+                <input type="text" placeholder="Enter Showtime" />
+            </div>
+        </div>
     </>
 }
 

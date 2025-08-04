@@ -18,9 +18,13 @@ const Admin_Profile = () => {
                         <div className="box">Vancha Manisharan Reddy</div>
                         <div><strong>Username</strong></div>
                         <div className="box">Manisharan73</div>
-                        <div className="mail"><MdMail /><strong>Email</strong></div>
+                        <div className="mail"><MdMail /><strong>Email 1</strong></div>
                         <div className="box">manisharanreddyvancha@gmail.com</div>
-                        <div className="phone"><FaPhone /><strong>Phone Number</strong></div>
+                        <div className="mail"><MdMail /><strong>Email 2</strong></div>
+                        <div className="box">manisharanreddyvancha@gmail.com</div>
+                        <div className="phone"><FaPhone /><strong>Phone Number 1</strong></div>
+                        <div className="box">7396762006</div>
+                        <div className="phone"><FaPhone /><strong>Phone Number 2</strong></div>
                         <div className="box">7396762006</div>
                     </div>
                 </div>

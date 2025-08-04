@@ -18,6 +18,7 @@
     flex-wrap: wrap;
     gap: 25px;
     justify-content: center;
+    padding: 10px;
 }
 
 .dashboard .admin-moviecard {
@@ -95,6 +96,7 @@
 .admin-screens {
     display: flex;
     gap: 10px;
+    padding: 10px;
 }
 
 .admin-screens > div {

@@ -25,17 +25,6 @@
     width: calc(100vw - 300px);
 }
 
-.my-shows {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 12px;
-    padding: 25px;
-    gap: 25px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    width: 50vw;
-}
-
 .my-shows p {
     font-size: 1.25rem;
     cursor: pointer;
@@ -48,11 +37,6 @@
 
 .invisible {
     visibility: collapse;
-}
-
-.my-show {
-    display: flex;
-    justify-content: space-between;
 }
 
 .add-shows button {
@@ -110,4 +94,32 @@ table input {
 .admin-movie-preview {
     display: flex;
     flex-direction: column;
+}
+
+.shows-language {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+}
+
+.shows-format {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+}
+
+.shows-showtime {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+}
+
+.shows-showinfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
 }
