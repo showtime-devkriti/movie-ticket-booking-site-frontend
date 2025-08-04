@@ -6,6 +6,7 @@ import { GiConfirmed } from "react-icons/gi";
 import Cookies from "js-cookie"
 import { FaSearch } from "react-icons/fa";
 import api from "./components/getData"
+import png from "/src/assets/user.png"
 
 const SeatClass = ({ seatStructure, classes, setClasses }) => {
     const [className, setClass] = useState({
@@ -117,8 +118,8 @@ const Add_Shows = () => {
         setMovieId(e.target.value)
     }
 
-    const search = async() => {
-        console.log( await api.getMovie(movieId))
+    const search = async () => {
+        console.log(await api.getMovie(movieId))
     }
 
     return (
@@ -133,14 +134,58 @@ const Add_Shows = () => {
                     <h1>My Shows</h1>
                     <div className="movie-search">
                         <input type="text" value={movieId} placeholder="Movie ID" onChange={idHandler}></input>
-                        <button onClick={search}>Search<FaSearch/></button>
+                        <button onClick={search}>Search<FaSearch /></button>
                     </div>
                     <div className="my-screens">
                         {screen?.screens?.map(screen => (
                             <Screen key={screen._id} screen={screen} isEdit={editingScreenId === screen._id} onEditToggle={() => handleEditToggle(screen._id)} />
                         ))}
                     </div>
-                    
+                    <div className="admin-movie-preview">
+                        <div className="movie-preview">
+                            <img src="https://image.tmdb.org/t/p/original/lUpMckVHaB55YJ3SMK0arwxKmCt.jpg"></img>
+                            <div className="movie-preview-text">
+                                <h1>M.S. Dhoni: The Untold Story</h1>
+                                The blood-soaked land of Kolar Gold Fields (KGF) has a new overlord now - Rocky, whose name strikes fear in the heart of his foes. His allies look up to Rocky as their Savior, the government sees him as a threat to law and order; enemies are clamoring for revenge and conspiring for his downfall. Bloodier battles and darker days await as Rocky continues on his quest for unchallenged supremacy.
+                                <div className="preview-timings">
+                                    <div>Telugu</div>
+                                    <div>Action, Horror</div>
+                                    <div>3hr 15min</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h1>Cast</h1>
+                        <div className="cast">
+                            <div className="card-wrapper">
+                                <img className="no-cast-img" src={png} />
+                                <h4>Name</h4>
+                            </div>
+                            <div className="card-wrapper">
+                                <img className="no-cast-img" src={png} />
+                                <h4>Name</h4>
+                            </div>
+                            <div className="card-wrapper">
+                                <img className="no-cast-img" src={png} />
+                                <h4>Name</h4>
+                            </div>
+                        </div>
+                        <h1>Crew</h1>
+                        <div className="crew">
+                            <div className="card-wrapper">
+                                <img className="no-cast-img" src={png} />
+                                <h4>Name</h4>
+                            </div>
+                            <div className="card-wrapper">
+                                <img className="no-cast-img" src={png} />
+                                <h4>Name</h4>
+                            </div>
+                            <div className="card-wrapper">
+                                <img className="no-cast-img" src={png} />
+                                <h4>Name</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

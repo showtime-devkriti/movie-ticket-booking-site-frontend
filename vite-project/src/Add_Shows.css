@@ -101,3 +101,13 @@ table input {
     align-items: center;
     gap: 20px;
 }
+
+.cast, .crew {
+    display: flex;
+    gap: 35px;
+}
+
+.admin-movie-preview {
+    display: flex;
+    flex-direction: column;
+}
