@@ -21,7 +21,6 @@ const getStableUserId = () => {
     return userId;
 };
 
-// THE REFINED COMPONENT
 function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing }) {
     const [seatMatrix, setSeatMatrix] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState(new Set());
@@ -194,10 +193,11 @@ const Seat_Layout = () => {
     const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
+        if(!id) return
         const token = Cookies.get("token")
         try {
             const response = await axios.get(
-                "http://localhost:3000/api/bookticket/688a619a1b744ad5f07665d1",
+                `http://localhost:3000/api/bookticket/${id}`,
                 {
                     headers: {
                         accept: 'application/json',
@@ -219,7 +219,9 @@ const Seat_Layout = () => {
         fetchData()
     }, []);
 
+    const bookHandler = () => {
 
+    }
 
     if (loading) return <div className="loader-container" >
         <div className="loader"></div>
@@ -236,16 +238,14 @@ const Seat_Layout = () => {
                 <div className="bottom-bar-container">
                     <div className="bottom-bar">
                         <h2>Total Seats: {data?.seatLayout?.length}</h2>
-                        <h2>Seats Selected: </h2>
-                        <h2>Total Price: </h2>
-                        <Link to="/book-preview"><button>Book Tickets</button></Link>
+                        <h2>Seats Selected: {totalSeats} </h2>
+                        <h2>Total Price: {cost}</h2>
+                        <button onClick={bookHandler}>Book Tickets</button>
                     </div>
                 </div>
             </div>
         </>
     );
 };
-
-//
 
 export default Seat_Layout;

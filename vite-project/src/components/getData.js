@@ -292,7 +292,7 @@ const getMovie = async (imdb_id) => {
             : null;
         const recommendationsRes = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/recommendations`, options).then(res => res.json());
 
-        const recommendedMovies = recommendationsRes.results
+        const recommendedMovies = recommendationsRes?.results
             .filter(movie => movie.poster_path && movie.genre_ids)
             .slice(0, 15)
             .map(movie => ({

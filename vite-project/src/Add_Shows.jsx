@@ -3,142 +3,253 @@ import "./Add_Shows.css";
 import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { TbSelect } from "react-icons/tb";
 import { GiConfirmed } from "react-icons/gi";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import { FaSearch } from "react-icons/fa";
-import api from "./components/getData"
-import png from "/src/assets/user.png"
+import api from "./components/getData";
+import png from "/src/assets/user.png";
+import DetailsCard from "./components/Details-components/Details_Card";
+import { useNavigate } from "react-router-dom";
 
-const SeatClass = ({ seatStructure, classes, setClasses }) => {
-    const [className, setClass] = useState({
-        class: "",
-        rows: "",
-        columns: ""
-    })
-
+const SeatClass = ({ seatStructure, className, setClass, info, setInfo }) => {
     const PriceHandler = (e) => {
         const { name, value } = e.target;
-        if ((name === "rows" || name === "columns") && !/^\d*$/.test(value)) return;
-        setClass(prev => ({
+        setClass((prev) => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
     };
 
-    return <>
-        <div className={`screen-info ${seatStructure?.length ? "" : "hidden"}`}>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Class</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {seatStructure?.map((element, i) => (
-                        <tr key={i}>
-                            <td>{element.class}</td>
-                            <td><input type="text" placeholder="Price" /></td>
+    const handler = (e) => {
+        const { name, value } = e.target;
+        setInfo((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    return (
+        <>
+            <div className={`screen-info ${seatStructure?.length ? "" : "hidden"}`}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>Price</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-        <div className="shows-showinfo">
-            <div className="shows-language">
-                Language
-                <input type="text" placeholder="Enter Language" />
+                    </thead>
+                    <tbody>
+                        {seatStructure?.map((element, i) => (
+                            <tr key={i}>
+                                <td>{element.class}</td>
+                                <td>
+                                    <input name={element.class} type="text" placeholder="Price" value={className[element.class] || ""} onChange={PriceHandler} />
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            <div className="shows-format">
-                Format
-                <input type="text" placeholder="Enter Format" />
+            <div className="shows-showinfo">
+                <div className="shows-language">
+                    Language
+                    <input type="text" name="language" placeholder="Enter Language" value={info.language} onChange={handler} />
+                </div>
+                <div className="shows-format">
+                    Format
+                    <input type="text" name="format" placeholder="Enter Format" value={info.format} onChange={handler} />
+                </div>
+                <div className="shows-showtime">
+                    Showtime <input type="text" name="showtime" placeholder="Enter Showtime (e.g., 07:30 PM)" value={info.showtime} onChange={handler} />
+                </div>
+                <div className="shows-date">
+                    Date <input type="date" name="date" placeholder="Enter Date" value={info.date} onChange={handler} />
+                </div>
             </div>
-            <div className="shows-showtime">
-                Showtime
-                <input type="text" placeholder="Enter Showtime" />
-            </div>
-        </div>
-    </>
-}
+        </>
+    );
+};
 
-const Screen = ({ screen, isEdit, onEditToggle }) => {
-    const [classes, setClasses] = useState([])
+const Screen = ({ screen, isEdit, onEditToggle, movieData }) => {
+    const [className, setClass] = useState({});
+    const [info, setInfo] = useState({
+        language: "",
+        format: "",
+        showtime: "",
+        date: "",
+    });
+    const navigate = useNavigate();
 
-    const post = async () => {
-        const seatLayout = classes.map(item => ({
-            class: item.class,
-            rows: parseInt(item.rows),
-            columns: parseInt(item.columns)
-        }))
-        const admin = Cookies.get("admin")
-        const res = await fetch("http://localhost:3000/api/admin/screenpost", {
-            method: "POST",
-            headers: {
-                "authorization": `Bearer ${admin}`,
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({
-                screenName: screen.screenName,
-                seatlayout: seatLayout
-            }),
-        })
-        console.log(res)
-        if (res.ok) window.location.reload()
-        console.log(seatLayout)
+    useEffect(() => {
+        if (screen?.seatStructure) {
+            const initialPrices = {};
+            screen.seatStructure.forEach((seatClass) => {
+                initialPrices[seatClass.class] = "";
+            });
+            setClass(initialPrices);
+        }
+    }, [screen?.seatStructure]);
+
+    //useEffect(() => { console.log(className) }, [className])
+
+    function convertTo24HourFormat(time12h) {
+        const [time, modifier] = time12h.trim().split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+
+        if (modifier?.toLowerCase() === "pm" && hours < 12) {
+            hours += 12;
+        } else if (modifier?.toLowerCase() === "am" && hours === 12) {
+            hours = 0;
+        }
+
+        return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:00.000`;
     }
 
-    return <>
-        <div className="my-screen">
-            <p>{screen?.screenName}</p>
-            {!isEdit && <button onClick={onEditToggle}>Select <TbSelect /></button>}
-            {isEdit && <button onClick={onEditToggle}>Confirm <GiConfirmed /></button>}
-        </div>
-        <div className="my-screen-edit">
-            {isEdit && <SeatClass seatStructure={screen?.seatStructure} classes={classes} setClasses={setClasses} />}
-        </div>
-    </>
-}
+    const post = async () => {
+        const isoTimestamp = new Date(
+            `${info.date}T${convertTo24HourFormat(info.showtime)}Z`
+        ).toISOString();
+        const admin = Cookies.get("admin");
 
+        if (!admin) {
+            navigate("/admin/login");
+            return;
+        }
+
+        const prices = Object.entries(className).reduce((acc, [key, value]) => {
+            acc[key] = Number(value);
+            return acc;
+        }, {});
+        console.log(prices)
+
+        const res = await fetch(
+            `http://localhost:3000/api/admin/showtime/${screen._id}`,
+            {
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${admin}`,
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    movieid: movieData.imdb_id,
+                    language: info.language,
+                    starttime: isoTimestamp,
+                    format: info.format,
+                    price: prices,
+                }),
+            }
+        );
+        if (res.ok) window.location.reload();
+    };
+
+    return (
+        <>
+            <div className="my-screen">
+                <p>{screen?.screenName}</p>
+                {!isEdit && (
+                    <button onClick={onEditToggle}>
+                        Select <TbSelect />
+                    </button>
+                )}
+                {isEdit && (
+                    <button onClick={post}>
+                        Confirm <GiConfirmed />
+                    </button>
+                )}
+            </div>
+            <div className="my-screen-edit">
+                {isEdit && (
+                    <SeatClass seatStructure={screen?.seatStructure} className={className} setClass={setClass} info={info} setInfo={setInfo} />
+                )}
+            </div>
+        </>
+    );
+};
 
 const Add_Shows = () => {
     const [screen, setScreen] = useState(null);
     const [editingScreenId, setEditingScreenId] = useState(null);
-    const [movieId, setMovieId] = useState("")
+    const [movieId, setMovieId] = useState("");
+    const [movieData, setMovieData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleEditToggle = (id) => {
-        setEditingScreenId(prevId => (prevId === id ? null : id));
+        setEditingScreenId((prevId) => (prevId === id ? null : id));
     };
 
     useEffect(() => {
-        const admin = Cookies.get("admin")
+        const admin = Cookies.get("admin");
+        setLoading(true);
+
+        if (!admin) navigate("/");
 
         const fetchData = async () => {
-            const getScreens = await fetch("http://localhost:3000/api/admin/getscreen", {
-                method: "GET",
-                headers: {
-                    "authorization": `Bearer ${admin}`,
-                    "Content-Type": "application/json"
-                },
-                credentials: "include",
-            }).then(res => res.json())
-            console.log(getScreens)
-            setScreen(getScreens)
-        }
+            try {
+                const getScreens = await fetch(
+                    "http://localhost:3000/api/admin/getscreen",
+                    {
+                        method: "GET",
+                        headers: {
+                            authorization: `Bearer ${admin}`,
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                    }
+                ).then((res) => res.json());
+                setScreen(getScreens);
+            } catch (error) {
+                console.error("Failed to fetch screens:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-        fetchData()
-    }, [])
+        fetchData();
+    }, [navigate]);
 
     const idHandler = (e) => {
-        setMovieId(e.target.value)
-    }
+        setMovieId(e.target.value);
+    };
 
     const search = async () => {
-        console.log(await api.getMovie(movieId))
-    }
+        if (!movieId) return;
+        setLoading(true);
+        const result = await api.getMovie(movieId);
+        setMovieData(result);
+        setLoading(false);
+    };
+
+    const removeRepeat = (someData) => {
+        const seen = new Set();
+        return someData
+            ?.filter((item) => {
+                if (seen.has(item.name)) {
+                    return false;
+                }
+                seen.add(item.name);
+                return true;
+            })
+            .slice(0, 3)
+            .map((item, index) => <DetailsCard key={index} data={item} />);
+    };
+
+    const convert = () => {
+        if (!movieData?.runtime) return "";
+        let screenTime = parseInt(movieData.runtime);
+        const hrs = Math.floor(screenTime / 60);
+        const min = screenTime % 60;
+        return `${hrs}hr ${min}min`;
+    };
 
     return (
         <>
             <div className="add-shows-wrapper">
+                {loading && (
+                    <div className="loader-container">
+                        <div className="loader"></div>
+                    </div>
+                )}
                 <div className="sidebar-wrapper">
                     <div className="sidebar">
                         <Sidebar />
@@ -147,59 +258,64 @@ const Add_Shows = () => {
                 <div className="add-shows">
                     <h1>My Shows</h1>
                     <div className="movie-search">
-                        <input type="text" value={movieId} placeholder="Movie ID" onChange={idHandler}></input>
-                        <button onClick={search}>Search<FaSearch /></button>
+                        <input type="text" value={movieId} placeholder="Movie ID" onChange={idHandler} ></input>
+                        <button onClick={search}> Search <FaSearch />
+                        </button>
                     </div>
-                    <div className="my-screens">
-                        {screen?.screens?.map(screen => (
-                            <Screen key={screen._id} screen={screen} isEdit={editingScreenId === screen._id} onEditToggle={() => handleEditToggle(screen._id)} />
-                        ))}
-                    </div>
-                    <div className="admin-movie-preview">
-                        <div className="movie-preview">
-                            <img src="https://image.tmdb.org/t/p/original/lUpMckVHaB55YJ3SMK0arwxKmCt.jpg"></img>
-                            <div className="movie-preview-text">
-                                <h1>M.S. Dhoni: The Untold Story</h1>
-                                The blood-soaked land of Kolar Gold Fields (KGF) has a new overlord now - Rocky, whose name strikes fear in the heart of his foes. His allies look up to Rocky as their Savior, the government sees him as a threat to law and order; enemies are clamoring for revenge and conspiring for his downfall. Bloodier battles and darker days await as Rocky continues on his quest for unchallenged supremacy.
-                                <div className="preview-timings">
-                                    <div>Telugu</div>
-                                    <div>Action, Horror</div>
-                                    <div>3hr 15min</div>
+                    {!movieData && <div>Search for a movie to add a show.</div>}
+                    {movieData && (
+                        <div className="admin-movie-preview">
+                            <div className="movie-preview">
+                                <img src={movieData.poster_path ? `https://image.tmdb.org/t/p/original${movieData.poster_path}` : png} alt={movieData?.title} />
+                                <div className="movie-preview-text">
+                                    <h1>{movieData?.title}</h1>
+                                    <p>{movieData?.description}</p>
+                                    <div className="preview-timings">
+                                        <div className="language">
+                                            {movieData?.languages?.map((item, index) => (
+                                                <span key={index}>
+                                                    {item}
+                                                    {index !== movieData.languages.length - 1 ? ", " : ""}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div className="genre">
+                                            {movieData?.genres?.map((item, index) => (
+                                                <span key={index}>
+                                                    {item}
+                                                    {index !== movieData.genres.length - 1 ? ", " : ""}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div className="runtime">{convert()}</div>
+                                    </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <h1>Cast</h1>
-                        <div className="cast">
-                            <div className="card-wrapper">
-                                <img className="no-cast-img" src={png} />
-                                <h4>Name</h4>
+                            <h1>Cast</h1>
+                            <div className="cast">
+                                {movieData?.cast?.length > 0 ? (
+                                    removeRepeat(movieData.cast)
+                                ) : (
+                                    <p>No cast available.</p>
+                                )}
                             </div>
-                            <div className="card-wrapper">
-                                <img className="no-cast-img" src={png} />
-                                <h4>Name</h4>
-                            </div>
-                            <div className="card-wrapper">
-                                <img className="no-cast-img" src={png} />
-                                <h4>Name</h4>
-                            </div>
-                        </div>
-                        <h1>Crew</h1>
-                        <div className="crew">
-                            <div className="card-wrapper">
-                                <img className="no-cast-img" src={png} />
-                                <h4>Name</h4>
-                            </div>
-                            <div className="card-wrapper">
-                                <img className="no-cast-img" src={png} />
-                                <h4>Name</h4>
-                            </div>
-                            <div className="card-wrapper">
-                                <img className="no-cast-img" src={png} />
-                                <h4>Name</h4>
+                            <h1>Crew</h1>
+                            <div className="crew">
+                                {movieData?.crew?.length > 0 ? (
+                                    removeRepeat(movieData.crew)
+                                ) : (
+                                    <p>No crew available.</p>
+                                )}
                             </div>
                         </div>
-                    </div>
+                    )}
+                    {movieData && (
+                        <div className="my-screens">
+                            {screen?.screens?.map((screen) => (
+                                <Screen key={screen._id} screen={screen} isEdit={editingScreenId === screen._id} onEditToggle={() => handleEditToggle(screen._id)} movieData={movieData} />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </>

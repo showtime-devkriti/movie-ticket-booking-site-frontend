@@ -117,9 +117,27 @@ table input {
     font-size: 1.25rem;
 }
 
+.shows-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+}
+
 .shows-showinfo {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
+}
+
+.loader-container{
+    z-index: 10;
+    position: absolute;
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.938);
+}
+
+.screen-info input, .shows-showinfo input{
+    outline: none;
 }
