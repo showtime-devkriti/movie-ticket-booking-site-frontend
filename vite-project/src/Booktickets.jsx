@@ -15,10 +15,10 @@ const Screen = ({ screen, show }) => {
         const hrs = time.split(":")[0]
         const min = time.split(":")[1]
         if (hrs <= 12) {
-            return (`${hrs} : ${min}`)
+            return (`${hrs} : ${min} AM`)
         }
         else {
-            return (`${hrs - 12}:${min}`)
+            return (`${hrs - 12}:${min} PM`)
         }
     }
 
@@ -112,7 +112,9 @@ const Booktickets = () => {
         if (!dateToFetch || !id) return;
 
         try {
-            const token = Cookies.get("token");
+            //const token = Cookies.get("token");
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzRlNTdlYzkwNDU3NjM3YjJiYzViNyIsImlhdCI6MTc1NDQxNjY4OCwiZXhwIjoxNzU1MDIxNDg4fQ.4Ki65XbuXqe5IhIU8tt-LndEx_Jjsj6tet6K5uZ52FQ"
+            console.log(token)
             const response = await fetch(`http://localhost:3000/api/movies/${id}/showtimes?date=${dateToFetch}`, {
                 method: 'GET',
                 headers: {
