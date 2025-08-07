@@ -13,23 +13,13 @@ export const MovieProvider = ({ children }) => {
         }
     });
 
-    const [theatreData, setTheatreData] = useState(() => {
-        try {
-            const stored = localStorage.getItem("theatre");
-            return stored ? JSON.parse(stored) : [];
-        } catch (e) {
-            console.error("Failed to parse localStorage movie data:", e);
-            return [];
-        }
-    });
-
     useEffect(() => {
         if (data) localStorage.setItem("movie", JSON.stringify(data));
-        if (theatreData) localStorage.setItem("theatre", JSON.stringify(theatreData));
-    }, [data, theatreData]);
+        
+    }, [data]);
 
     return (
-        <MovieContext.Provider value={{ data, setData, theatreData, setTheatreData }}>
+        <MovieContext.Provider value={{ data, setData}}>
             {children}
         </MovieContext.Provider>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback } from "react";
-import { useSearchParams, Link } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 import "./Booktickets.css";
 import { useMovieContext } from "./components/MovieContext/movieContext";
 import About_Header from "./components/About-components/About_Header";
@@ -7,7 +7,8 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie";
 
-const Screen = ({ screen }) => {
+const Screen = ({ screen, show }) => {
+    const navigate = useNavigate()
     const t = (t) => {
         const time = t?.split("T")[1]
         const date = t?.split("T")[0]
@@ -21,12 +22,18 @@ const Screen = ({ screen }) => {
         }
     }
 
+    const showHandler = (id) => {
+        navigate(`/seat-layout?id=${id}`, {
+            state: { show: show }
+        })
+    }
+
     return <>
         <div className="screen">
             {screen.screenName}
             <div className="timings">
                 {screen?.timings?.map((time, index) => (
-                    <Link className="link" to={`/seat-layout?id=${time.showid}`} key={index}>{t(time.starttime)}</Link>
+                    <button className="link" onClick={() => { showHandler(time.showid) }} key={index}>{t(time.starttime)}</button>
                 ))}
             </div>
         </div>
@@ -51,7 +58,7 @@ const Theatre = ({ show }) => {
         </div>
         <div className="screens">
             {show?.screens?.map((screen, index) => (
-                <Screen key={index} screen={screen} />
+                <Screen key={index} screen={screen} show={show} />
             ))}
         </div>
     </div>
@@ -81,7 +88,8 @@ const Day = ({ date }) => {
 }
 
 const Booktickets = () => {
-    const { data, setData, theatreData, setTheatreData } = useMovieContext();
+    const { data, setData } = useMovieContext();
+    const [theatreData, setTheatreData] = useState(null)
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const [dates, setDates] = useState([]);
@@ -95,14 +103,14 @@ const Booktickets = () => {
     }
 
     const dateSelectHandler = (e) => {
-        const date = e.currentTarget.value; 
+        const date = e.currentTarget.value;
         //console.log(date)
         setSelectedDate(date);
     }
 
     const fetchData = useCallback(async (dateToFetch) => {
         if (!dateToFetch || !id) return;
-        
+
         try {
             const token = Cookies.get("token");
             const response = await fetch(`http://localhost:3000/api/movies/${id}/showtimes?date=${dateToFetch}`, {

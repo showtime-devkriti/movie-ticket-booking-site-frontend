@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import "./Seat_Layout.css";
 import Layout_Header from "./components/Layout-components/Layout_Header";
 import { io } from "socket.io-client";
-import { useSearchParams, Link } from "react-router-dom"
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom"
 import { useState } from "react";
 import Cookies from "js-cookie"
 //const socket = io("http://localhost:3000/api/movies/seat");
@@ -23,7 +23,7 @@ const getStableUserId = () => {
 
 function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing }) {
     const [seatMatrix, setSeatMatrix] = useState([]);
-    const [selectedSeats, setSelectedSeats] = useState(new Set());
+    const [selectedSeats, setSelectedSeats] = useState([]);
     const [lockedSeats, setLockedSeats] = useState(new Map());
     const [userId] = useState(getStableUserId());
     const [isConnected, setIsConnected] = useState(socket.connected);
@@ -95,12 +95,41 @@ function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing })
 
     }, [showtimeid, userId]);
 
-    useEffect(() => {
-        setTotalSeats(selectedSeats.size);
+    // useEffect(() => {
+    //     setTotalSeats(selectedSeats);
 
-        const totalCost = Array.from(selectedSeats).reduce((acc, seatid) => {
-            const seat = seatLayout.find(s => s.seatid === seatid);
-            return seat ? acc + seat.price : acc;
+    //     const totalCost = Array.from(selectedSeats).reduce((acc, seatid) => {
+    //         const seat = seatLayout.find(s => s.seatid === seatid);
+    //         return seat ? acc + seat.price : acc;
+    //     }, 0);
+
+    //     setCost(totalCost);
+    // }, [selectedSeats, seatLayout]);
+
+    // const selectSeat = useCallback((seat) => {
+    //     if (seat.status === 'booked' || lockedSeats.has(seat.seatid)) {
+    //         return;
+    //     }
+
+    //     const updatedSeats = new Set(selectedSeats);
+    //     const isSelected = updatedSeats.has({ seatid: seat.seatid, class: seat.class });
+
+    //     if (isSelected) {
+    //         updatedSeats.delete({ seatid: seat.seatid, class: seat.class });
+    //         socket.emit("unselect-seat", { showtimeid, seatid: seat.seatid, userId });
+    //     } else {
+    //         updatedSeats.add({ seatid: seat.seatid, class: seat.class });
+    //         socket.emit("select-seat", { showtimeid, seatid: seat.seatid, userId });
+    //     }
+    //     setSelectedSeats(updatedSeats);
+    // }, [selectedSeats, lockedSeats, showtimeid, userId]);
+
+    useEffect(() => {
+        setTotalSeats(selectedSeats);
+
+        const totalCost = selectedSeats?.reduce((acc, seat) => {
+            const fullSeat = seatLayout.find(s => s.seatid === seat.seatid);
+            return fullSeat ? acc + fullSeat.price : acc;
         }, 0);
 
         setCost(totalCost);
@@ -111,16 +140,17 @@ function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing })
             return;
         }
 
-        const updatedSeats = new Set(selectedSeats);
-        const isSelected = updatedSeats.has(seat.seatid);
+        const isSelected = selectedSeats.some(s => s.seatid === seat.seatid);
 
+        let updatedSeats;
         if (isSelected) {
-            updatedSeats.delete(seat.seatid);
+            updatedSeats = selectedSeats.filter(s => s.seatid !== seat.seatid);
             socket.emit("unselect-seat", { showtimeid, seatid: seat.seatid, userId });
         } else {
-            updatedSeats.add(seat.seatid);
+            updatedSeats = [...selectedSeats, { seatid: seat.seatid, class: seat.seatClass }];
             socket.emit("select-seat", { showtimeid, seatid: seat.seatid, userId });
         }
+
         setSelectedSeats(updatedSeats);
     }, [selectedSeats, lockedSeats, showtimeid, userId]);
 
@@ -156,7 +186,7 @@ function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing })
 
     const getSeatClassName = (seat) => {
         if (seat.status === "booked") return "Booked";
-        if (selectedSeats.has(seat.seatid)) return "Selected";
+        if (selectedSeats.some(s => s.seatid === seat.seatid)) return "Selected";
         if (lockedSeats.has(seat.seatid)) return "Locked";
         return "Available";
     };
@@ -191,9 +221,12 @@ const Seat_Layout = () => {
     //const showtimeid = "688a619a1b744ad5f07665d1";
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { show } = location.state || {}
 
     const fetchData = async () => {
-        if(!id) return
+        if (!id) return
         const token = Cookies.get("token")
         try {
             const response = await axios.get(
@@ -220,8 +253,18 @@ const Seat_Layout = () => {
     }, []);
 
     const bookHandler = () => {
-
+        navigate("/book-preview", {
+            state: {
+                selectedSeats: totalSeats,
+                cost: cost,
+                screenData: data,
+                theatreData: show
+            }
+        })
     }
+
+    useEffect(() => {console.log(totalSeats)
+    }, [totalSeats])
 
     if (loading) return <div className="loader-container" >
         <div className="loader"></div>
@@ -238,7 +281,7 @@ const Seat_Layout = () => {
                 <div className="bottom-bar-container">
                     <div className="bottom-bar">
                         <h2>Total Seats: {data?.seatLayout?.length}</h2>
-                        <h2>Seats Selected: {totalSeats} </h2>
+                        <h2>Seats Selected: {totalSeats?.length} </h2>
                         <h2>Total Price: {cost}</h2>
                         <button onClick={bookHandler}>Book Tickets</button>
                     </div>

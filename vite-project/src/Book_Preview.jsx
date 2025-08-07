@@ -1,9 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Book_Preview.css";
 import About_Header from "./components/About-components/About_Header";
 import { MdOutlineEventSeat } from "react-icons/md";
+import { useLocation } from "react-router-dom";
+import { useMovieContext } from "./components/MovieContext/movieContext";
 
 const Book_Preview = () => {
+    const location = useLocation()
+    const { selectedSeats, cost, screenData, theatreData } = location.state || {}
+    const [groupedSeats, setGroupedSeats] = useState([])
+    const { data } = useMovieContext();
+
+    const t = (t) => {
+        const time = t?.split("T")[1]
+        const date = t?.split("T")[0]
+        const hrs = time.split(":")[0]
+        const min = time.split(":")[1]
+        if (hrs <= 12) {
+            return (`${hrs} : ${min}`)
+        }
+        else {
+            return (`${hrs - 12}:${min}`)
+        }
+    }
+
+    useEffect(() => {
+        const groupedArray = Object.values(
+            selectedSeats.reduce((acc, seat) => {
+                if (!acc[seat.class]) {
+                    acc[seat.class] = {
+                        class: seat.class,
+                        seats: []
+                    };
+                }
+                acc[seat.class].seats.push(seat);
+                return acc;
+            }, {})
+        );
+        console.log(groupedArray)
+        setGroupedSeats(groupedArray);
+    }, [selectedSeats])
+
+    useEffect(() => {
+        console.log({
+            seats: selectedSeats,
+            cost: cost,
+            screenData: screenData,
+            data: data,
+            theatreData: theatreData
+        })
+    }, [selectedSeats, cost, screenData, data, theatreData])
+
     return (
         <>
             <About_Header />
@@ -12,19 +59,24 @@ const Book_Preview = () => {
                     <div className="movie-preview">
                         <img src="https://image.tmdb.org/t/p/original/lUpMckVHaB55YJ3SMK0arwxKmCt.jpg"></img>
                         <div className="movie-preview-text">
-                            <h1>M.S. Dhoni: The Untold Story</h1>
-                            Maheshwari Digital 4K Cinema: Bannerghatta
-                            Road (MAHESHWARI), Bengaluru, Bengaluru
+                            <h1>{data?.title}</h1>
+                            {theatreData?.address}
                             <div className="preview-timings">
                                 <div>1:00 PM</div>
                                 <div>Sat, 23 Jul, 2016</div>
                             </div>
-                            <h3>Quantity: 2</h3>
+                            <h3>Quantity: {selectedSeats?.length}</h3>
                             <div className="preview-tickets">
                                 <MdOutlineEventSeat size={40} />
                                 <div className="preview-seating">
-                                    <h4>Diamond: Q1, Q2</h4>
-                                    Screen 1
+                                    {groupedSeats?.map((name, i) => (
+                                        <h4 key={i}>{name.class}: {name.seats?.map((seat, i) => (
+                                            <span key={i}>
+                                                {seat.seatid}{i !== name.seats.length - 1 ? ', ' : ''}
+                                            </span>
+                                        ))}</h4>
+                                    ))}
+                                    {screenData?.screenName}
                                 </div>
                             </div>
                         </div>
