@@ -5,7 +5,6 @@
 
 .dashboard {
     padding: 10px;
-    margin-left: 300px;
 }
 
 .dashboard .theatre-location {
@@ -81,18 +80,6 @@
     overflow: scroll;
 }
 
-.dashboard-wrapper .sidebar-wrapper {
-    position: relative;
-    overflow: hidden;
-}
-
-.dashboard-wrapper .sidebar-wrapper .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
 .admin-screens {
     display: flex;
     gap: 10px;
@@ -103,4 +90,10 @@
     border-radius: 25px;
     border: 1px solid black;
     padding: 5px 10px;
+}
+
+@media (max-width: 769px) {
+    .dashboard-wrapper {
+        padding: 25px;
+    }
 }

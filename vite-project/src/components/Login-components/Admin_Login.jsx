@@ -241,9 +241,7 @@ const Admin_Login = () => {
                             </div>
                         </form>
                     </div>
-
                 </div>
-
             </div>
     );
 };

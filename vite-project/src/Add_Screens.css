@@ -12,12 +12,11 @@
 
 .add-screens-wrapper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .add-screens {
     padding: 10px;
-    margin-left: 300px;
     display: flex;
     flex-direction: column;
     gap: 25px;

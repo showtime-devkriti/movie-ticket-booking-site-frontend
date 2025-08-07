@@ -9,6 +9,7 @@ import api from "./components/getData";
 import png from "/src/assets/user.png";
 import DetailsCard from "./components/Details-components/Details_Card";
 import { useNavigate } from "react-router-dom";
+import { IoMenu } from "react-icons/io5";
 
 const SeatClass = ({ seatStructure, className, setClass, info, setInfo }) => {
     const PriceHandler = (e) => {
@@ -242,6 +243,23 @@ const Add_Shows = () => {
         return `${hrs}hr ${min}min`;
     };
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const [isSidebar, setIsSidebar] = useState();
+
+    useEffect(() => {
+        setIsSidebar(!isMobile);
+    }, [isMobile]);
+
     return (
         <>
             <div className="add-shows-wrapper">
@@ -250,11 +268,12 @@ const Add_Shows = () => {
                         <div className="loader"></div>
                     </div>
                 )}
-                <div className="sidebar-wrapper">
-                    <div className="sidebar">
-                        <Sidebar />
+                <Sidebar isSidebar={isSidebar} setIsSidebar={setIsSidebar} />
+                {isMobile ? (
+                    <div className="admin-menu">
+                        <button onClick={() => { setIsSidebar(!isSidebar) }}><IoMenu size={50} /></button>
                     </div>
-                </div>
+                ) : <></>}
                 <div className="add-shows">
                     <h1>My Shows</h1>
                     <div className="movie-search">
@@ -271,7 +290,7 @@ const Add_Shows = () => {
                                     <h1>{movieData?.title}</h1>
                                     <p>{movieData?.description}</p>
                                     <div className="preview-timings">
-                                        <div className="language">
+                                        <div className="admin-language">
                                             {movieData?.languages?.map((item, index) => (
                                                 <span key={index}>
                                                     {item}
@@ -279,7 +298,7 @@ const Add_Shows = () => {
                                                 </span>
                                             ))}
                                         </div>
-                                        <div className="genre">
+                                        <div className="admin-genre">
                                             {movieData?.genres?.map((item, index) => (
                                                 <span key={index}>
                                                     {item}
@@ -287,7 +306,7 @@ const Add_Shows = () => {
                                                 </span>
                                             ))}
                                         </div>
-                                        <div className="runtime">{convert()}</div>
+                                        <div className="admin-runtime">{convert()}</div>
                                     </div>
                                 </div>
                             </div>

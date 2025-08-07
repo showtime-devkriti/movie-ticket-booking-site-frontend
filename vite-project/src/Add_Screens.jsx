@@ -4,6 +4,7 @@ import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaEdit, FaSave } from "react-icons/fa";
 import Cookies from "js-cookie"
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { IoMenu } from "react-icons/io5";
 
 const SeatClass = ({ seatStructure, classes, setClasses }) => {
     const [className, setClass] = useState({
@@ -113,7 +114,7 @@ const Screen = ({ screen, isEdit, onEditToggle }) => {
             }),
         })
         console.log(res)
-        if(res.ok) window.location.reload()
+        if (res.ok) window.location.reload()
         console.log(seatLayout)
     }
 
@@ -171,21 +172,39 @@ const Add_Screens = () => {
     };
 
     const addScreen = () => {
-        if(screen.screenName === "") return
+        if (screen.screenName === "") return
         setNewScreen({
             screenName: name,
         })
         setName("")
     }
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const [isSidebar, setIsSidebar] = useState();
+
+    useEffect(() => {
+        setIsSidebar(!isMobile);
+    }, [isMobile]);
+
     return (
         <>
             <div className="add-screens-wrapper">
-                <div className="sidebar-wrapper">
-                    <div className="sidebar">
-                        <Sidebar />
+                <Sidebar isSidebar={isSidebar} setIsSidebar={setIsSidebar} />
+                {isMobile ? (
+                    <div className="admin-menu">
+                        <button onClick={() => { setIsSidebar(!isSidebar) }}><IoMenu size={50} /></button>
                     </div>
-                </div>
+                ) : <></>}
                 <div className="add-screens">
                     <h1>My Screens</h1>
                     <div className="add-screen">

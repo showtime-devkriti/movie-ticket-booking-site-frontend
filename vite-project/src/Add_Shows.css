@@ -1,23 +1,10 @@
-.add-shows-wrapper .sidebar-wrapper {
-    position: relative;
-    overflow: hidden;
-}
-
-.add-shows-wrapper .sidebar-wrapper .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
 .add-shows-wrapper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .add-shows {
     padding: 10px;
-    margin-left: 300px;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -140,4 +127,10 @@ table input {
 
 .screen-info input, .shows-showinfo input{
     outline: none;
+}
+
+@media (max-width: 769px) {
+    .add-shows-wrapper {
+        padding: 25px;
+    }
 }

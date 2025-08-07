@@ -5,6 +5,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import Cookies from "js-cookie"
 import { useNavigate } from "react-router-dom";
+import { IoMenu } from "react-icons/io5";
 
 const Dashboard = () => {
     const [theatreData, setTheatreData] = useState(null);
@@ -14,7 +15,7 @@ const Dashboard = () => {
     useEffect(() => {
         const admin = Cookies.get("admin")
 
-        if(!admin) {
+        if (!admin) {
             navigate("/admin/login")
         }
 
@@ -23,7 +24,8 @@ const Dashboard = () => {
                 method: "GET",
                 headers: {
                     "authorization": `Bearer ${admin}`,
-                     "Content-Type": "application/json" },
+                    "Content-Type": "application/json"
+                },
                 credentials: "include",
             }).then(res => res.json())
             setTheatreData(result?.admin)
@@ -32,7 +34,8 @@ const Dashboard = () => {
                 method: "GET",
                 headers: {
                     "authorization": `Bearer ${admin}`,
-                     "Content-Type": "application/json" },
+                    "Content-Type": "application/json"
+                },
                 credentials: "include",
             }).then(res => res.json())
             console.log(getScreens)
@@ -40,16 +43,34 @@ const Dashboard = () => {
         }
 
         fetchData()
-    }, [])
+    }, []);
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const [isSidebar, setIsSidebar] = useState();
+
+    useEffect(() => {
+        setIsSidebar(!isMobile);
+    }, [isMobile]);
 
     return (
         <>
             <div className="dashboard-wrapper">
-                <div className="sidebar-wrapper">
-                    <div className="sidebar">
-                        <Sidebar />
+                <Sidebar isSidebar={isSidebar} setIsSidebar={setIsSidebar} />
+                {isMobile ? (
+                    <div className="admin-menu">
+                        <button onClick={() => {setIsSidebar(!isSidebar)}}><IoMenu size={50} /></button>
                     </div>
-                </div>
+                ) : <></>}
                 <div className="dashboard">
                     <h1>{theatreData?.theatretitle} - {theatreData?.location}</h1>
                     <div className="theatre-location">
@@ -59,7 +80,7 @@ const Dashboard = () => {
                     <h2>Screens</h2>
                     <div className="admin-screens">
                         {screenData?.screens?.map((screen, index) => (
-                            <div  key={index}>{screen.screenName}</div>
+                            <div key={index}>{screen.screenName}</div>
                         ))}
                     </div>
                     <h2>Movies</h2>
@@ -151,7 +172,7 @@ const Dashboard = () => {
                                 <div className="moviecard-details">
                                     <div className='vertical'>
                                         <div className="language">
-                                            Telugu                                            
+                                            Telugu
                                         </div>
                                         <div className="genre">
                                             Action
