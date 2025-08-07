@@ -5,9 +5,17 @@ import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
+import Cookies from "js-cookie"
 
 const Admin_Profile = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [profileData, setprofileData] = useState({
+        email1: "",
+        email2: "",
+        phone1: "",
+        phone2: "",
+        adminusername: ""
+    });
 
     useEffect(() => {
         const handleResize = () => {
@@ -25,13 +33,37 @@ const Admin_Profile = () => {
     }, [isMobile]);
 
 
+
+
+
+    useEffect(async () => {
+
+        const token = Cookies.get("token");
+        try {
+            const res = await fetch("http://localhost:3000/api/admin/profile", {
+                method: "GET",
+                headers: { "authorization":`Bearer ${token}`,
+                    "Content-Type": "application/json" },
+                
+                credentials: "include",
+            });
+        } catch (error) {
+            console.error("error:", error);
+            alert("Something went wrong");
+
+        }
+
+
+    })
+
+
     return (
         <>
             <div className="admin-wrapper">
                 <Sidebar isSidebar={isSidebar} setIsSidebar={setIsSidebar} />
                 {isMobile ? (
                     <div className="admin-menu">
-                        <button onClick={() => {setIsSidebar(!isSidebar)}}><IoMenu size={50} /></button>
+                        <button onClick={() => { setIsSidebar(!isSidebar) }}><IoMenu size={50} /></button>
                     </div>
                 ) : <></>}
                 <div className="admin">

@@ -82,12 +82,13 @@ const Admin_Login = () => {
     };
 
     const [registerData, setRegisterData] = useState({
-        email: "",
+        email1: "",
+        email2: "",
         password: "",
-        confirmPassword: "",
-        username: "",
-        phonenumber: "",
-        fullname: "",
+        adminusername: "",
+        phone1: "",
+        phone2: "",
+
     });
 
     const handleRegisterChange = (e) => {
@@ -104,7 +105,7 @@ const Admin_Login = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:3000/api/auth/register", {
+            const res = await fetch("http://localhost:3000/api/admin/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(registerData),
@@ -116,13 +117,12 @@ const Admin_Login = () => {
                 alert("Registration successful!");
                 setIsLogin(true);
                 setRegisterData({
-                    email: "",
+                    email1: "",
+                    email2: "",
                     password: "",
-                    confirmPassword: "",
-                    username: "",
-                    phonenumber: "",
-                    fullname: "",
-                    location: "",
+                    adminusername: "",
+                    phone1: "",
+                    phone2: "",
                 });
 
                 setIsTheatre(true);
@@ -174,75 +174,74 @@ const Admin_Login = () => {
                 </div>
 
 
-                    {/* Register Form */}
+                {/* Register Form */}
 
-                    <div ref={registerRef} className="register-form" autoComplete="off">
-                        <form onSubmit={handleRegisterSubmit}>
-                            <h2>Register</h2>
+                <div ref={registerRef} className="register-form" autoComplete="off">
+                    <form onSubmit={handleRegisterSubmit}>
+                        <h2>Register</h2>
 
-                            <div className="input-field">
-                                <input type="text" name="fullname" value={registerData.fullname} onChange={handleRegisterChange} autoComplete="off" required />
-                                <label>Full Name</label>
-                            </div>
+                       
 
-                            <div className="input-field">
-                                <input type="text" name="username" value={registerData.username} onChange={handleRegisterChange} autoComplete="off" required />
-                                <label>Username</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="text" name="adminusername" value={registerData.adminusername} onChange={handleRegisterChange} autoComplete="off" required />
+                            <label>AdminUsername</label>
+                        </div>
 
-                            <div className="input-field">
-                                <input type="email" name="email" value={registerData.email} onChange={handleRegisterChange} autoComplete="off" required />
-                                <label>Email 1</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="email" name="email1" value={registerData.email1} onChange={handleRegisterChange} autoComplete="off" required />
+                            <label>Email 1</label>
+                        </div>
 
-                            <div className="input-field">
-                                <input type="email" name="email" value={registerData.email} onChange={handleRegisterChange} autoComplete="off" required />
-                                <label>Email 2</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="email" name="email2" value={registerData.email2} onChange={handleRegisterChange} autoComplete="off" required />
+                            <label>Email 2</label>
+                        </div>
 
-                            <div className="input-field">
-                                <input type="tel" name="phonenumber" pattern="[0-9]{10}" value={registerData.phonenumber} autoComplete="off" onChange={handleRegisterChange} required />
-                                <label>Phone Number 1</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="tel" name="phone1" pattern="[0-9]{10}" value={registerData.phone1} autoComplete="off" onChange={handleRegisterChange} required />
+                            <label>Phone Number 1</label>
+                        </div>
 
-                            <div className="input-field">
-                                <input type="tel" name="phonenumber" pattern="[0-9]{10}" value={registerData.phonenumber} autoComplete="off" onChange={handleRegisterChange} required />
-                                <label>Phone Number 2</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="tel" name="phone2" pattern="[0-9]{10}" value={registerData.phone2} autoComplete="off" onChange={handleRegisterChange} required />
+                            <label>Phone Number 2</label>
+                        </div>
 
-                            <div className="input-field">
-                                <input type="password" name="password" value={registerData.password} autoComplete="new-password" onChange={handleRegisterChange} required />
-                                <label>Password</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="password" name="password" value={registerData.password} autoComplete="new-password" onChange={handleRegisterChange} required />
+                            <label>Password</label>
+                        </div>
 
-                            <div className="input-field">
-                                <input type="password" name="confirmPassword" value={registerData.confirmPassword} autoComplete="off" onChange={handleRegisterChange} required />
-                                <label>Confirm Password</label>
-                            </div>
+                        <div className="input-field">
+                            <input type="password" name="confirmPassword" value={registerData.confirmPassword} autoComplete="off" onChange={handleRegisterChange} required />
+                            <label>Confirm Password</label>
+                        </div>
 
-                            <div className="forget">
-                                <label htmlFor="terms">
-                                    <input type="checkbox" id="terms" required />
-                                    <p>I agree to the terms and conditions</p>
-                                </label>
-                            </div>
+                        <div className="forget">
+                            <label htmlFor="terms">
+                                <input type="checkbox" id="terms" required />
+                                <p>I agree to the terms and conditions</p>
+                            </label>
+                        </div>
 
-                            <div className="submit">
-                                <button type="submit">Register</button>
-                            </div>
+                        <div className="submit">
+                            <button type="submit">Register</button>
+                        </div>
 
-                            <div className="login">
-                                <p>
-                                    Already have an account?
-                                    <Link className="switch" to="/admin/login?mode=login" onClick={() => setIsLogin(true)}>
-                                        Login
-                                    </Link>
-                                </p>
-                            </div>
-                        </form>
-                    </div>
+                        <div className="login">
+                            <p>
+                                Already have an account?
+                                <Link className="switch" to="/admin/login?mode=login" onClick={() => setIsLogin(true)}>
+                                    Login
+                                </Link>
+                            </p>
+                        </div>
+                    </form>
                 </div>
+
             </div>
+
+        </div>
     );
 };
 
