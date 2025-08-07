@@ -123,6 +123,7 @@ const Booktickets = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            console.log(response)
             const resData = await response.json();
             setTheatreData(resData);
             console.log(resData)

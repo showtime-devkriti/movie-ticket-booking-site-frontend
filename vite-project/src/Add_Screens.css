@@ -123,10 +123,28 @@ th, td {
     width: 100%;
 }
 
-
-
 .my-screen-edit {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+@media (max-width: 769px) {
+    .add-screens {
+        width: 100%;
+    }
+
+    .my-screens {
+        width: 425px;
+    }
+}
+
+@media (max-width: 500px) {
+    .add-screen {
+        flex-direction: column;
+    }
+
+    .my-screens {
+        width: 300px;
+    }
 }

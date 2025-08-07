@@ -28,6 +28,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 15px;
+    text-align: center;
 }
 
 .details-banner-front .front-info button {
@@ -109,12 +110,12 @@
     gap: 15px;
 }
 
-.horizontal > div {
+.horizontal>div {
     border-right: 2px solid white;
     padding-right: 10px;
 }
 
-.horizontal > div:last-child {
+.horizontal>div:last-child {
     border: none;
 }
 
@@ -141,9 +142,13 @@
     }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1023px) {
     .details-banner-front {
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0;
     }
 
     .details-banner-front .front-info {
@@ -153,11 +158,7 @@
 
 @media (max-width: 800px) {
     .details-banner-container {
-        height: calc(75vh - 140px);
-    }
-
-    .details-banner-front {
-        padding-left: 10%;
+        height: calc(92vh - 140px);
     }
 
     .details-banner-front .front-info h1 {
@@ -165,37 +166,42 @@
     }
 
     .back-container {
-        height: calc(75vh - 140px);
+        height: calc(92vh - 140px);
     }
 
     .details-banner-back {
-        height: calc(75vh - 140px);
+        height: calc(92vh - 140px);
     }
 }
 
 @media (max-width: 550px) {
     .details-banner-container {
-        height: calc(70vh - 140px);
+        height: calc(125vh - 140px);
     }
 
     .back-container {
-        height: calc(70vh - 140px);
-        padding: 0px;
+        height: calc(130vh - 140px);
     }
 
     .details-banner-back {
-        height: calc(70vh - 140px);
+        height: calc(130vh - 140px);
+    }
+
+    .back-container {
+        padding: 0px;
     }
 
     .horizontal {
         flex-direction: column;
     }
 
-    .horizontal > div {
+    .horizontal>div {
         border: none;
     }
 
-    .format, .rating, .horizontal {
+    .format,
+    .rating,
+    .horizontal {
         font-size: 1rem;
     }
 
@@ -206,5 +212,25 @@
 
     .details-banner-front .front-info h1 {
         font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 370px) {
+    .details-banner-container {
+        height: calc(149vh - 140px);
+    }
+
+    .back-container {
+        height: calc(150vh - 140px);
+    }
+
+    .details-banner-back {
+        height: calc(150vh - 140px);
+    }
+
+    .details-banner-front img {
+        min-width: 125px;
+        height: 250px;
+        border-radius: 12px;
     }
 }

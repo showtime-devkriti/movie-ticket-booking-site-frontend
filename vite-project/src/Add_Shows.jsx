@@ -217,6 +217,7 @@ const Add_Shows = () => {
         if (!movieId) return;
         setLoading(true);
         const result = await api.getMovie(movieId);
+        console.log(result)
         setMovieData(result);
         setLoading(false);
     };
@@ -285,7 +286,7 @@ const Add_Shows = () => {
                     {movieData && (
                         <div className="admin-movie-preview">
                             <div className="movie-preview">
-                                <img src={movieData.poster_path ? `https://image.tmdb.org/t/p/original${movieData.poster_path}` : png} alt={movieData?.title} />
+                                <img src={movieData.poster_url ? `${movieData.poster_url}` : png} alt={movieData?.title} />
                                 <div className="movie-preview-text">
                                     <h1>{movieData?.title}</h1>
                                     <p>{movieData?.description}</p>
@@ -310,16 +311,16 @@ const Add_Shows = () => {
                                     </div>
                                 </div>
                             </div>
-                            <h1>Cast</h1>
-                            <div className="cast">
+                            <h1 className="centre">Cast</h1>
+                            <div className="admin-cast">
                                 {movieData?.cast?.length > 0 ? (
                                     removeRepeat(movieData.cast)
                                 ) : (
                                     <p>No cast available.</p>
                                 )}
                             </div>
-                            <h1>Crew</h1>
-                            <div className="crew">
+                            <h1 className="centre">Crew</h1>
+                            <div className="admin-crew">
                                 {movieData?.crew?.length > 0 ? (
                                     removeRepeat(movieData.crew)
                                 ) : (

@@ -5,7 +5,7 @@ import Sidebar from "./components/Admin-Sidebar/Sidebar";
 import { FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
 const Admin_Profile = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -26,8 +26,7 @@ const Admin_Profile = () => {
         setIsSidebar(!isMobile);
     }, [isMobile]);
 
-
-    const fetchData = async () => {
+    const fetch = async () => {
 
         const token = Cookies.get("admin");
         try {
@@ -52,15 +51,8 @@ const Admin_Profile = () => {
             alert("Something went wrong");
 
         }
-
-
     }
-
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-
+    useEffect(() => {fetch()}, []);
 
     return (
         <>

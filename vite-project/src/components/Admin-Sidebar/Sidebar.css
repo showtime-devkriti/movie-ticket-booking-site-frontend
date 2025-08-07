@@ -9,6 +9,7 @@
     top: 0;
     left: 0;
     z-index: 1;
+    border-right: 5px solid rgb(25,25,25);
 }
 
 .admin-sidebar-logo {
@@ -22,6 +23,7 @@
     color: white;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
     margin-bottom: 15px;
 }
@@ -35,7 +37,7 @@
     color: white;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .functions div {
@@ -81,7 +83,6 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    align-items: center;
 }
 
 .top-close button {
@@ -117,5 +118,14 @@
 @media (max-width: 769px) {
     .sidebar-wrapper {
         margin-right: 0px;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+    }
+
+    .top-close {
+        display: flex;
+        justify-content: space-around;
     }
 }

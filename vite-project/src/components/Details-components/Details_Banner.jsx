@@ -29,7 +29,7 @@ const Details_Banner = ({ data, isOnScreen }) => {
         <>
             <div className="details-banner-container">
                 <div className="details-banner-front">
-                    {isSmall ? <></> : <img src={data?.poster_url}></img>}
+                    <img src={data?.poster_url}></img>
                     <div className="front-info">
                         <h1>{data?.title}</h1>
                         <div className="format">

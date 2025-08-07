@@ -81,6 +81,10 @@ table input {
 .admin-movie-preview {
     display: flex;
     flex-direction: column;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    width: 90%;
 }
 
 .shows-language {
@@ -129,8 +133,52 @@ table input {
     outline: none;
 }
 
+.admin-cast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.admin-crew {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.centre {
+    text-align: center;
+}
+
 @media (max-width: 769px) {
     .add-shows-wrapper {
         padding: 25px;
+    }
+
+    .admin-movie-preview {
+        width: 90vw;
+    }
+
+    .movie-search {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie-search button {
+        width: 100%;
+    }
+
+    .movie-search input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .movie-preview {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
