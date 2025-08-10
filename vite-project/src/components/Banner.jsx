@@ -34,6 +34,7 @@ const BannerText = ({ backdropurl, genre, id, language, rating, title, logos }) 
 
 const Banner = ({ data }) => {
     //const images = ["https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/kannappa-et00377025-1750744616.jpg", "https://assets-in.bmscdn.com/iedb/movies/images/mobile/listing/xxlarge/f1-the-movie-et00403839-1750674185.jpg"];
+    console.log(data)
     const [curr, setIndex] = useState(0);
     const navigate = useNavigate();
     const handlePrev = () => {
