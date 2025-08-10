@@ -36,7 +36,7 @@
 }
 
 .details-header .location span {
-    color: #377884;
+    color: #2479db;
     font-size: 1.1rem;
     font-weight: bold;
 }
@@ -53,15 +53,15 @@
 .details-header .menu {
     padding-right: 35px;
     cursor: pointer;
-    color: #377884;
+    color: #2479db;
 }
 
 .details-header .menu a {
-    color: #377884;
+    color: #2479db;
 }
 
 .details-header .menu svg {
-    color: #377884;
+    color: #2479db;
     cursor: pointer;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .details-location svg {
-    color: #377884;
+    color: #2479db;
 }
 
 .details-location-text {
@@ -124,7 +124,7 @@
 
 .details-header .sidebar > svg {
     cursor: pointer;
-    color: #377884;
+    color: #2479db;
 }
 
 .details-header .sidebar .sidebar-text {
@@ -146,7 +146,7 @@
 }
 
 .details-header .sidebar .logout svg {
-    color: #377884;
+    color: #2479db;
 }
 
 .details-header .sidebar a {

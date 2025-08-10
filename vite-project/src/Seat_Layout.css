@@ -1,9 +1,6 @@
 .layout-wrapper {
     padding-top: 125px;
-    background: linear-gradient(to right,
-            #1A2980 0%,
-            #26D0CE 51%,
-            #1A2980 100%);
+    background-color: #2479db;
 }
 
 .screen {
@@ -22,6 +19,7 @@
     justify-content: center;
     outline: none;
     cursor: pointer;
+    border: none;
 }
 
 .row span.Booked {
@@ -29,7 +27,7 @@
 }
 
 .row span.Available {
-    background-color: #b3c040d7;
+    background-color: rgb(200, 200, 200);
 }
 
 .row span.Selected {
@@ -112,7 +110,7 @@
     font-size: 1.25rem;
     padding: 10px 15px;
     border-radius: 25px;
-    background-color: #377884;
+    background-color: #2479db;
     color: white;
     cursor: pointer;
 }

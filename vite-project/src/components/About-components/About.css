@@ -1,5 +1,5 @@
 .aboutcircle {
-    background-color: #377884;
+    background-color: #2479db;
     border-radius: 50%;
     width: 460px;
     height: 460px;
@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    box-shadow: 0px 0px 50px #377884;
+    box-shadow: 0px 0px 50px #2479db;
     animation-name: circleshadow;
     animation-timing-function: ease-in-out;
     animation-duration: 1.5s;
@@ -21,7 +21,7 @@
     }
 
     to {
-        box-shadow: 0px 0px 50px #377884;
+        box-shadow: 0px 0px 50px #2479db;
     }
 }
 
@@ -97,7 +97,7 @@
 }
 
 .abouttext li svg {
-    color: #377884;
+    color: #2479db;
 }
 
 .abouttext p {

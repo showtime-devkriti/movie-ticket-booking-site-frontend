@@ -69,7 +69,7 @@ const Header2 = () => {
              v-20 
              a10,10 0 0,0 0,-20 
              z"
-                                                fill="#377884" />
+                                                fill="#2479db" />
                                         </g>
 
                                         <g transform="translate(-115,65) scale(1.6,1.4)">

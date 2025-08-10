@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    background-color: #377884;
+    background-color: #2479db;
     padding: 25px 40px;
     border-radius: 12px;
 }
@@ -28,7 +28,7 @@
     flex-direction: column;
     gap: 15px;
     font-size: 1.25rem;
-    background-color: #377884;
+    background-color: #2479db;
     padding: 20px 25px;
     border-radius: 12px;
 }
@@ -53,7 +53,7 @@
 
 .user-container .user-btn button {
     font-size: 1.25rem;
-    background-color: #377884;
+    background-color: #2479db;
     border-radius: 12px;
     padding: 15px 20px;
     border: none;
@@ -68,9 +68,9 @@
 }
 
 .user-container .user-btn button:hover {
-    background-color: #2f6a75;
+    background-color: #2479db;
     transform: translateY(-10%);
-    box-shadow: 0px 0px 15px #377884;
+    box-shadow: 0px 0px 15px #2479db;
 }
 
 .box {

@@ -71,10 +71,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #377884;
-    width: 60px;
-    height: 60px;
+    background-color: #2479db;
+    width: 90px;
+    height: 90px;
     padding: 15px;
+    border: none;
     border-radius: 12px;
     transform: scale(0.9);
 }

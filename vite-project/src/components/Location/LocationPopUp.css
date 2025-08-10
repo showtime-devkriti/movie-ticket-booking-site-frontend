@@ -69,7 +69,7 @@
 }
 
 .location-div h2 {
-    color: #377884;
+    color: #2479db;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 5px;
@@ -112,7 +112,7 @@
     outline: none;
     font-size: 0.9rem;
     color: #ffffff;
-    background-color: #377884;
+    background-color: #2479db;
     cursor: pointer;
     margin-left: 10px;
     transition: all 0.5s ease;
@@ -120,7 +120,7 @@
 
 .location-input input:focus,
 .location-input input:valid {
-    border-bottom: 2px solid #377884;
+    border-bottom: 2px solid #2479db;
 }
 
 .location-list {
@@ -141,7 +141,7 @@
     max-width: 120px;
     max-height: 50px;
     border-radius: 10px;
-    background-color: #377884;
+    background-color: #2479db;
     color: #ffffff ;
     font-weight: 400;
     font-size: 1.1rem
@@ -161,7 +161,7 @@
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
-    color: #377884;
+    color: #2479db;
     cursor: pointer;
 }
 
@@ -174,7 +174,7 @@
 }
 
 .language-div h2 {
-    color: #377884;
+    color: #2479db;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 5px;
@@ -211,7 +211,7 @@
     outline: none;
     font-size: 0.9rem;
     color: #ffffff;
-    background-color: #377884;
+    background-color: #2479db;
     cursor: pointer;
     margin-left: 10px;
     transition: all 0.3s ease;
@@ -219,7 +219,7 @@
 
 .language-input input:focus,
 .language-input input:valid {
-    border-bottom: 2px solid #377884;
+    border-bottom: 2px solid #2479db;
 }
 
 .language-list {
@@ -240,7 +240,7 @@
     padding: 10px;
     max-height: 60px;
     border-radius: 10px;
-    background-color: #377884;
+    background-color: #2479db;
     color: #ffffff ;
     font-weight: 400;
     font-size: 1.2rem;

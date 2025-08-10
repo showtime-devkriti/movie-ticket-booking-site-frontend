@@ -120,10 +120,19 @@
     font-size: 1rem;
 }
 
-.timings  div {
+.timings div {
     border: 1px solid green;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 15px 20px;
+}
+
+.timings button {
+    background-color: #2479db;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    font-size: 1.25rem;
 }
 
 .timings a{
@@ -131,6 +140,7 @@
     border: 1px solid green;
     border-radius: 5px;
     padding: 5px 10px;
+    font-size: 1.25rem;
 }
 
 .h-centre {

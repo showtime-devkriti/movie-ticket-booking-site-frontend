@@ -11,7 +11,7 @@
 }
 
 .booking-title svg {
-    color: #377884;
+    color: #2479db;
 }
 
 .prev-bookings img {
@@ -47,7 +47,7 @@
 
 .booking-info {
     position: relative;
-    width: 50vw;
+    width: 75vw;
 }
 
 .booking-info .price {

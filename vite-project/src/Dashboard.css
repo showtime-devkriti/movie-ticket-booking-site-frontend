@@ -10,6 +10,11 @@
 .dashboard .theatre-location {
     display: flex;
     gap: 0px;
+    font-size: 1.25rem;
+}
+
+.dashboard .theatre-location svg {
+    color: #2479db;
 }
 
 .dashboard .admin-moviecards {

@@ -8,6 +8,8 @@ import Cookies from "js-cookie"
 import { data } from "react-router-dom";
 
 const BookingCard = ({ booking }) => {
+    console.log(booking)
+
     const runtime = () => {
         let screenTime = parseInt(booking?.runtime);
         const hrs = Math.floor(screenTime / 60);
@@ -101,9 +103,9 @@ const Booking_History = () => {
                     <GoHistory size={35} />
                 </div>
                 <div className="prev-bookings">
-                    {data?.map((booking, index) => (
-                        <BookingCard key={index} booking={booking} />
-                    ))}
+                    {data ? [...data].reverse().map((booking, index) => (
+  <BookingCard key={index} booking={booking} />
+)) : null}
                 </div>
             </div>
             <Footer />

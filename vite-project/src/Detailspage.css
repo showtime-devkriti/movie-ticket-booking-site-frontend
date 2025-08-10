@@ -5,6 +5,11 @@
     padding-left: 25px;
 }
 
+.detailspage-details h1 {
+    color: #2479db;
+    text-shadow: 0px 0px 10px #2479db;
+}
+
 .detailspage-details span {
     font-size: 1.3rem;
 }
