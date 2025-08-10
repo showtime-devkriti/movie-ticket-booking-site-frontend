@@ -35,6 +35,8 @@ const Contact = () => {
             body: JSON.stringify(contactData)
         });
 
+        console.log(contactData)
+
         if(result.ok){
             console.log("successful")
         }
@@ -73,19 +75,19 @@ const Contact = () => {
                     <form>
                         <div className="contact-name">
                             <label>Full Name</label>
-                            <input type="text" name="fullname" value={contactData.fullname} id="fullname" onChange={handleContactChange}></input>
+                            <input type="text" name="fullname" value={contactData.fullname} id="fullname" onChange={handleContactChange} required></input>
                         </div>
                         <div className="contact-number">
                             <label>Phone Number</label>
-                            <input type="text" name="phonenumber" value={contactData.phonenumber} id="phonenumber" onChange={handleContactChange}></input>
+                            <input type="text" name="phonenumber" value={contactData.phonenumber} id="phonenumber" onChange={handleContactChange} required></input>
                         </div>
                         <div className="contact-mail">
                             <label>Email</label>
-                            <input type="text" name="email" value={contactData.email} id="email" onChange={handleContactChange}></input>
+                            <input type="text" name="email" value={contactData.email} id="email" onChange={handleContactChange} required></input>
                         </div>
                         <div className="contact-query">
                             <label>How can we help?</label>
-                            <textarea type="text" name="description" id="description" onChange={handleContactChange} value={contactData.description}></textarea>
+                            <textarea type="text" name="description" id="description" onChange={handleContactChange} value={contactData.description} required></textarea>
                         </div>
                         <div className="contact-submit">
                             <button onClick={handleContact}>Submit</button>

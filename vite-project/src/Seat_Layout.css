@@ -1,13 +1,17 @@
 .layout-wrapper {
     padding-top: 125px;
     background-color: #2479db;
+    min-height: 100vh;
 }
 
+/* Screen Image */
 .screen {
-    width: 1000px;
+    width: 70%;
     padding: 20px 0px;
+    margin-bottom: 10vmax;
 }
 
+/* Seat styles */
 .row span {
     padding: 10px;
     width: 25px;
@@ -20,6 +24,7 @@
     outline: none;
     cursor: pointer;
     border: none;
+    font-size: 0.85rem;
 }
 
 .row span.Booked {
@@ -38,23 +43,29 @@
     background-color: #868686;
 }
 
+/* Row layout — No wrapping, allow scroll */
 .row {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
+    flex-shrink: 0;
+    min-width: max-content;
 }
 
 .row h2 {
     color: white;
 }
 
+/* Column wrapper */
 .column {
     display: flex;
     flex-direction: column;
-    /* gap: 5px; */
+    overflow-x: scroll;
+    padding: 25px;
 }
 
+/* Tooltip */
 .tooltip {
     position: relative;
     display: inline-block;
@@ -78,16 +89,19 @@
     visibility: visible;
 }
 
+/* Screen section */
 .district-screen {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Bottom bar positioning */
 .bottom-bar-container {
     position: relative;
     overflow: hidden;
-    height: 100px;
+    height: auto;
+    margin-top: 100px;
 }
 
 .bottom-bar {
@@ -97,11 +111,13 @@
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     color: white;
-    padding: 15px 0px;
+    padding: 15px 10px;
     position: fixed;
     bottom: 0;
     width: 100vw;
     z-index: 1;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .bottom-bar button {
