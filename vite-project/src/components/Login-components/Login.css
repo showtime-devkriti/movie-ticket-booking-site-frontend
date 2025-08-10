@@ -169,7 +169,7 @@ form h2 {
 
 .submit button {
     width: 250px;
-    background: linear-gradient(#bc324e,#DC143C);
+    background-color: #2479db;
     color: #fff;
     font-weight: 600;
     border: none;
@@ -209,13 +209,13 @@ button:hover {
 }
 
 
-input:-webkit-autofill,
+/* input:-webkit-autofill,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:active {
     box-shadow: 0 0 0 1000px transparent inset !important;
-    -webkit-text-fill-color: #ffffff !important; /* Optional: set your text color */
+    -webkit-text-fill-color: #ffffff !important; 
     transition: background-color 5000s ease-in-out 0s;
     font-family: inherit;
     background-color: transparent !important;
-  }
+  } */

@@ -1,9 +1,11 @@
 import React from "react";
 import "./Cancel.css";
 import { MdOutlineEventSeat } from "react-icons/md";
+import About_Header from "./components/About-components/About_Header";
 
 const Cancel = () => {
     return (<>
+       <About_Header />
         <div className="cancel-wrapper">
             <div className="cancel">
                 <div className="cancel-data">

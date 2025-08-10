@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './Contact.css';
 import About_Header from "./components/About-components/About_Header";
 import Footer from "./components/Footer";
@@ -6,8 +6,40 @@ import { FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdAccessTimeFilled } from "react-icons/md";
+import Cookies from "js-cookie"
 
 const Contact = () => {
+    const [contactData, setContactData] = useState({
+        fullname: "", 
+        phonenumber: "",
+        email: "", 
+        description: ""
+    })
+
+    const handleContactChange = (e) => {
+        const { name, value } = e.target;
+        setContactData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleContact = async (e) => {
+        e.preventDefault();
+        const token = Cookies.get("token");
+
+        const result = await fetch("http://localhost:3000/api/user/contactus", {
+            method: "POST",
+            headers: {
+                "authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(contactData)
+        });
+
+        if(result.ok){
+            console.log("successful")
+        }
+    }
+
     return (
         <>
             <About_Header />
@@ -41,22 +73,22 @@ const Contact = () => {
                     <form>
                         <div className="contact-name">
                             <label>Full Name</label>
-                            <input type="text" name="fullname" id="fullname"></input>
+                            <input type="text" name="fullname" value={contactData.fullname} id="fullname" onChange={handleContactChange}></input>
                         </div>
                         <div className="contact-number">
                             <label>Phone Number</label>
-                            <input type="text" name="phonenumber" id="phonenumber"></input>
+                            <input type="text" name="phonenumber" value={contactData.phonenumber} id="phonenumber" onChange={handleContactChange}></input>
                         </div>
                         <div className="contact-mail">
                             <label>Email</label>
-                            <input type="text" name="email" id="email"></input>
+                            <input type="text" name="email" value={contactData.email} id="email" onChange={handleContactChange}></input>
                         </div>
                         <div className="contact-query">
                             <label>How can we help?</label>
-                            <textarea></textarea>
+                            <textarea type="text" name="description" id="description" onChange={handleContactChange} value={contactData.description}></textarea>
                         </div>
                         <div className="contact-submit">
-                            <button>Submit</button>
+                            <button onClick={handleContact}>Submit</button>
                         </div>
                     </form>
                 </div>
