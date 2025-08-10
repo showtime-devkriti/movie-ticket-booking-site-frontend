@@ -114,15 +114,14 @@ const Home = () => {
     });
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const location = localStorage.getItem("location")
-    const language = localStorage.getItem("language")
+    const on = sessionStorage.getItem("alreadyTriggered")
 
     const fetchData = async () => {
         setLoading(true);
         try {
             const lang = localStorage.getItem("language");
             const result = await getHome(lang);
-            sessionStorage.setItem("home", JSON.stringify(result))
+            localStorage.setItem("home", JSON.stringify(result))
             setData(result);
             console.log("Fetched data:", result);
         } catch (err) {
@@ -140,19 +139,25 @@ const Home = () => {
             return;
         }
 
-        const res = sessionStorage.getItem("home")
+        const res = localStorage.getItem("home")
+        console.log(res)
         let parsed
         try {
-            parsed = res ? JSON.parse(res) : [];
+            parsed = res ? JSON.parse(res) : null;
         } catch (e) {
             console.error("Failed to parse localStorage movie data:", e);
         }
         console.log(parsed)
-        if (parsed == []) {
+        if (!parsed) {
+
             fetchData();
         } else {
-            setData(parsed);
-            setLoading(false)
+            if (!on) {
+                fetchData();
+            } else {
+                setData(parsed);
+                setLoading(false)
+            }
         }
 
     }, [navigate]);

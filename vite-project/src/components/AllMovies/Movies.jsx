@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./Movies.css"
 import MoviesCard from "./MoviesCard";
 import Header2 from "../About-components/About_Header";
