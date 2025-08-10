@@ -127,12 +127,12 @@ const Detailspage = () => {
                 console.log(onScreen)
 
                 const imgUrls = [];
-                imgUrls.push(result.poster_url)
-                imgUrls.push(result.backdrop_url)
-                imgUrls.push(result.cast.filter(cast => cast.profile && cast.profile).map(cast => cast.profile))
-                imgUrls.push(result.crew.filter(crew => crew.profile && crew.profile).map(crew => crew.profile))
-                imgUrls.push(result.recommended.map(item => item.poster_url))
-                imgUrls.push(result.title_logo)
+                imgUrls.push(result?.poster_url)
+                imgUrls.push(result?.backdrop_url)
+                imgUrls.push(result?.cast.filter(cast => cast.profile && cast.profile).map(cast => cast.profile))
+                imgUrls.push(result?.crew.filter(crew => crew.profile && crew.profile).map(crew => crew.profile))
+                imgUrls.push(result?.recommended.map(item => item.poster_url))
+                imgUrls.push(result?.title_logo)
 
                 const imagePromises = imgUrls.map((url) =>
                     new Promise((resolve) => {

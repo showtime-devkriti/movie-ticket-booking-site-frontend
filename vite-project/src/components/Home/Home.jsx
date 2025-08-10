@@ -46,6 +46,7 @@ const Carousel = ({ title, movies, index }) => {
     const scrollRef = useRef(null);
     const [atStart, setAtStart] = useState(true);
     const [atEnd, setAtEnd] = useState(false);
+    const navigate = useNavigate()
 
     const checkScrollPosition = () => {
         const el = scrollRef.current;
@@ -75,6 +76,10 @@ const Carousel = ({ title, movies, index }) => {
         };
     }, [movies]);
 
+    const moreHandler = () => {
+        navigate("/movies/all")
+    }
+
     return (
         <div className="carousel-container">
             <div className="showing"><h1>{title}</h1></div>
@@ -83,9 +88,12 @@ const Carousel = ({ title, movies, index }) => {
                     <MdKeyboardArrowLeft size={50} />
                 </div>
                 <div ref={scrollRef} className="scroll-div">
-                    {movies.map((item, i) => (
+                    {movies?.map((item, i) => (
                         <GenreCard key={i} {...item} />
                     ))}
+                    <div className="more" onClick={moreHandler}>
+                        More movies
+                    </div>
                 </div>
                 <div className={`scroll-right ${!atEnd ? "" : "hidden"}`} onClick={() => handleScroll('right')}>
                     <MdKeyboardArrowRight size={50} />
@@ -106,6 +114,23 @@ const Home = () => {
     });
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const location = localStorage.getItem("location")
+    const language = localStorage.getItem("language")
+
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const lang = localStorage.getItem("language");
+            const result = await getHome(lang);
+            sessionStorage.setItem("home", JSON.stringify(result))
+            setData(result);
+            console.log("Fetched data:", result);
+        } catch (err) {
+            console.error("Failed to fetch data:", err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         const token = Cookies.get("token");
@@ -115,20 +140,21 @@ const Home = () => {
             return;
         }
 
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const result = await getHome();
-                setData(result);
-                console.log("Fetched data:", result);
-            } catch (err) {
-                console.error("Failed to fetch data:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
+        const res = sessionStorage.getItem("home")
+        let parsed
+        try {
+            parsed = res ? JSON.parse(res) : [];
+        } catch (e) {
+            console.error("Failed to parse localStorage movie data:", e);
+        }
+        console.log(parsed)
+        if (parsed == []) {
+            fetchData();
+        } else {
+            setData(parsed);
+            setLoading(false)
+        }
 
-        fetchData();
     }, [navigate]);
 
     if (loading) return <div className="loader-container" >
@@ -138,13 +164,13 @@ const Home = () => {
     return (
         <>
             <Header2 />
-            <Banner data={data.banners} />
+            <Banner data={data?.banners} />
 
-            <Carousel title="Now Showing" movies={data.recommended} />
-            <Carousel title="Comedy" movies={data.comedy} />
-            <Carousel title="Crime" movies={data.crime} />
-            <Carousel title="Action and Adventure" movies={data.actionAndAdventure} />
-            <Carousel title="Romance" movies={data.romance} />
+            <Carousel title="Now Showing" movies={data?.recommended} />
+            <Carousel title="Comedy" movies={data?.comedy} />
+            <Carousel title="Crime" movies={data?.crime} />
+            <Carousel title="Action and Adventure" movies={data?.actionAndAdventure} />
+            <Carousel title="Romance" movies={data?.romance} />
 
             <Footer />
         </>

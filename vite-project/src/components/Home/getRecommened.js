@@ -195,9 +195,8 @@ const formatMovies = async (movies) => {
     );
 };
 
-const getHome = async function () {
+const getHome = async function (lang) {
     try {
-        const lang = localStorage.getItem("language");
         const userLang = lang || "en";
 
         const baseUrl = "https://api.themoviedb.org/3";

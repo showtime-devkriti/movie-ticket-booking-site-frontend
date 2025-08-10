@@ -49,40 +49,65 @@ const options = {
 };
 
 
-//https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1
+const searchCache = new Map();
 
-const getSearchResults = async function getSearchResults(query, language) {
-    const lang_code = languageMap[language] || "en";
+async function getSearchResults(query, language, page = 1) {
+    const lang_code = languageMap[language] || "en-US";
+    const cacheKey = `${query.toLowerCase()}|${lang_code}|${page}`;
 
-    const fetchPage = async () => {
-        console.log(lang_code)
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?&query=${query}&include_adult=false&with_original_language=${lang_code}`, options);
-        if (!res.ok) return [];
+    if (searchCache.has(cacheKey)) {
+        console.log(`✅ Cache HIT for: ${cacheKey}`);
+        return searchCache.get(cacheKey);
+    }
+    console.log(`🔍 API MISS for: ${cacheKey}. Fetching...`);
+
+    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=${lang_code}&region=IN&page=${page}`;
+
+    try {
+        const res = await fetch(url, options);
+        if (!res.ok) {
+            console.error("TMDB API Error:", res.status, res.statusText);
+            return { results: [], totalPages: 0 };
+        }
+
         const data = await res.json();
-        // return data.results
-        //     .map(movie => ({
-        //         id: movie.id,
-        //         title: movie.title,
-        //         posterurl: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "",
-        //         o_language: movie.original_language,
-        //     }));
-        return data
-    };
+        const filteredResults = filterResultsByLanguage(data.results, lang_code);
+        const responsePayload = {
+            results: filteredResults.map((movie) => ({
+                id: movie.id,
+                title: movie.title,
+                poster_url: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "",
+                rating: movie.vote_average,
+                genre: movie.genre_ids.map(id => genreMap[id]),
+            })),
+            totalPages: data.total_pages
+        };
 
-    // for (let i = 1; i <= pageLimit; i += batchSize) {
-    //     const batch = Array.from({ length: batchSize }, (_, idx) => i + idx).filter(p => p <= pageLimit);
-    //     const results = await Promise.all(batch.map(page => fetchPage(page)));
-    //     results.forEach(movies => allMovies.push(...movies));
-    //     console.log(`Fetched pages ${batch[0]} to ${batch[batch.length - 1]}`);
+        searchCache.set(cacheKey, responsePayload); 
+        return responsePayload;
 
-    //     // wait 10 seconds to avoid hitting rate limit
-    //     await delay(10000);
-    // }
-    //fetchPage(1)
-
-    console.log( await fetchPage());
-    //return movies;
+    } catch (error) {
+        console.error("Network or fetch error:", error);
+        return { results: [], totalPages: 0 };
+    }
 }
+
+function filterResultsByLanguage(results, lang_code) {
+    const selectedLanguage = (lang_code || 'en-US').split('-')[0];
+    const allowedLanguages = new Set([selectedLanguage, 'en', 'hi']);
+    
+    //console.log("Filtering with allowed languages:", allowedLanguages);
+
+    const filtered = results.filter(movie => {
+        const originalLang = movie.original_language?.trim().toLowerCase();
+        //console.log(originalLang)
+        return originalLang && allowedLanguages.has(originalLang);
+    });
+
+    console.log(`Filtered ${results.length} raw results down to ${filtered.length}.`);
+    return filtered;
+}
+
 
 const getMovieById = async (tmdbId) => {
     try {
@@ -152,7 +177,7 @@ const getMovieById = async (tmdbId) => {
             .then(res => res.json())
 
 
-        
+
 
         const videos = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/videos?language=en-US`, options)
             .then(res => res.json())
@@ -307,7 +332,7 @@ const getMovie = async (imdb_id) => {
             .then(res => res.json())
 
 
-        
+
 
         const videos = await fetch(`https://api.themoviedb.org/3/movie/${tmdbId}/videos?language=en-US`, options)
             .then(res => res.json())
