@@ -1,4 +1,4 @@
-# Movie Ticket Booking Site - Frontend
+# SHOWTIME - Movie Ticket Booking Site - Frontend
 
 A React-based frontend for the Movie Ticket Booking system, allowing users to browse movies, select seats, and purchase tickets.
 
@@ -11,6 +11,13 @@ A React-based frontend for the Movie Ticket Booking system, allowing users to br
 * Interactive seat selection with class-based pricing.
 * Integration with backend API for booking and payment.
 * Responsive design optimized for desktop and mobile devices.
+* Admin panel for adding shows and screens.
+
+---
+
+## Technologies
+
+* React.js
 
 ---
 
@@ -77,3 +84,10 @@ Run all tests:
 ```sh
 npm test
 ```
+# Team Members
+
+* Vancha Manisharan Reddy
+* Gajula Rahul
+* Pendem Yashwanth Kumar
+
+---
