@@ -1,0 +1,42 @@
+.forgot-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    background-image: url("https://media.istockphoto.com/id/915697084/photo/concept-of-reserved-seats.jpg?s=612x612&w=0&k=20&c=vYKpKwkfF3FLLt-v9UUgOZop9veyg-nen8QxFKnhDro=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'open sans', sans-serif;
+}
+
+.wrapper {
+    width: 400px;
+    border-radius: 15px;
+    padding: 35px 25px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    transition: height 0.3s ease;
+}
+
+.wrapper .forgot-form {
+    position: relative;
+    text-align: center;
+    width: 400px;
+    opacity: 1;
+    transition: all 0.1s ease;
+    visibility: visible;
+}
+
+.forgot-form .submit {
+    margin-top: 35px;
+}
+
+.loader-container{
+    z-index: 10;
+    position: absolute;
+}

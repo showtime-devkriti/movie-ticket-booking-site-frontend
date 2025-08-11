@@ -33,6 +33,7 @@ import Add_Screens from './Add_Screens';
 import Book_Preview from './Book_Preview';
 import Forgot_Password from './Forgot_Password';
 import Cancel from './Cancel';
+import Verify from "./Verify"
 
 const GenreCard = ({ id, language, posterurl, rating, title }) => {
     return (
@@ -252,6 +253,7 @@ function App() {
                 <Route path="/admin/screens" element={<Add_Screens />} />
                 <Route path='/book-preview' element={<Book_Preview />} />
                 <Route path='/forgot' element={<Forgot_Password />} />
+                <Route path='/verify' element={<Verify />} />
                 <Route path='/cancel' element={<Cancel />} />
             </Routes>
         </Router>

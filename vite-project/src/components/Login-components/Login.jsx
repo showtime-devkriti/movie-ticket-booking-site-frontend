@@ -116,8 +116,8 @@ const Login = () => {
             const result = await res.json();
 
             if (res.ok) {
-                alert("Registration successful!");
-                setIsLogin(true);
+            
+                navigate("/verify", {state: registerData})
                 setRegisterData({
                     email: "",
                     password: "",

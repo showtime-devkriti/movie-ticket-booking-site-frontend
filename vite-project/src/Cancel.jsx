@@ -76,7 +76,7 @@ const Cancel = () => {
                 <div className="cancel">
                     <div className="cancel-data">
                         <img
-                            src={booking.poster || "https://via.placeholder.com/250x350?text=No+Image"}
+                            src={booking?.poster || "https://via.placeholder.com/250x350?text=No+Image"}
                             alt="poster"
                         />
                         <div className="cancel-movie-data">

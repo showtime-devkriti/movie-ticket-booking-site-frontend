@@ -4,7 +4,8 @@ import { GoHistory } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
 import About_Header from "./components/About-components/About_Header";
 import Footer from "./components/Footer";
-import Cookies from "js-cookie";
+import Cookies from "js-cookie"
+import { data } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const BookingCard = ({ booking }) => {
@@ -25,10 +26,32 @@ const BookingCard = ({ booking }) => {
         const hrs = time.split(":")[0];
         const min = time.split(":")[1];
         if (hrs <= 12) {
-            return `${hrs}:${min}`;
-        } else {
-            return `${hrs - 12}:${min}`;
+            return (`${hrs} : ${min} AM`)
         }
+        else {
+            return (`${hrs - 12}:${min} PM`)
+        }
+    }
+
+    const toIST = (isoString) => {
+        if (!isoString) {
+            return "Invalid date provided";
+        }
+
+        const dateObj = new Date(isoString);
+
+        if (isNaN(dateObj.getTime())) {
+            return "Invalid date format";
+        }
+
+        const options = {
+            timeZone: 'Asia/Kolkata', 
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true 
+        };
+
+        return dateObj.toLocaleString('en-US', options);
     };
 
     function formatDate(dateStr) {
@@ -49,7 +72,7 @@ const BookingCard = ({ booking }) => {
             onClick={handleClick}
             style={{ cursor: "pointer" }}
         >
-            <img src="https://imgs.search.brave.com/DSBfSKhb2zVFAokqodsgiCcGzkyQLG_7m9n4a5k1zAc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvZW4vdGh1bWIv/MC8wMC9TcGlkZXIt/TWFuX05vX1dheV9I/b21lX3Bvc3Rlci5q/cGcvMjUwcHgtU3Bp/ZGVyLU1hbl9Ob19X/YXlfSG9tZV9wb3N0/ZXIuanBn" alt="poster" />
+            <img src={booking?.showtime?.poster} alt="poster" />
             <div className="booking-info">
                 <h1>{booking?.movietitle}</h1>
                 <div className="runtime">{runtime()}</div>
@@ -85,7 +108,9 @@ const BookingCard = ({ booking }) => {
 };
 
 const Booking_History = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const token = Cookies.get("token");
