@@ -41,8 +41,8 @@ const Header2 = () => {
     };
 
     const handleLogout = () => {
-        Cookies.remove("token");  // Remove token cookie
-        navigate("/");       // Redirect to login page
+        Cookies.remove("token"); 
+        navigate("/");      
     };
 
     return (

@@ -4,7 +4,7 @@ import About_Header from "./components/About-components/About_Header";
 import Footer from "./components/Footer";
 import { TbLogout } from "react-icons/tb";
 import { FaEdit } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPhone } from "react-icons/fa6";
 import { MdMail } from "react-icons/md";
 import Cookies from "js-cookie"
@@ -72,6 +72,7 @@ const User = () => {
     const [data, setData] = useState(null)
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({ ...data });
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -90,6 +91,10 @@ const User = () => {
 
     useEffect(() => {
         const token = Cookies.get("token")
+
+        if(!token) {
+            navigate("/")
+        }
 
         const fetchBooking = async () => {
             const result = await fetch("http://localhost:3000/api/user/myprofile",

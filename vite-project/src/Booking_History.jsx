@@ -78,6 +78,10 @@ const Booking_History = () => {
     useEffect(() => {
         const token = Cookies.get("token")
 
+        if (!token) {
+            navigate("/")
+        }
+
         const fetchBooking = async () => {
             const result = await fetch("http://localhost:3000/api/user/yourbookings",
                 {
@@ -104,8 +108,8 @@ const Booking_History = () => {
                 </div>
                 <div className="prev-bookings">
                     {data ? [...data].reverse().map((booking, index) => (
-  <BookingCard key={index} booking={booking} />
-)) : null}
+                        <BookingCard key={index} booking={booking} />
+                    )) : null}
                 </div>
             </div>
             <Footer />

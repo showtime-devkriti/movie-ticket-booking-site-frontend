@@ -1,66 +1,41 @@
-// import React, {useState} from "react";
-// import "./GenreDropDown.css"
-// import { FaTheaterMasks } from "react-icons/fa";
-
-// const Content = ({open}) => {
-//     return <>
-        
-//     </>
-// }
-
-// const Button = ({ open, toggle }) => {
-//     return <>
-//         <div className={`drop-btn ${open ? "active" : ""}`} onClick={toggle}>
-//             <FaTheaterMasks size={30} />
-//             <div>Genre</div>
-//         </div>
-//     </>
-// }
-
-
-// const GenreDropDown = () => {
-//     const [open, setOpen] = useState(false);
-
-//     const toggle = () => {
-//         setOpen(!open);
-//     }
-
-//     return <>
-//         <Button open={open} toggle={toggle} />
-//     </>
-// }
-
-// export default GenreDropDown;
-
 import React, { useState, useRef, useEffect } from "react";
 import "./GenreDropDown.css";
 import { FaTheaterMasks } from "react-icons/fa";
 
-const Content = ({ open, width }) => {
+const Content = ({ open, width, toggle, setGenre }) => {
+
+    const handler = (e) => {
+        const value = e.target.getAttribute("value");
+        console.log(value)
+        setGenre(value)
+        toggle()
+    }
+
     return (
         <div className={`drop-down ${open ? "" : "hidden"}`} style={{width: `${width}px`}}>
             <input type="text"></input>
             <ul>
-                <li>Action</li>
-                <li>Comedy</li>
-                <li>Drama</li>
-                <li>Horror</li>
-                <li>Romance</li>
+                <li value="Action" onClick={handler}>Action</li>
+                <li value="Comedy" onClick={handler}>Comedy</li>
+                <li value="Drama" onClick={handler}>Drama</li>
+                <li value="Horror" onClick={handler}>Horror</li>
+                <li value="Romance" onClick={handler}>Romance</li>
             </ul>
         </div>
     );
 };
 
-const Button = ({ open, toggle }) => {
+const Button = ({ open, toggle, genre }) => {
     return (
         <div className={`drop-btn ${open ? "active" : ""}`} onClick={toggle}>
             <FaTheaterMasks size={30} />
-            <div>Genre</div>
+            {open && <div>Genre</div>}
+            {genre ? !open && <div>{genre}</div> : !open && <div>Genre</div>}
         </div>
     );
 };
 
-const GenreDropDown = ({width}) => {
+const GenreDropDown = ({width, setGenre, genre}) => {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef();
 
@@ -81,8 +56,8 @@ const GenreDropDown = ({width}) => {
 
     return (
         <div className="dropdown-wrapper" ref={dropdownRef}>
-            <Button open={open} toggle={toggle} />
-            <Content open={open} width={width}/>
+            <Button open={open} toggle={toggle} genre={genre}/>
+            <Content open={open} width={width} toggle={toggle} setGenre={setGenre}/>
         </div>
     );
 };

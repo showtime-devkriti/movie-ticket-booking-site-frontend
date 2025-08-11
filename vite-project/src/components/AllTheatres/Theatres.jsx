@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Theatres.css"
 import TheatreCard from "./TheatreCard";
 import Header from "../About-components/About_Header";
 import Footer from "../Footer";
 import { IoIosSearch } from "react-icons/io";
 import { FaMapLocationDot } from "react-icons/fa6";
+import LocationDropDown from "./Location/LocationDropDown";
+import Cookies from "js-cookie"
 
 const theatres = [
     {
@@ -44,36 +46,82 @@ const theatres = [
     }
 ]
 
-const Search = () => {
+const Search = ({ theatreSearch }) => {
+    const [input, setInput] = useState("")
+
+    const handler = (e) => {
+        const value = e.target.value;
+        setInput(value)
+        theatreSearch(value)
+    }
+
     return <div className="search-wrapper">
         <div className="search-bar-container">
             <span><IoIosSearch size={25} /></span>
             <div className="search-input">
-                <input type="text" placeholder="Search for movies and theaters" ></input>
+                <input type="text" placeholder="Search for movies and theaters" value={input} onChange={handler} ></input>
             </div>
         </div>
     </div>
 }
 
 const Theatres = () => {
+    const divRef = useRef(null);
+    const [width, setWidth] = useState(0)
+    const [location, setLocation] = useState("Hyderabad")
+    const [theatres, setTheatres] = useState(null)
+
+    useEffect(() => {
+        if (divRef.current) {
+            setWidth(divRef.current.offsetWidth);
+        }
+
+        theatreSearch("")
+    }, []);
+
+    useEffect(() => {
+        console.log(theatres)
+    }, [theatres])
+
+    const theatreSearch = async (query) => {
+        const token = Cookies.get("token")
+
+        if (!token) {
+            navigate("/")
+        }
+
+        console.log(query)
+        const res = await fetch(`http://localhost:3000/api/theatres/alltheatres?search=${query}&location=${location}`, {
+            method: "GET",
+            headers: {
+                "authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        });
+        if (res.ok) {
+            const data = await res.json();
+            //console.log(data);
+            setTheatres(data);
+        }
+    }
+
     return <>
         <Header />
         <div className="movie-container">
             <div className="h">
                 <h1 className="theatre-heading">All Theatres</h1>
                 <div className="search-div">
-                    <Search />
+                    <Search theatreSearch={theatreSearch} />
                 </div>
-                <div className="location">
-                    <FaMapLocationDot />
-                    <p>Location</p>
+                <div className="language-filter" ref={divRef}>
+                    <LocationDropDown width={width} setLocation={setLocation} location={location} />
                 </div>
             </div>
             <div className="list">
-                <TheatreCard />
-                <TheatreCard />
-                <TheatreCard />
-                <TheatreCard />
+                {theatres?.map((theatre, i) => (
+                    <TheatreCard key={i} {...theatre} />
+                ))}
             </div>
         </div>
         <Footer />

@@ -119,7 +119,7 @@ const Detailspage = () => {
                 setData(result);
                 console.log("Fetched details:", result);
 
-                const onScreen = await fetch(`http://localhost:3000/api/ismovieonscreen?movieid=${data?.imdb_id}`, {
+                const onScreen = await fetch(`http://localhost:3000/api/ismovieonscreen?movieid=${result?.imdb_id}`, {
                     method: "GET",
                     headers: { "Content-Type": "application/json" },
                 }).then((res) => res.json())

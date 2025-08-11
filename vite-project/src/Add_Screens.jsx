@@ -151,6 +151,10 @@ const Add_Screens = () => {
     useEffect(() => {
         const admin = Cookies.get("admin")
 
+        if (!admin) {
+            navigate("/")
+        }
+
         const fetchData = async () => {
             const getScreens = await fetch("http://localhost:3000/api/admin/getscreen", {
                 method: "GET",

@@ -44,11 +44,11 @@
 
 .list{
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    
     padding-top: 30px;
     padding-left: 60px;
     padding-right: 60px;
-    flex-direction: column;
     gap: 20px;
 }
 

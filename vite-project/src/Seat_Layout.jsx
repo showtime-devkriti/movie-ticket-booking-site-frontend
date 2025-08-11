@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import "./Seat_Layout.css";
-import Layout_Header from "./components/Layout-components/Layout_Header";
+import About_Header from "./components/About-components/About_Header";
 import { io } from "socket.io-client";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom"
 import { useState } from "react";
@@ -21,11 +21,10 @@ const getStableUserId = () => {
     return userId;
 };
 
-function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing }) {
+function SeatMatrix({ seatLayout, showtimeid, setTotalSeats, setCost, pricing, userId }) {
     const [seatMatrix, setSeatMatrix] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [lockedSeats, setLockedSeats] = useState(new Map());
-    const [userId] = useState(getStableUserId());
     const [isConnected, setIsConnected] = useState(socket.connected);
 
 
@@ -224,10 +223,15 @@ const Seat_Layout = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { show } = location.state || {}
+    const [userId] = useState(getStableUserId());
 
     const fetchData = async () => {
         if (!id) return
         const token = Cookies.get("token")
+
+        if (!token) {
+            navigate("/")
+        }
         try {
             const response = await axios.get(
                 `http://localhost:3000/api/bookticket/${id}`,
@@ -258,12 +262,14 @@ const Seat_Layout = () => {
                 selectedSeats: totalSeats,
                 cost: cost,
                 screenData: data,
-                theatreData: show
+                theatreData: show,
+                userid: userId
             }
         })
     }
 
-    useEffect(() => {console.log(totalSeats)
+    useEffect(() => {
+        console.log(totalSeats)
     }, [totalSeats])
 
     if (loading) return <div className="loader-container" >
@@ -273,8 +279,8 @@ const Seat_Layout = () => {
     return (
         <>
             <div className="layout-wrapper">
-                <Layout_Header />
-                <SeatMatrix seatLayout={data?.seatLayout} showtimeid={data.showtimeid} setTotalSeats={setTotalSeats} setCost={setCost} pricing={data?.pricing} />
+                <About_Header />
+                <SeatMatrix seatLayout={data?.seatLayout} showtimeid={data.showtimeid} userId={userId} setTotalSeats={setTotalSeats} setCost={setCost} pricing={data?.pricing} />
                 <div className="district-screen">
                     <img className="screen" src="https://district.ticketnew.com/movies_assets/_next/static/media/screen-img-light.b7b18ffd.png"></img>
                 </div>

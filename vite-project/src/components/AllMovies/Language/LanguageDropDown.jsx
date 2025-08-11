@@ -1,140 +1,46 @@
-// import { forwardRef, useEffect, useRef, useState } from "react";
-// import "./LanguageDropDown.css"
-// import { IoLanguage } from "react-icons/io5";
-// import { TbBrandCohost } from "react-icons/tb";
-
-// const Content = forwardRef((props, ref) => {
-//     const { open, top, left } = props;
-
-//     return <>
-//         <div ref={ref} className={`drop-down ${open ? "" : "hidden"}`} style={{ top: top ? `${top}px` : "-1%", left: left ? `${left}px` : "-10%" }}>
-
-//         </div>
-//     </>
-// })
-
-// const Button = forwardRef((props, ref) => {
-//     const { open, toggle } = props;
-
-//     return <>
-//         <div ref={ref} className={`drop-btn ${open ? "active" : ""}`} onClick={toggle}>
-//             <IoLanguage size={30} />
-//             <div>Language</div>
-//         </div>
-//     </>
-// })
-
-// const LanguageDropDown = () => {
-//     const [open, setOpen] = useState(false);
-//     const [dropDownTop, setDropDownTop] = useState(0);
-//     const [dropDownLeft, setDropDownLeft] = useState(0);
-//     const dropDownRef = useRef();
-//     const buttonRef = useRef();
-//     const contentRef = useRef();
-
-//     const toggle = () => {
-//         if (!open) {
-//             // const spaceTop = window.innerHeight - buttonRef.current.getBoundingClientRect().bottom;
-//             // const cHeight = contentRef.current.clientHeight;
-//             // const top = spaceTop > cHeight ? null : spaceTop - cHeight;
-//             // setDropDownTop(top)
-
-//             // const spaceLeft = window.innerWidth - buttonRef.current.getBoundingClientRect().right;
-//             // const cLeft = contentRef.current.clientWidth;
-//             // const left = spaceLeft > cLeft ? null : spaceLeft - cLeft;
-//             // setDropDownLeft(left)
-//             if (!buttonRef.current || !contentRef.current) return;
-
-//             const buttonRect = buttonRef.current.getBoundingClientRect();
-//             const dropdown = contentRef.current;
-//             const spaceBelow = window.innerHeight - buttonRect.bottom;
-//             const spaceAbove = buttonRect.top;
-
-//             let top;
-//             if (spaceBelow >= dropdown.clientHeight) {
-//                 top = buttonRect.bottom;
-//             } else if (spaceAbove >= dropdown.clientHeight) {
-//                 top = buttonRect.top - dropdown.clientHeight;
-//             } else {
-//                 top = Math.max(window.innerHeight - dropdown.clientHeight, 0);
-//             }
-
-//             const spaceRight = window.innerWidth - buttonRect.left;
-//             const spaceLeft = buttonRect.right;
-
-//             let left;
-//             if (spaceRight >= dropdown.clientWidth) {
-//                 left = buttonRect.left;
-//             } else if (spaceLeft >= dropdown.clientWidth) {
-//                 left = buttonRect.right - dropdown.clientWidth;
-//             } else {
-//                 //left = Math.max(window.innerWidth - dropdown.clientWidth, 0);
-//             }
-
-//             setDropDownTop(top);
-//             setDropDownLeft(left);
-//         }
-
-//         setOpen(!open);
-//     }
-
-//     useEffect(() => {
-//         const handler = (event) => {
-//             if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
-//                 setOpen(false);
-//             }
-//         }
-
-//         document.addEventListener("click", handler)
-
-//         return () => {
-//             document.removeEventListener("click", handler)
-//         }
-//     }, [dropDownRef])
-
-//     return <>
-//         <div ref={dropDownRef} className="dropdown-wrapper">
-//             <Button ref={buttonRef} open={open} toggle={toggle} />
-//             <Content ref={contentRef} open={open} top={dropDownTop} left={dropDownLeft} />
-//         </div>
-//     </>
-// }
-
-// export default LanguageDropDown;
-
 import { forwardRef, useEffect, useRef, useState } from "react";
 import "./LanguageDropDown.css";
 import { IoLanguage } from "react-icons/io5";
 
-const Content = forwardRef((props, ref, width) => {
-    const { open } = props;
+const Content = forwardRef((props, ref) => {
+    const { open, width, toggle, setLanguage } = props;
+
+    const handler = (e) => {
+        const value = e.target.getAttribute("value");
+        console.log(value)
+        setLanguage(value)
+        toggle()
+    }
 
     return (
         <div ref={ref} className={`drop-down ${open ? "" : "hidden"}`} style={{width: `${width}px`}}>
             <input type="text"></input>
             <ul>
-                <li>Telugu</li>
-                <li>Hindi</li>
-                <li>English</li>
+                <li value="Telugu" onClick={handler}>Telugu</li>
+                <li value="Hindi" onClick={handler}>Hindi</li>
+                <li value="English" onClick={handler}>English</li>
             </ul>
         </div>
     );
 });
 
 const Button = forwardRef((props, ref) => {
-    const { open, toggle } = props;
+    const { open, toggle, language } = props;
 
     return (
         <div ref={ref} className={`drop-btn ${open ? "active" : ""}`} onClick={toggle}>
             <IoLanguage size={30} />
-            <div>Language</div>
+            {open && <div>Language</div>}
+            {language ? !open && <div>{language}</div> : !open && <div>Language</div>}
         </div>
     );
 });
 
-const LanguageDropDown = ({width}) => {
+const LanguageDropDown = ({width, setLanguage, language}) => {
     const [open, setOpen] = useState(false);
     const dropDownRef = useRef();
+    
+    
 
     const toggle = () => {
         setOpen(!open);
@@ -155,8 +61,8 @@ const LanguageDropDown = ({width}) => {
 
     return (
         <div ref={dropDownRef} className="dropdown-wrapper">
-            <Button open={open} toggle={toggle} />
-            <Content open={open} width={width}/>
+            <Button open={open} toggle={toggle} language={language}/>
+            <Content open={open} width={width} toggle={toggle} setLanguage={setLanguage}/>
         </div>
     );
 };

@@ -29,6 +29,10 @@ const Admin_Profile = () => {
     const fetch = async () => {
 
         const token = Cookies.get("admin");
+
+        if (!token) {
+            navigate("/")
+        }
         try {
             const res = await fetch("http://localhost:3000/api/admin/profile", {
                 method: "GET",
@@ -52,7 +56,7 @@ const Admin_Profile = () => {
 
         }
     }
-    useEffect(() => {fetch()}, []);
+    useEffect(() => { fetch() }, []);
 
     return (
         <>

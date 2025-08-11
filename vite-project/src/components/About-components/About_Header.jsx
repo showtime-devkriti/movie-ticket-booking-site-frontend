@@ -1,14 +1,16 @@
 import { React, useState, useEffect } from "react";
 import './About_Header.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-import { TbLogout } from "react-icons/tb";  
+import { TbLogout } from "react-icons/tb";
+import Cookies from "js-cookie"
 
 const About_Header = () => {
     const [isLarge, setIsLarge] = useState(window.innerWidth >= 1375);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 750);
     const [isMenu, setIsMenu] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleResize = () => {
@@ -30,6 +32,11 @@ const About_Header = () => {
 
     const handleClick = () => {
         setIsMenu(!isMenu);
+    };
+
+    const handleLogout = () => {
+        Cookies.remove("token");
+        navigate("/");
     };
 
     return (
@@ -69,11 +76,11 @@ const About_Header = () => {
                                         </g>
                                     </g>
 
-                                        <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
-                                            SHOWTIME
-                                        </text>
-                                    </svg>
-                                </Link></div>
+                                    <text x="180" y="130" fontFamily="Sans" fontSize="99" fill="#111" transform="translate(-150,0)" fontWeight="bold">
+                                        SHOWTIME
+                                    </text>
+                                </svg>
+                            </Link></div>
                             <div className="menu">
                                 <IoMenu size={55} onClick={handleClick} />
                             </div>
@@ -85,7 +92,7 @@ const About_Header = () => {
                                 <Link to="/about"><h1>About us</h1></Link>
                                 <Link to="/FAQ"><h1>FAQs</h1></Link>
                                 <Link to="/contact"><h1>Contact Us</h1></Link>
-                                <div className="logout">
+                                <div className="logout" onClick={handleLogout}>
                                     <h1>Logout</h1>
                                     <TbLogout size={35} />
                                 </div>
@@ -141,7 +148,7 @@ const About_Header = () => {
                                 <Link to="/about"><h1>About us</h1></Link>
                                 <Link to="/FAQ"><h1>FAQs</h1></Link>
                                 <Link to="/contact"><h1>Contact Us</h1></Link>
-                                <div className="logout">
+                                <div className="logout" onClick={handleLogout}>
                                     <h1>Logout</h1>
                                     <TbLogout size={35} />
                                 </div>
@@ -198,7 +205,7 @@ const About_Header = () => {
                             <Link to="/about"><h1>About us</h1></Link>
                             <Link to="/FAQ"><h1>FAQs</h1></Link>
                             <Link to="/contact"><h1>Contact Us</h1></Link>
-                            <div className="logout">
+                            <div className="logout" onClick={handleLogout}>
                                 <h1>Logout</h1>
                                 <TbLogout size={35} />
                             </div>
