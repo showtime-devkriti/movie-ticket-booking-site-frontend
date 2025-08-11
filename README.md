@@ -4,6 +4,21 @@ A React-based frontend for the Movie Ticket Booking system, allowing users to br
 
 ---
 
+*Seamless Booking, Limitless Movie Experiences*
+
+![last-commit](https://img.shields.io/github/last-commit/showtime-devkriti/movie-ticket-booking-site-frontend?style=flat\&logo=git\&logoColor=white\&color=0080ff)
+![repo-top-language](https://img.shields.io/github/languages/top/showtime-devkriti/movie-ticket-booking-site-frontend?style=flat\&color=0080ff)
+![repo-language-count](https://img.shields.io/github/languages/count/showtime-devkriti/movie-ticket-booking-site-frontend?style=flat\&color=0080ff)
+
+**Built with:**
+![React](https://img.shields.io/badge/React-61DAFB.svg?style=flat\&logo=React\&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat\&logo=JavaScript\&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF.svg?style=flat\&logo=Vite\&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?style=flat\&logo=CSS3\&logoColor=white)
+![npm](https://img.shields.io/badge/npm-CB3837.svg?style=flat\&logo=npm\&logoColor=white)
+
+---
+
 ## Features
 
 * Browse currently showing movies from TMDB API.
