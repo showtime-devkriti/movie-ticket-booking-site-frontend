@@ -37,7 +37,6 @@ const SearchResults = ({ movies, theatres, handleLoadMore }) => {
     const theatreResultsRef = useRef(null);
 
     useEffect(() => {
-        console.log(theatres)
         if (movieResultsRef.current) {
             movieResultsRef.current.scrollTop = 0;
         }

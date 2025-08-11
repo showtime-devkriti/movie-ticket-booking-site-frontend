@@ -4,6 +4,7 @@ import './Theatrepage.css'
 import Footer from "./components/Footer";
 import Header2 from "./components/Header2"
 import { FaLocationDot } from "react-icons/fa6";
+import Cookies from "js-cookie"
 
 const Theatrepage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 750);

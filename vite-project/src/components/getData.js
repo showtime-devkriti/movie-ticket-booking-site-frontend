@@ -83,7 +83,7 @@ async function getSearchResults(query, language, page = 1) {
             totalPages: data.total_pages
         };
 
-        searchCache.set(cacheKey, responsePayload); 
+        searchCache.set(cacheKey, responsePayload);
         return responsePayload;
 
     } catch (error) {
@@ -95,7 +95,7 @@ async function getSearchResults(query, language, page = 1) {
 function filterResultsByLanguage(results, lang_code) {
     const selectedLanguage = (lang_code || 'en-US').split('-')[0];
     const allowedLanguages = new Set([selectedLanguage, 'en', 'hi']);
-    
+
     //console.log("Filtering with allowed languages:", allowedLanguages);
 
     const filtered = results.filter(movie => {
@@ -211,54 +211,77 @@ const getMovieById = async (tmdbId) => {
 };
 
 
-const getallmovies = async function (search, genre, language) {
+export const getallmovies = async function (search, language, genre, page = 1) {
+    const lang_code = languageMap[language] || 'en';
+    const cacheKey = `${search || 'discover'}|${genre || 'all'}|${lang_code}|${page}`;
+
+    if (searchCache.has(cacheKey)) {
+        console.log(`✅ Cache HIT for: ${cacheKey}`);
+        return searchCache.get(cacheKey);
+    }
+
+    console.log(`🔍 API MISS for: ${cacheKey}. Fetching...`);
+
     try {
-        const token = Cookies.get("token");
         let tmdbUrl = "";
         const params = new URLSearchParams({
             api_key: api,
-            language: "en-US",
             include_adult: "false",
+            page: page
         });
 
         if (search) {
+            // SEARCH MODE
             tmdbUrl = "https://api.themoviedb.org/3/search/movie";
             params.append("query", search);
-        } else if (token) {
-            tmdbUrl = "https://api.themoviedb.org/3/discover/movie";
-            params.append("sort_by", "release_date.desc");
-            params.append("with_original_language", localStorage.getItem("language"));
+            params.append("language", lang_code);
         } else {
-            tmdbUrl = "https://api.themoviedb.org/3/movie/popular";
+            // POPULAR / DISCOVER MODE
+            if (genre) {
+                // Popular movies filtered by genre
+                tmdbUrl = "https://api.themoviedb.org/3/discover/movie";
+                params.append("sort_by", "popularity.desc");
+                params.append("with_genres", genre);
+                if (lang_code !== 'en') {
+                    params.append("with_original_language", lang_code);
+                }
+            } else {
+                // Plain popular movies
+                tmdbUrl = "https://api.themoviedb.org/3/movie/popular";
+                params.append("language", lang_code);
+            }
         }
-
-        if (genre) params.append("with_genres", genre);
-        if (language) params.set("with_original_language", language);
 
         const fullUrl = `${tmdbUrl}?${params.toString()}`;
+        console.log("🌐 TMDb Request URL:", fullUrl);
 
         const response = await fetch(fullUrl, options);
-
         if (!response.ok) {
-            throw new Error(`TMDB API responded with status ${response.status}`);
+            throw new Error(`TMDb API responded with status ${response.status}`);
         }
 
-        const data = await response.json()
+        const data = await response.json();
+        const responsePayload = {
+            results: data.results.map((movie) => ({
+                id: movie.id,
+                title: movie.title,
+                poster_url: movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : "",
+                rating: movie.vote_average,
+                genre: movie.genre_ids.map(id => genreMap[id] || 'Unknown'),
+                release_date: movie.release_date,
+                language: movie.original_language
+            })),
+            totalPages: data.total_pages
+        };
 
-        // const movies = data.results.map((movie) => ({
-        //     id: movie.id,
-        //     title: movie.title,
-        //     rating: movie.vote_average,
-        //     // posterurl: movie.poster_path
-        //     //     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        //     //     : null,
-        //     language: languageMap[movie.original_language],
-        //     release_date: movie.release_date,
-        // }));
+        searchCache.set(cacheKey, responsePayload);
+        return responsePayload;
 
-        console.log(data)
     } catch (err) {
         console.error("TMDb error:", err.message);
+        return { results: [], totalPages: 0 };
     }
 };
 
@@ -368,4 +391,4 @@ const getMovie = async (imdb_id) => {
 
 
 
-export default { getSearchResults, getMovieById, getallmovies, getMovie };
+export default { getAllMovies: getSearchResults, getMovieById, getallmovies, getMovie };

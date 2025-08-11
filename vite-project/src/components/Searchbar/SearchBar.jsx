@@ -49,7 +49,7 @@ const SearchBar = () => {
             setCurrentPage(1); // Reset to page 1 for a new search
 
             try {
-                const response = await api.getSearchResults(debouncedQuery, language, 1);
+                const response = await api.getAllMovies(debouncedQuery, language, 1);
                 setMovies(response.results);
                 console.log(response, language)
                 setTotalPages(response.totalPages);
@@ -74,7 +74,7 @@ const SearchBar = () => {
         setError(null);
 
         try {
-            const response = await api.getSearchResults(debouncedQuery, language, currentPage + 1);
+            const response = await api.getAllMovies(debouncedQuery, language, currentPage + 1);
             // Append new results to the existing list
             setMovies(prevMovies => [...prevMovies, ...response.results]);
             setCurrentPage(prevPage => prevPage + 1);
@@ -89,7 +89,7 @@ const SearchBar = () => {
     const theatreSearch = async (query) => {
         const token = Cookies.get("token")
         if (query) {
-            console.log(query, token)
+            //console.log(query, token)
             const res = await fetch(`http://localhost:3000/api/theatres/alltheatres?search=${query}`, {
                 method: "GET",
                 headers: {
@@ -100,7 +100,7 @@ const SearchBar = () => {
             });
             if (res.ok) {
                 const data = await res.json();
-                console.log(data);
+                //console.log(data);
                 setTheatres(data);
             }
         } else {
@@ -127,7 +127,7 @@ const SearchBar = () => {
                     <input type="text" placeholder="Search for movies and theaters" value={input} onChange={handleInputChange}></input>
                 </div>
             </div>
-            <SearchResults movies={movies} handleLoadMore={handleLoadMore} theatres={theatres.theatres} />
+            <SearchResults movies={movies} handleLoadMore={handleLoadMore} theatres={theatres} />
         </div>
     </>
 }

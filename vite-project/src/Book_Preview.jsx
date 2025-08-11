@@ -8,7 +8,7 @@ import Cookies from "js-cookie"
 
 const Book_Preview = () => {
     const location = useLocation()
-    const { selectedSeats, cost, screenData, theatreData } = location.state || {}
+    const { selectedSeats, cost, screenData, theatreData, userid } = location.state || {}
     const [groupedSeats, setGroupedSeats] = useState([])
     const { data } = useMovieContext();
     const [finalCost, setFinalCost] = useState(null)
@@ -18,6 +18,10 @@ const Book_Preview = () => {
     const paymentHandler = async (e) => {
         e.preventDefault();
         const token = Cookies.get("token")
+
+        if (!token) {
+            navigate("/")
+        }
         const seats = selectedSeats.map((seat) => (seat.seatid))
         const showtimeid = screenData?.showtimeid
 
@@ -31,6 +35,7 @@ const Book_Preview = () => {
                 body: JSON.stringify({
                     seats,
                     offercoupon,
+                    userid
                 }),
             });
 

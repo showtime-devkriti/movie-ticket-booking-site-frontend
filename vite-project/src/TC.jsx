@@ -3,8 +3,10 @@ import './TC.css';
 import About_Header from "./components/About-components/About_Header";
 import Footer from "./components/Footer";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie"
 
 const TC = () => {
+    
     return (
         <>
             <About_Header />

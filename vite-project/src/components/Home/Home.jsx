@@ -115,6 +115,8 @@ const Home = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const on = sessionStorage.getItem("alreadyTriggered")
+    const location = localStorage.getItem("location")
+    const language = localStorage.getItem("language")
 
     const fetchData = async () => {
         setLoading(true);
@@ -131,34 +133,21 @@ const Home = () => {
         }
     };
 
+    // useEffect(() => {
+    //     fetchData()
+    // }, [location, language])
+
     useEffect(() => {
         const token = Cookies.get("token");
 
+        setLoading(true)
         if (!token) {
             navigate("/");
             return;
         }
 
-        const res = localStorage.getItem("home")
-        console.log(res)
-        let parsed
-        try {
-            parsed = res ? JSON.parse(res) : null;
-        } catch (e) {
-            console.error("Failed to parse localStorage movie data:", e);
-        }
-        console.log(parsed)
-        if (!parsed) {
-
-            fetchData();
-        } else {
-            if (!on) {
-                fetchData();
-            } else {
-                setData(parsed);
-                setLoading(false)
-            }
-        }
+        fetchData()
+        //setLoading(false)
 
     }, [navigate]);
 
